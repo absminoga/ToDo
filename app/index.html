@@ -12,8 +12,8 @@
   <body>
     <main>
       <div class="section_two">
-        <div class="wrapper">
-          <div class="container">
+        <div class="container">
+          <div class="wrapper">
             <div class="container_section_menu">
               <div class="container_section_menu_top">
                 <div class="container_date"></div>
@@ -28,7 +28,42 @@
                 </ul>
               </div>
             </div>
-            <div class="container_section_task_dashboard"></div>
+            <div class="container_section_task_dashboard">
+              <div class="container_section_task_dashboard_header">
+                <h2>toDo list</h2>
+              </div>
+              <div class="tab_content">
+                <div data-tab="1" class="tabs_dashboard js-tab-content active">
+                  <div class="tabs_dashboard_list_card">
+                    <h3>add new task</h3><label for="new_title" class="tabs_dashboard_list_card_title">
+                      <h4>add title</h4>
+                    </label><input type="text" id="new_title">
+                    <p class="text-counter">used <span class="char-counter">0 </span><span>/ 30</span></p><label for="new_task" class="tabs_dashboard_list_card_description">
+                      <h4>add description task</h4>
+                    </label><input type="text" id="new_task">
+                    <buttom class="add_btn"> <i class="fas fa-folder-plus"></i></buttom>
+                  </div>
+                </div>
+                <div data-tab="2" class="tabs_dashboard js-tab-content">
+                  <div class="container_todo container_item">
+                    <h3>todo task</h3>
+                    <ul class="incompleted_tasks"> </ul>
+                  </div>
+                </div>
+                <div data-tab="3" class="tabs_dashboard js-tab-content">
+                  <div class="container_completed container_item">
+                    <h3>completed task</h3>
+                    <ul class="completed_tasks"></ul>
+                  </div>
+                </div>
+                <div data-tab="4" class="tabs_dashboard js-tab-content">
+                  <div class="container_expired container_item">
+                    <h3>expired task</h3>
+                    <ul class="expired_tasks"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +71,6 @@
         <div class="wrapper">
           <div class="block_rocket">
             <div class="preloader"><svg id="sun" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve" style="opacity: 1; margin-left: 0px; margin-top: 0px;">
-                <g></g>
                 <path fill="none" d="M6.942,3.876c-0.4-0.692-1.146-1.123-1.946-1.123c-0.392,0-0.779,0.104-1.121,0.301c-1.072,0.619-1.44,1.994-0.821,3.067C3.454,6.815,4.2,7.245,5,7.245c0.392,0,0.779-0.104,1.121-0.301C6.64,6.644,7.013,6.159,7.167,5.581C7.321,5,7.243,4.396,6.942,3.876z M6.88,5.505C6.745,6.007,6.423,6.427,5.973,6.688C5.676,6.858,5.34,6.948,5,6.948c-0.695,0-1.343-0.373-1.69-0.975C2.774,5.043,3.093,3.849,4.024,3.312C4.32,3.14,4.656,3.05,4.996,3.05c0.695,0,1.342,0.374,1.69,0.975C6.946,4.476,7.015,5,6.88,5.505z"></path>
                 <path fill="none" d="M8.759,2.828C8.718,2.757,8.626,2.732,8.556,2.774L7.345,3.473c-0.07,0.041-0.094,0.132-0.053,0.202C7.319,3.723,7.368,3.75,7.419,3.75c0.025,0,0.053-0.007,0.074-0.02l1.211-0.699C8.774,2.989,8.8,2.899,8.759,2.828z"></path>
                 <path fill="none" d="M1.238,7.171c0.027,0.047,0.077,0.074,0.128,0.074c0.025,0,0.051-0.008,0.074-0.02l1.211-0.699c0.071-0.041,0.095-0.133,0.054-0.203S2.574,6.228,2.503,6.269l-1.21,0.699C1.221,7.009,1.197,7.101,1.238,7.171z"></path>

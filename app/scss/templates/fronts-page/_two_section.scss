@@ -1,182 +1,78 @@
 .section_two{
-    padding: calc(40px + 2vw) 0;
-    .wrapper{
     .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 800px;
-        min-width: 320px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-        background-image: url(/img/86066ddc.png);
-        padding: 30px;
-        .container_item{
-            width: 100%;
-            padding: calc(10px + .5vw) 15px;
-            h2, h3{
-                font-family: 'MontserratBold';
-                font-size: calc(14px + 0.695vw);
-                text-transform: uppercase;
-                text-align: center;
-                border-bottom: 2px solid rgba(0,0, 0, .6);
-            }
-            ul{
-                li{
-                    position: relative;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-start;
-                    padding: 5px 10px;
-                    input[type="checkbox"]{
-                        margin-right: 15px;
-                    }
-                    label{
-                        position: absolute;
-                        left: 37px;
-                        font-family: 'MontserratRegular';
-                        font-size: 16px;
-                        text-transform: capitalize;
-
-                    }
-                    input[type="text"]{
-                        flex: 1 1 calc(80% - 30px);
-                        margin-right: 15px;
-                        font-family: 'MontserratRegular';
-                        font-size: 16px;
-                        font-weight: 600;
-                        text-transform: capitalize;
-                        background: transparent;
-                        outline: none;
-                        border: none;
-                        border-bottom: 1px solid  rgba(0, 0, 0, 1);
-                    }
-                    .button_item{
-                        flex: 1 1 15%;
-                        display: flex;
-                        flex-direction: column;
-                        padding: 10px;
-                        .edit,
-                        .delete{
-                            padding: 5px;
-                            font-family: 'MontserratRegular';
-                            font-size: 12px;
-                            font-weight: 700;
-                            background: transparent;
-                            text-transform: capitalize;
-                            outline: none;
-                            border: 0;
-                            cursor: pointer;
-                            color: rgba(0, 0, 0, 1);
-                            transition: color .4s ease-in-out;
-                        }
-                        .edit:hover {
-                            color:rgb(55, 97, 0);
-                        }
-                        .delete:hover{
-                            color:rgb(255, 2, 2);
-                        }
-                    }
-
-                }
-                .changes{
-                    label{
-                        color:   rgb(81, 143, 1);
-                    }
-                    input[type="text"]{
-                        border-bottom: 1px solid  rgb(81, 143, 1);
-                    }
-                    .button_item{
-                        .edit {
-                            color: rgb(81, 143, 1);
-                        }
-                        .delete:hover{
-
-                            color:rgb(255, 2, 2);
-                        }
-                    }
-                }
-                .completed{
-                    label{
-                        color:   rgba(0, 0, 0, 6);
-                        text-decoration: line-through;
-                    }
-                    input[type="text"]{
-                        border-bottom: 1px solid  rgba(0, 0, 0, 6);
-                    }
-                    .button_item{
-                        .edit {
-                            color: rgba(120, 120, 120, .5);
-                        }
-                        .delete {
-                            color: rgba(120, 120, 120, .5);
-                        }
-                    }
-                }
-            }
-        }
-        .container_date,
-        .container_time{
+        .wrapper{
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: left;
-            // transform: translateX(25%);
-            font-family: 'MontserratBold';
-            color: rgba(120, 120, 120, 1);
-            font-weight: 700;
-            font-size: calc(10px + 0.6vw);
-            text-align: center;
-            line-height: 1.1;
-            padding: 0;
-        }
-        .container_add{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: flex-start;
             flex-wrap: wrap;
-            transition: all .7 linear;
-            label{
-                flex: 1 1 100%;
-            }
-            input{
-                flex: 1 1 auto;
-                width: calc(85% - 10px);
-                padding: 5px;
-                margin: 10px 0;
-                font-family: 'MontserratRegular';
-                font-size: 16px;
-                text-transform: capitalize;
-                background: transparent;
-                outline: none;
-                border: none;
-                margin-left: 10px;
-                padding-left: 10px;
-                border-bottom: 1px solid  gray;
-            }
-            buttom{
-                flex: 1 1 10%;
-                padding: 5px;
-                text-align: center;
-                cursor: pointer;
-                font-family: 'MontserratRegular';
-                font-size: 16px;
-                text-transform: capitalize;
-                font-weight: 700;
-                color: rgba(0, 0, 0, 1);
-                border: 1px solid transparent;
-                border-radius: 20px;
-                transition: all .7 linear;
-            }
-            &:hover buttom{
-               color: rgba(120, 120, 120, 1);
-               border: 1px solid rgba(120, 120, 120, .7);
-
-            }
+            padding: calc(10px + 1vw);
+            width: 100%;
+            min-width: 300px;
+            background-image: url(/img/86066ddc.png);
         }
-
     }
 }
+.container_section_menu{
+    flex: 1 1 20%;
+    min-width: 200px;
+    .container_section_menu_top{
+        .container_date,
+        .container_time{
+          
+      }
+    }
+    .container_section_menu_buttom{
+        .container_tabs{
+            .section_two_tabs{
+                i{
+
+                }
+                span{
+
+                }
+            }
+            .active{
+
+            }
+        }
+        
+    }
+}
+.container_section_task_dashboard{
+    flex: 1 1 70%;
+    min-width: 200px;
+    .container_section_task_dashboard_header{
+
+    }
+    .tab_content{
+      .tabs_dashboard{
+          .tabs_dashboard_list_card{
+              h3{
+
+              }
+              .tabs_dashboard_list_card_title{
+                  h4{
+
+                  }
+              }
+              #new_title{
+
+              }
+              .tabs_dashboard_list_card_description{
+                  h4{
+
+                  }
+              } 
+              #new_task{
+
+              }  
+              .add_btn{
+                  i{
+
+                  }
+              }
+          }
+      }  
+    }
 }

@@ -1,6 +1,6 @@
 .section_two
-    .wrapper
-        .container
+    .container
+        .wrapper
             .container_section_menu
                 .container_section_menu_top
                     .container_date
@@ -20,5 +20,36 @@
                             i.fas.fa-calendar-times(data-tab="4")
                             span expired task
             .container_section_task_dashboard
+                .container_section_task_dashboard_header
+                    h2 toDo list
+                .tab_content
+                    .tabs_dashboard.js-tab-content.active(data-tab="1")
+                        div.tabs_dashboard_list_card 
+                            h3 add new task
+                            label.tabs_dashboard_list_card_title(for="new_title")
+                                h4 add title
+                            input(type="text")#new_title
+                            p.text-counter used 
+                                span.char-counter 0 
+                                span / 30
+                            label.tabs_dashboard_list_card_description(for="new_task")
+                                h4 add description task
+                            input(type="text")#new_task
+                            buttom.add_btn 
+                                i.fas.fa-folder-plus
+                    .tabs_dashboard.js-tab-content(data-tab="2")
+                        .container_todo.container_item
+                            h3 todo task
+                            ul.incompleted_tasks 
+                    .tabs_dashboard.js-tab-content(data-tab="3")
+                        .container_completed.container_item
+                            h3 completed task
+                            ul.completed_tasks
+                    .tabs_dashboard.js-tab-content(data-tab="4")
+                        .container_expired.container_item
+                            h3 expired task
+                            ul.expired_tasks
+
+
                 
                     
