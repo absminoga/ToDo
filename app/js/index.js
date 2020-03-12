@@ -1,12 +1,35 @@
+// Tab
+let jsTriggers = document.querySelectorAll('.js-tab-trigger');
+let jsContents = document.querySelectorAll('.js-tab-content');
 
+jsTriggers.forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+       let id = this.getAttribute('data-tab'),
+           content = document.querySelector('.js-tab-content[data-tab="'+id+'"]'),
+           activeTrigger = document.querySelector('.js-tab-trigger.active'),
+           activeContent = document.querySelector('.js-tab-content.active');
+       console.log(this);
+       
+       activeTrigger.classList.remove('active'); // 1
+       trigger.classList.add('active'); // 2
+       
+       activeContent.classList.remove('active'); // 3
+       content.classList.add('active'); // 4
+    });
+ });
+// Add task
 class ToDoList{
     constructor (){
         this.addButton = document.querySelector('.add_btn');
+        // this.jsTriggers = document.querySelectorAll('.js-tab-trigger'),
+        // this.jsContents = document.querySelectorAll('.js-tab-content');
         this.inputTask = document.getElementById('new_task');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
         this.addButton.onclick = () => this.addTask();
+        // this.jsTriggers.onclick = () => this.choiceTab();
         setInterval(this.getDate, 0);
         this.removedTask = null;
+        
     }
     creatureNewItem(task){
         let listItem = document.createElement('li');
@@ -35,6 +58,14 @@ class ToDoList{
         
         return listItem;
     };
+    // choiceTab(){
+    //     console.log(1);
+    //     // for (let elem of this.jsTriggers){
+
+    //     //     console.log(1);
+            
+    //     // }
+    // }
     
     buttonTaskEvents(listItem){ 
         let editButton = listItem.querySelector('button.edit');
