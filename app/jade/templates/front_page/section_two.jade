@@ -10,13 +10,13 @@
                         li.section_two_tabs.js-tab-trigger.active
                             i.fas.fa-plus-circle(data-tab="1")
                             span add task
-                        li.section_two_tabs.js-tab-trigger.active
+                        li.section_two_tabs.js-tab-trigger
                             i.fas.fa-calendar-alt(data-tab="2")
-                            span ToDo task
-                        li.section_two_tabs.js-tab-trigger.active
+                            span toDo task
+                        li.section_two_tabs.js-tab-trigger
                             i.fas.fa-calendar-check(data-tab="3")
                             span completed task
-                        li.section_two_tabs.js-tab-trigger.active
+                        li.section_two_tabs.js-tab-trigger
                             i.fas.fa-calendar-times(data-tab="4")
                             span expired task
             .container_section_task_dashboard
@@ -27,14 +27,15 @@
                         div.tabs_dashboard_list_card 
                             h3 add new task
                             label.tabs_dashboard_list_card_title(for="new_title")
-                                h4 add title
+                                h4 title
                             input(type="text")#new_title
-                            p.text-counter used 
-                                span.char-counter 0 
+                            p.text-counter 
+                                span used&nbsp;
+                                span.char-counter 0&nbsp;
                                 span / 30
                             label.tabs_dashboard_list_card_description(for="new_task")
-                                h4 add description task
-                            input(type="text")#new_task
+                                h4 description task
+                            textarea(type="text")#new_task
                             buttom.add_btn 
                                 i.fas.fa-folder-plus
                     .tabs_dashboard.js-tab-content(data-tab="2")

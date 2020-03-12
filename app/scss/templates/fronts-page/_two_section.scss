@@ -1,71 +1,196 @@
 .section_two{
+    
     .container{
         .wrapper{
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             align-items: flex-start;
-            flex-wrap: wrap;
-            padding: calc(10px + 1vw);
+            flex-wrap: unset;
             width: 100%;
+            height: 100vh;
             min-width: 300px;
             background-image: url(/img/86066ddc.png);
         }
     }
 }
 .container_section_menu{
-    flex: 1 1 20%;
-    min-width: 200px;
+    flex: 1 1 25%;
+    min-width: 320px;
+    padding: calc(10px + 1vw);
     .container_section_menu_top{
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid rgba(8, 1, 136, 0.701);
         .container_date,
         .container_time{
-          
+            font-family: 'MontserratBold';
+            font-size: calc(10px + 0.5vw);
+            text-transform: uppercase;
+            text-align: center;
+            color: rgba(120, 120, 120, 1);
+            font-weight: 700;
       }
     }
-    .container_section_menu_buttom{
+    .container_section_menu_buttom{ 
+        padding: calc(10px + 1vw) 0;
         .container_tabs{
             .section_two_tabs{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: unset;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 10px 0;
+                margin-bottom: 5px;
+                transition: all .5s ease-in-out;
                 i{
-
+                padding-left: 20px;
+                padding-right: calc(10px + 1vw);
+                font-size: calc(15px + 1vw);
+                }
+                .fa-plus-circle, 
+                .fa-plus-circle ~ span {
+                color: rgb(0, 17, 255);   
+                }
+                .fa-calendar-alt,
+                .fa-calendar-alt ~ span{
+                    color: rgba(159, 109, 2, 1)
+                }
+                .fa-calendar-check,
+                .fa-calendar-check ~ span {
+                    color: rgb(2, 193, 94);
+                }
+                .fa-calendar-times,
+                .fa-calendar-times ~ span{
+                    color: rgba(176, 4, 4, 0.975)
                 }
                 span{
-
-                }
+                font-size: calc(10px + .6vw);
+                font-family: 'MontserratBold';
+                text-transform: capitalize;
+                color: rgba(120, 120, 120, 1);
+                }   
             }
             .active{
-
+                background-color: rgba(120, 120, 120, .3);
+                border-radius: 10px;
             }
         }
         
     }
 }
 .container_section_task_dashboard{
-    flex: 1 1 70%;
-    min-width: 200px;
+    flex: 1 1 75%;
+    min-width: 320px;
+    background-image: url(/img/AddTask.png);
+    background-size: cover;
+    background-position: top center;
+    height: 100%;
+    padding: calc(10px + 1vw);
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    z-index: 99;   
     .container_section_task_dashboard_header{
-
+        height: 10vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 2px solid rgba(255, 255, 255, 1);
+        h2{
+            font-family: 'MontserratBold';
+            font-size: calc(20px + 1vw);
+            text-transform: capitalize;
+            text-align: center;
+            color: rgba(255, 255, 255, 1);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
     }
     .tab_content{
+        width: 100%;
+        height: 100%;
       .tabs_dashboard{
+        width: 100%;
+        height: 85vh;
+        padding: calc(10px + 1vw) 0;
+        overflow: hidden;
           .tabs_dashboard_list_card{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 1);
+            padding: calc(10px + 1vw);
+            border-radius: 10px;  
               h3{
-
+                width: 100%;
+                font-family: 'MontserratBold';
+                font-size: calc(10px + 1vw);
+                text-transform: capitalize;
+                text-align: center;
+                margin-bottom: calc(10px + .5vw);
+                color: rgba(120, 120, 120, 1);  
               }
               .tabs_dashboard_list_card_title{
                   h4{
-
+                    width: 100%;
+                    font-family: 'MontserratBold';
+                    font-size: calc(10px + .6vw);
+                    text-transform: capitalize;
+                    margin-bottom: 5px;
+                    color: rgba(120, 120, 120, 1);
+                    padding-left: 10px; 
                   }
               }
               #new_title{
-
+                width: 100%;
+                margin-bottom: 3px;
+                border: 1px solid rgba(120, 120, 120, 1);
+                border-radius: 10px;
+                padding: 5px 10px;
+                font-family: 'MontserratRegular';
+                font-size: calc(10px + .6vw);
+                color: rgba(120, 120, 120, 1);
+                text-transform: capitalize;
+                outline:none;
+              }
+              .text-counter{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                width: 100%;
+                padding-right: 20px;
+                font-family: 'MontserratBold';
+                font-size: calc(5px + .5vw);
+                color: rgb(104, 104, 104);
               }
               .tabs_dashboard_list_card_description{
                   h4{
-
+                    width: 100%;
+                    font-family: 'MontserratBold';
+                    font-size: calc(10px + .6vw);
+                    text-transform: capitalize;
+                    margin-bottom: 5px;
+                    color: rgba(120, 120, 120, 1);
+                    padding-left: 10px;
                   }
               } 
               #new_task{
-
+                width: 100%;
+                height: calc(100px + 2vw);
+                margin-bottom: 3px;
+                border: 1px solid rgba(120, 120, 120, 1);
+                border-radius: 10px;
+                padding: 5px 10px;
+                font-family: 'MontserratRegular';
+                font-size: calc(10px + .6vw);
+                color: rgba(120, 120, 120, 1);
+                text-transform: capitalize;
+                outline:none;
               }  
               .add_btn{
                   i{

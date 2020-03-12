@@ -126,7 +126,6 @@ input {
           flex-direction: row;
   width: 100%;
   height: 100%;
-  max-width: 1200px;
   margin: 0 auto; }
 
 .wrapper {
@@ -530,27 +529,254 @@ input {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
           align-items: flex-start;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  padding: -webkit-calc(10px + 1vw);
-  padding: calc(10px + 1vw);
+  -webkit-flex-wrap: unset;
+      -ms-flex-wrap: unset;
+          flex-wrap: unset;
   width: 100%;
+  height: 100vh;
   min-width: 300px;
   background-image: url(/img/86066ddc.png); }
 
 .container_section_menu {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 20%;
-      -ms-flex: 1 1 20%;
-          flex: 1 1 20%;
-  min-width: 200px; }
+  -webkit-flex: 1 1 25%;
+      -ms-flex: 1 1 25%;
+          flex: 1 1 25%;
+  min-width: 320px;
+  padding: -webkit-calc(10px + 1vw);
+  padding: calc(10px + 1vw); }
+  .container_section_menu .container_section_menu_top {
+    width: 100%;
+    height: 10vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: 2px solid rgba(8, 1, 136, 0.701); }
+    .container_section_menu .container_section_menu_top .container_date,
+    .container_section_menu .container_section_menu_top .container_time {
+      font-family: 'MontserratBold';
+      font-size: -webkit-calc(10px + 0.5vw);
+      font-size: calc(10px + 0.5vw);
+      text-transform: uppercase;
+      text-align: center;
+      color: #787878;
+      font-weight: 700; }
+  .container_section_menu .container_section_menu_buttom {
+    padding: -webkit-calc(10px + 1vw) 0;
+    padding: calc(10px + 1vw) 0; }
+    .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: unset;
+          -ms-flex-wrap: unset;
+              flex-wrap: unset;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      padding: 10px 0;
+      margin-bottom: 5px;
+      -webkit-transition: all .5s ease-in-out;
+      -o-transition: all .5s ease-in-out;
+      transition: all .5s ease-in-out; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs i {
+        padding-left: 20px;
+        padding-right: -webkit-calc(10px + 1vw);
+        padding-right: calc(10px + 1vw);
+        font-size: -webkit-calc(15px + 1vw);
+        font-size: calc(15px + 1vw); }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle ~ span {
+        color: #0011ff; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt ~ span {
+        color: #9f6d02; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check ~ span {
+        color: #02c15e; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times ~ span {
+        color: rgba(176, 4, 4, 0.975); }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs span {
+        font-size: -webkit-calc(10px + .6vw);
+        font-size: calc(10px + .6vw);
+        font-family: 'MontserratBold';
+        text-transform: capitalize;
+        color: #787878; }
+    .container_section_menu .container_section_menu_buttom .container_tabs .active {
+      background-color: rgba(120, 120, 120, 0.3);
+      border-radius: 10px; }
 
 .container_section_task_dashboard {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 70%;
-      -ms-flex: 1 1 70%;
-          flex: 1 1 70%;
-  min-width: 200px; }
+  -webkit-flex: 1 1 75%;
+      -ms-flex: 1 1 75%;
+          flex: 1 1 75%;
+  min-width: 320px;
+  background-image: url(/img/AddTask.png);
+  background-size: cover;
+  background-position: top center;
+  height: 100%;
+  padding: -webkit-calc(10px + 1vw);
+  padding: calc(10px + 1vw);
+  border-left: 1px solid rgba(255, 255, 255, 0);
+  z-index: 99; }
+  .container_section_task_dashboard .container_section_task_dashboard_header {
+    height: 10vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: 2px solid white; }
+    .container_section_task_dashboard .container_section_task_dashboard_header h2 {
+      font-family: 'MontserratBold';
+      font-size: -webkit-calc(20px + 1vw);
+      font-size: calc(20px + 1vw);
+      text-transform: capitalize;
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 10px black; }
+  .container_section_task_dashboard .tab_content {
+    width: 100%;
+    height: 100%; }
+    .container_section_task_dashboard .tab_content .tabs_dashboard {
+      width: 100%;
+      height: 85vh;
+      padding: -webkit-calc(10px + 1vw) 0;
+      padding: calc(10px + 1vw) 0;
+      overflow: hidden; }
+      .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        background-color: white;
+        padding: -webkit-calc(10px + 1vw);
+        padding: calc(10px + 1vw);
+        border-radius: 10px; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card h3 {
+          width: 100%;
+          font-family: 'MontserratBold';
+          font-size: -webkit-calc(10px + 1vw);
+          font-size: calc(10px + 1vw);
+          text-transform: capitalize;
+          text-align: center;
+          margin-bottom: -webkit-calc(10px + .5vw);
+          margin-bottom: calc(10px + .5vw);
+          color: #787878; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .tabs_dashboard_list_card_title h4 {
+          width: 100%;
+          font-family: 'MontserratBold';
+          font-size: -webkit-calc(10px + .6vw);
+          font-size: calc(10px + .6vw);
+          text-transform: capitalize;
+          margin-bottom: 5px;
+          color: #787878;
+          padding-left: 10px; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #new_title {
+          width: 100%;
+          margin-bottom: 3px;
+          border: 1px solid #787878;
+          border-radius: 10px;
+          padding: 5px 10px;
+          font-family: 'MontserratRegular';
+          font-size: -webkit-calc(10px + .6vw);
+          font-size: calc(10px + .6vw);
+          color: #787878;
+          text-transform: capitalize;
+          outline: none; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .text-counter {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: row;
+              -ms-flex-direction: row;
+                  flex-direction: row;
+          -webkit-box-pack: end;
+          -webkit-justify-content: flex-end;
+              -ms-flex-pack: end;
+                  justify-content: flex-end;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          width: 100%;
+          padding-right: 20px;
+          font-family: 'MontserratBold';
+          font-size: -webkit-calc(5px + .5vw);
+          font-size: calc(5px + .5vw);
+          color: #686868; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .tabs_dashboard_list_card_description h4 {
+          width: 100%;
+          font-family: 'MontserratBold';
+          font-size: -webkit-calc(10px + .6vw);
+          font-size: calc(10px + .6vw);
+          text-transform: capitalize;
+          margin-bottom: 5px;
+          color: #787878;
+          padding-left: 10px; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #new_task {
+          width: 100%;
+          height: -webkit-calc(100px + 2vw);
+          height: calc(100px + 2vw);
+          margin-bottom: 3px;
+          border: 1px solid #787878;
+          border-radius: 10px;
+          padding: 5px 10px;
+          font-family: 'MontserratRegular';
+          font-size: -webkit-calc(10px + .6vw);
+          font-size: calc(10px + .6vw);
+          color: #787878;
+          text-transform: capitalize;
+          outline: none; }
 
 /* ----------- Media ---------------*/
