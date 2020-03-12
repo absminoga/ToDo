@@ -28,7 +28,7 @@
                             h3 add new task
                             label.tabs_dashboard_list_card_title(for="new_title")
                                 h4 title
-                            input(type="text")#new_title
+                            textarea(type="text")#new_title
                             p.text-counter 
                                 span used&nbsp;
                                 span.char-counter 0&nbsp;
@@ -42,14 +42,39 @@
                         .container_todo.container_item
                             h3 todo task
                             ul.incompleted_tasks 
+                                li
+                                    input(type="checkbox")
+                                    .block_text_description
+                                        textarea(type="text" disabled).input_title
+                                        textarea(type="text"  disabled).input_description
+                                    .button_item
+                                        button.edit edit
+                                        button.delete delete
                     .tabs_dashboard.js-tab-content(data-tab="3")
                         .container_completed.container_item
                             h3 completed task
                             ul.completed_tasks
+                                li.changes
+                                    input(type="checkbox")
+                                    .block_text_description
+                                        textarea(type="text"  disabled).input_title  Пример
+                                        textarea(type="text"  disabled).input_description Пример
+                                    .button_item
+                                        button.edit edit
+                                        button.delete delete
                     .tabs_dashboard.js-tab-content(data-tab="4")
                         .container_expired.container_item
                             h3 expired task
                             ul.expired_tasks
+                                li.expired
+                                    input(type="checkbox")
+                                    .block_text_description
+                                        textarea(type="text" disabled).input_title  Пример
+                                        textarea(type="text" disabled).input_description  Пример
+                                    .button_item
+                                        button.edit edit
+                                        button.delete delete
+
 
 
                 
