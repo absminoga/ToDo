@@ -10,23 +10,22 @@ jsTriggers.forEach(function(trigger) {
            activeContent = document.querySelector('.js-tab-content.active');
        console.log(this);
        
-       activeTrigger.classList.remove('active'); // 1
-       trigger.classList.add('active'); // 2
+       activeTrigger.classList.remove('active');
+       trigger.classList.add('active');
        
-       activeContent.classList.remove('active'); // 3
-       content.classList.add('active'); // 4
+       activeContent.classList.remove('active');
+       content.classList.add('active');
     });
  });
 // Add task
 class ToDoList{
     constructor (){
         this.addButton = document.querySelector('.add_btn');
-        // this.jsTriggers = document.querySelectorAll('.js-tab-trigger'),
-        // this.jsContents = document.querySelectorAll('.js-tab-content');
         this.inputTask = document.getElementById('new_task');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
+        this.textArea = document.getElementById('new_title');
         this.addButton.onclick = () => this.addTask();
-        // this.jsTriggers.onclick = () => this.choiceTab();
+        this.textArea.oninput = ()=> this.changeTitle();
         setInterval(this.getDate, 0);
         this.removedTask = null;
         
@@ -57,16 +56,23 @@ class ToDoList{
         buttonItem.appendChild(buttonDelete);
         
         return listItem;
-    };
-    // choiceTab(){
-    //     console.log(1);
-    //     // for (let elem of this.jsTriggers){
-
-    //     //     console.log(1);
-            
-    //     // }
-    // }
+    }
     
+    changeTitle(){
+        let charCounter = document.querySelector('.char-counter');
+        let textCounter = document.querySelector('.text-counter');
+        charCounter.textContent = this.textArea.value.length;
+        if (this.textArea.value.length > 30) {
+            this.textArea.setAttribute("id", "warning");
+            this.addButton.setAttribute('disabled', '');
+            textCounter.classList.add('warning')
+          } else{   
+            this.textArea.setAttribute("id", "new_title");
+            this.addButton.removeAttribute('disabled', '');
+            textCounter.classList.remove('warning');
+          }
+    }
+
     buttonTaskEvents(listItem){ 
         let editButton = listItem.querySelector('button.edit');
         editButton.onclick = () => this.changeTask(listItem);
@@ -86,14 +92,12 @@ class ToDoList{
             this.inputTask.value = ''; 
         } 
     }
-    
-    
+     
     deleteTask(listItem){
     let ul = listItem.parentNode;
     ul.removeChild(listItem);
     }
-    
-    
+      
     changeTask(listItem){
         let label = listItem.querySelector('label');
         let input = listItem.querySelector('input[type=text]');
@@ -112,7 +116,6 @@ class ToDoList{
          listItem.classList.toggle('changes');
     }
      
-    
     completedTask(listItem){
         let ulCompleted = document.querySelector('.completed_tasks');
         this.removedTask = listItem;
@@ -134,9 +137,7 @@ class ToDoList{
         let checkboxIn = listItem.querySelector('input[type=checkbox]');
          checkboxIn.onclick = () => this.completedTask(listItem);
     }
-    
-    
-    
+
     // -------- DATE ----------
     getDate(){
         let d = new Date();
@@ -144,8 +145,14 @@ class ToDoList{
       "July","August","September","October","November","December");
         let datePosition = document.querySelector('.container_date');
         let timePosition = document.querySelector('.container_time');
-        datePosition.innerText = (d.getDate()+ ", " + month[d.getMonth()] + ", " + d.getFullYear());
-        timePosition.innerText = (d.getHours() + ":" +  d.getMinutes() + ":" + d.getSeconds());
+        datePosition.innerText = (addZero(d.getDate()) + ", " + month[d.getMonth()] + ", " + d.getFullYear());
+        timePosition.innerText = (addZero(d.getHours()) + ":" +  addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()));
+        function addZero(num) {
+            let str = num.toString();
+            return str.length == 1? "0" + str : str;
+         };
     }
+    
+        
     }
     let todolist = new ToDoList();

@@ -164,6 +164,19 @@
                 outline:none;
                 resize: none;
               }
+              #warning{
+                width: 100%;
+                margin-bottom: 3px;
+                border-radius: 10px;
+                padding: 5px 10px;
+                font-family: 'MontserratRegular';
+                font-size: calc(10px + .6vw);
+                text-transform: capitalize;
+                outline:none;
+                resize: none;
+                border: 1px solid rgba(218, 3, 3, 0.954);
+                color: rgba(218, 3, 3, 0.954);
+              }
               .text-counter{
                 display: flex;
                 flex-direction: row;
@@ -174,6 +187,9 @@
                 font-family: 'MontserratBold';
                 font-size: calc(5px + .5vw);
                 color: rgb(104, 104, 104);
+              }
+              .warning{
+                color: rgba(218, 3, 3, 0.954);
               }
               .tabs_dashboard_list_card_description{
                   h4{
@@ -189,7 +205,6 @@
               #new_task{
                 width: 100%;
                 height: calc(100px + 2vw);
-                margin-bottom: 3px;
                 border: 1px solid rgba(120, 120, 120, 1);
                 border-radius: 10px;
                 padding: 5px 10px;
@@ -197,18 +212,27 @@
                 font-size: calc(10px + .6vw);
                 color: rgba(120, 120, 120, 1);
                 text-transform: capitalize;
-                outline:none;
                 margin-bottom: 20px;
+                outline:none;
                 resize: none;
               }  
+              input[type="date"]{
+                width: auto;
+                border: 1px solid rgba(120, 120, 120, 1);
+                border-radius: 10px;
+                padding: 5px 10px;
+                font-family: 'MontserratRegular';
+                font-size: calc(10px + .6vw);
+                color: rgba(120, 120, 120, 1);
+                outline:none;
+                margin-bottom: 20px;
+              }
               .add_btn{
-                  width: 100%;
                   display: flex;
-                  justify-content: flex-end;
-                  align-items: center;
-                  padding-right: 20px;
+                  justify-content: center;
+                  align-self: flex-end;
                   i{
-                    font-size: calc(10px + 2vw);
+                    font-size: calc(15px + 2vw);
                     color: rgb(0, 17, 255); 
                     cursor: pointer; 
                   }
@@ -251,7 +275,7 @@
               flex: 1 1 85%;
               display: flex;
               flex-direction: column;
-              align-items: center;
+              align-items: flex-start;
               justify-content: center;
               padding: 10px;
               .input_title{
@@ -278,11 +302,21 @@
                 color: rgba(120, 120, 120, 1);
                 text-transform: capitalize;
                 outline:none;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 resize: none;
               }
               .input_title{
                 margin-bottom: 10px;
+              }
+              input[type="date"]{
+                width: auto;
+                border: 1px solid rgba(120, 120, 120, 1);
+                border-radius: 10px;
+                padding: 5px 10px;
+                font-family: 'MontserratRegular';
+                font-size: calc(10px + .6vw);
+                color: rgba(120, 120, 120, 1);
+                outline:none;
               }
             }
             .button_item{

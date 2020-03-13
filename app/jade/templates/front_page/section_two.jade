@@ -36,7 +36,8 @@
                             label.tabs_dashboard_list_card_description(for="new_task")
                                 h4 description task
                             textarea(type="text")#new_task
-                            buttom.add_btn 
+                            input(type="date")
+                            buttom.add_btn
                                 i.fas.fa-folder-plus
                     .tabs_dashboard.js-tab-content(data-tab="2")
                         .container_todo.container_item
@@ -47,6 +48,7 @@
                                     .block_text_description
                                         textarea(type="text" disabled).input_title
                                         textarea(type="text"  disabled).input_description
+                                        input(type="date" disabled)
                                     .button_item
                                         button.edit edit
                                         button.delete delete
@@ -57,8 +59,9 @@
                                 li.changes
                                     input(type="checkbox")
                                     .block_text_description
-                                        textarea(type="text"  disabled).input_title  Пример
+                                        textarea(type="text"  disabled).input_title Пример
                                         textarea(type="text"  disabled).input_description Пример
+                                        input(type="date" disabled)
                                     .button_item
                                         button.edit edit
                                         button.delete delete
@@ -69,8 +72,9 @@
                                 li.expired
                                     input(type="checkbox")
                                     .block_text_description
-                                        textarea(type="text" disabled).input_title  Пример
-                                        textarea(type="text" disabled).input_description  Пример
+                                        textarea(type="text" disabled).input_title Пример
+                                        textarea(type="text" disabled).input_description Пример
+                                        input(type="date" disabled)
                                     .button_item
                                         button.edit edit
                                         button.delete delete
