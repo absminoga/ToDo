@@ -24,6 +24,8 @@ class ToDoList{
         this.inputTask = document.getElementById('new_task');
         this.inputDate = document.querySelector('.date_field');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
+        this.charCounter = document.querySelector('.char-counter');
+        this.textCounter = document.querySelector('.text-counter');
         this.textArea = document.getElementById('new_title');
         this.addButton.onclick = () => this.addTask();
         this.textArea.oninput = ()=> this.changeTitle();
@@ -91,23 +93,22 @@ class ToDoList{
         listItem.appendChild(buttonItem)
         buttonItem.appendChild(buttonEdit);
         buttonItem.appendChild(buttonDelete);
-        
-        return listItem;
+        console.log(listItem);
+        console.log(1);
+        return listItem;   
     }
     
     changeTitle(){
-        let charCounter = document.querySelector('.char-counter');
-        let textCounter = document.querySelector('.text-counter');
-        charCounter.textContent = this.textArea.value.length;
+        this.charCounter.textContent = this.textArea.value.length;
         if (this.textArea.value.length > 30) {
             this.textArea.setAttribute("id", "warning");
             this.addButton.setAttribute('disabled', '');
-            textCounter.classList.add('warning');
+            this.textCounter.classList.add('warning');
             this.addButton.classList.add('btn_warning');
           } else{   
             this.textArea.setAttribute("id", "new_title");
             this.addButton.removeAttribute('disabled', '');
-            textCounter.classList.remove('warning');
+            this.textCounter.classList.remove('warning');
             this.addButton.classList.remove('btn_warning');
           }
     }
@@ -123,17 +124,16 @@ class ToDoList{
         checkboxOut.onclick = () => this.completedTask(listItem);
     }
     
-    addTask(listItem){
-        console.log(this.inputDate.value);
-        
+    addTask(){
         if(this.inputTask.value && this.inputTitle.value && this.inputDate.value){
-            console.log("Add");
             let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
             this.incompletedTask.appendChild(listItem);
-            this.buttonTaskEvents (listItem); 
+            this.buttonTaskEvents(listItem); 
             this.inputTitle.value = ''; 
             this.inputTask.value = ''; 
             this.inputDate.value = '';
+            this.charCounter.textContent = '0';
+
         } 
     }
      
@@ -143,19 +143,22 @@ class ToDoList{
     }
       
     changeTask(listItem){
-        let label = listItem.querySelector('label');
-        let input = listItem.querySelector('input[type=text]');
-        let containnsClass = listItem.classList.contains('changes');
+        let changeTitle = listItem.querySelector('.input_title');
+        let changeDescription = listItem.querySelector('.input_description');
+        let changeDate = listItem.querySelector('.date_field');
+        let containsClass = listItem.classList.contains('changes');
         let editButton = listItem.querySelector('button.edit');
-         if(containnsClass){
-             label.innerText = input.value;
+        if(containsClass){
              editButton.innerText = "edit";
-             input.setAttribute('disabled', '');
+             changeTitle.setAttribute('disabled', '');
+             changeDescription.setAttribute('disabled', '');
+             changeDate.setAttribute('disabled', '');
                 
          } else{
-            input.value = label.innerText;
             editButton.innerText = "save";
-            input.removeAttribute('disabled', '');
+            changeTitle.removeAttribute('disabled', '');
+            changeDescription.removeAttribute('disabled', '');
+            changeDate.removeAttribute('disabled', '');
          }
          listItem.classList.toggle('changes');
     }

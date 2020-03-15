@@ -118,13 +118,14 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      overflow: scroll;
+    
       .tabs_dashboard{
         width: 100%;
         height: 85vh;
         padding: calc(10px + 1vw) 0;
         display: none;
         margin-top: -1px;
+        overflow: auto;
           .tabs_dashboard_list_card{
             display: flex;
             flex-direction: column;
@@ -300,6 +301,7 @@
             align-items: center;
             justify-content: center;
             width: 100%;
+
             .task_card{
               position: relative;
               display: flex;
@@ -449,14 +451,9 @@
           }
         }
       } 
-      .tabs_dashboard{
-        .container_item{
-          .incompleted_tasks,
-          .completed_tasks,
-          .expired{
-            overflow: scroll;
-          }
-        }
+      .tabs_dashboard::-webkit-scrollbar {
+        width: 0px;
+        background: rgba(255, 255, 255, 0.0);
       }
       .tabs_dashboard.active{
         display: block;
