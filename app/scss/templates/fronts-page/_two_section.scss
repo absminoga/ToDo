@@ -95,6 +95,7 @@
     padding: calc(10px + 1vw);
     border-left: 1px solid rgba(255, 255, 255, 0);
     z-index: 99;   
+    
     .container_section_task_dashboard_header{
         height: 10vh;
         display: flex;
@@ -113,10 +114,11 @@
     .tab_content{
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 90%;
       list-style: none;
       padding: 0;
       margin: 0;
+      overflow: scroll;
       .tabs_dashboard{
         width: 100%;
         height: 85vh;
@@ -156,6 +158,7 @@
               }
               #new_title{
                 width: 100%;
+                height: 30px;
                 margin-bottom: 3px;
                 border: 1px solid rgba(120, 120, 120, 1);
                 border-radius: 10px;
@@ -239,6 +242,7 @@
                 .date_field{
                   width: auto;
                   max-width: 30%;
+                  height: auto;
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
                   color: rgba(120, 120, 120, 1);
@@ -246,6 +250,8 @@
                   border: 1px solid rgba(120, 120, 120, 1);
                   border-radius: 10px;
                   margin-right: 10px;
+                  outline: none;
+                  resize: none;
                 }
                 .calendar_btn{
                   font-family: 'MontserratBold'; 
@@ -258,14 +264,22 @@
                 }
               }
               .add_btn{
-                  display: flex;
-                  justify-content: center;
                   align-self: flex-end;
-                  i{
-                    font-size: calc(15px + 2vw);
-                    color: rgb(0, 17, 255); 
-                    cursor: pointer; 
-                  }
+                  font-size: calc(10px + 2vw);
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  text-transform: capitalize;
+                  color: rgb(0, 17, 255);
+                  background-color: rgba(255, 255, 255, 1);
+                  transition: all .4s ease-in-out; 
+                  cursor: pointer; 
+                
+              }
+              .btn_warning{
+                background-color: rgb(228, 3, 3);
               }
           }
         .container_item{
@@ -280,13 +294,13 @@
             background-color: rgba(255, 255, 255, 1);
             border-radius: 10px;
           }
-          ul{
+          .task_dashboard{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
-            li{
+            .task_card{
               position: relative;
               display: flex;
               flex-direction: row;
@@ -310,7 +324,7 @@
               padding: 10px;
               .input_title{
                 width: 100%;
-                height: auto;
+                height: 30px;
                 border: 1px solid rgba(120, 120, 120, 1);
                 border-radius: 10px;
                 font-family: 'MontserratRegular';
@@ -349,6 +363,7 @@
                 .date_field{
                   width: auto;
                   max-width: 30%;
+                  height: 30px;
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
                   color: rgba(120, 120, 120, 1);
@@ -356,6 +371,8 @@
                   border: 1px solid rgba(120, 120, 120, 1);
                   border-radius: 10px;
                   margin-right: 10px;
+                  resize: none;
+                  outline: none;
                 }
                 .calendar_btn{
                   font-family: 'MontserratBold'; 
@@ -432,6 +449,15 @@
           }
         }
       } 
+      .tabs_dashboard{
+        .container_item{
+          .incompleted_tasks,
+          .completed_tasks,
+          .expired{
+            overflow: scroll;
+          }
+        }
+      }
       .tabs_dashboard.active{
         display: block;
       }

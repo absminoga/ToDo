@@ -673,10 +673,11 @@ input {
   .container_section_task_dashboard .tab_content {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 90%;
     list-style: none;
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    overflow: scroll; }
     .container_section_task_dashboard .tab_content .tabs_dashboard {
       width: 100%;
       height: 85vh;
@@ -730,6 +731,7 @@ input {
           padding-left: 10px; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #new_title {
           width: 100%;
+          height: 30px;
           margin-bottom: 3px;
           border: 1px solid #787878;
           border-radius: 10px;
@@ -842,6 +844,7 @@ input {
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field {
             width: auto;
             max-width: 30%;
+            height: auto;
             font-family: 'MontserratBold';
             font-size: -webkit-calc(10px + .6vw);
             font-size: calc(10px + .6vw);
@@ -849,7 +852,9 @@ input {
             padding: 5px 10px;
             border: 1px solid #787878;
             border-radius: 10px;
-            margin-right: 10px; }
+            margin-right: 10px;
+            outline: none;
+            resize: none; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .calendar_btn {
             font-family: 'MontserratBold';
             font-size: -webkit-calc(10px + .6vw);
@@ -860,22 +865,26 @@ input {
             border-radius: 10px;
             text-transform: capitalize; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .add_btn {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-pack: center;
-          -webkit-justify-content: center;
-              -ms-flex-pack: center;
-                  justify-content: center;
           -webkit-align-self: flex-end;
               -ms-flex-item-align: end;
-                  align-self: flex-end; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .add_btn i {
-            font-size: -webkit-calc(15px + 2vw);
-            font-size: calc(15px + 2vw);
-            color: #0011ff;
-            cursor: pointer; }
+                  align-self: flex-end;
+          font-size: -webkit-calc(10px + 2vw);
+          font-size: calc(10px + 2vw);
+          font-family: 'MontserratBold';
+          font-size: -webkit-calc(10px + .6vw);
+          font-size: calc(10px + .6vw);
+          padding: 5px 10px;
+          border: 1px solid #787878;
+          border-radius: 10px;
+          text-transform: capitalize;
+          color: #0011ff;
+          background-color: white;
+          -webkit-transition: all .4s ease-in-out;
+          -o-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+          cursor: pointer; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .btn_warning {
+          background-color: #e40303; }
       .container_section_task_dashboard .tab_content .tabs_dashboard .container_item h3 {
         width: 100%;
         font-family: 'MontserratBold';
@@ -888,7 +897,7 @@ input {
         padding: 10px 0;
         background-color: white;
         border-radius: 10px; }
-      .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul {
+      .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -907,7 +916,7 @@ input {
             -ms-flex-pack: center;
                 justify-content: center;
         width: 100%; }
-        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li {
+        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card {
           position: relative;
           display: -webkit-box;
           display: -webkit-flex;
@@ -934,12 +943,12 @@ input {
           margin-bottom: calc(10px + .5vw);
           width: 100%;
           text-align: center; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li input[type="checkbox"] {
+          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card input[type="checkbox"] {
             -webkit-box-flex: 1;
             -webkit-flex: 1 1 5%;
                 -ms-flex: 1 1 5%;
                     flex: 1 1 5%; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description {
+          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description {
             -webkit-box-flex: 1;
             -webkit-flex: 1 1 85%;
                 -ms-flex: 1 1 85%;
@@ -962,9 +971,9 @@ input {
                 -ms-flex-pack: center;
                     justify-content: center;
             padding: 10px; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .input_title {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_title {
               width: 100%;
-              height: auto;
+              height: 30px;
               border: 1px solid #787878;
               border-radius: 10px;
               font-family: 'MontserratRegular';
@@ -975,7 +984,7 @@ input {
               padding: 0 10px;
               outline: none;
               resize: none; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .input_description {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_description {
               width: 100%;
               height: -webkit-calc(50px + 2vw);
               height: calc(50px + 2vw);
@@ -990,9 +999,9 @@ input {
               outline: none;
               margin-bottom: 10px;
               resize: none; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .input_title {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_title {
               margin-bottom: 10px; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .date_completion {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion {
               display: -webkit-box;
               display: -webkit-flex;
               display: -ms-flexbox;
@@ -1015,9 +1024,10 @@ input {
                       justify-content: flex-start;
               width: 100%;
               position: relative; }
-              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .date_completion .date_field {
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field {
                 width: auto;
                 max-width: 30%;
+                height: 30px;
                 font-family: 'MontserratBold';
                 font-size: -webkit-calc(10px + .6vw);
                 font-size: calc(10px + .6vw);
@@ -1025,8 +1035,10 @@ input {
                 padding: 5px 10px;
                 border: 1px solid #787878;
                 border-radius: 10px;
-                margin-right: 10px; }
-              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .block_text_description .date_completion .calendar_btn {
+                margin-right: 10px;
+                resize: none;
+                outline: none; }
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .calendar_btn {
                 font-family: 'MontserratBold';
                 font-size: -webkit-calc(10px + .6vw);
                 font-size: calc(10px + .6vw);
@@ -1035,7 +1047,7 @@ input {
                 border: 1px solid #787878;
                 border-radius: 10px;
                 text-transform: capitalize; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .button_item {
+          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item {
             -webkit-box-flex: 1;
             -webkit-flex: 1 1 10%;
                 -ms-flex: 1 1 10%;
@@ -1058,8 +1070,8 @@ input {
                 -ms-flex-pack: center;
                     justify-content: center;
             padding: 10px; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .button_item .edit,
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .button_item .delete {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit,
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete {
               padding: 5px;
               font-family: 'MontserratBold';
               font-size: 14px;
@@ -1072,16 +1084,16 @@ input {
               -webkit-transition: color .4s ease-in-out;
               -o-transition: color .4s ease-in-out;
               transition: color .4s ease-in-out; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .button_item .edit:hover {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit:hover {
               color: #376100; }
-            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul li .button_item .delete:hover {
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete:hover {
               color: #ff0202; }
-        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul .changes .block_text_description .input_title,
-        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul .changes .block_text_description .input_description {
+        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_title,
+        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_description {
           color: #518f01;
           font-weight: 800; }
-        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul .expired .block_text_description .input_title,
-        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item ul .expired .block_text_description .input_description {
+        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .expired .block_text_description .input_title,
+        .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .expired .block_text_description .input_description {
           color: rgba(176, 4, 4, 0.975);
           font-weight: 800; }
       .container_section_task_dashboard .tab_content .tabs_dashboard .container_todo h3 {
@@ -1090,6 +1102,10 @@ input {
         color: #02c15e; }
       .container_section_task_dashboard .tab_content .tabs_dashboard .container_expired h3 {
         color: rgba(176, 4, 4, 0.975); }
+    .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .incompleted_tasks,
+    .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .completed_tasks,
+    .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .expired {
+      overflow: scroll; }
     .container_section_task_dashboard .tab_content .tabs_dashboard.active {
       display: block; }
 

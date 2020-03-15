@@ -38,48 +38,23 @@
                             textarea(type="text")#new_task
                             .date_completion 
                                 p select due date
-                                input(type="number"  disabled).date_field
+                                input(type="number").date_field
                                 div.calendar
                                 button.calendar_btn add date
-                            buttom.add_btn
-                                i.fas.fa-folder-plus
+                            button.add_btn add task
                     .tabs_dashboard.js-tab-content(data-tab="2")
                         .container_todo.container_item
                             h3 todo task
-                            ul.incompleted_tasks 
-                                li
-                                    input(type="checkbox")
-                                    .block_text_description
-                                        textarea(type="text" disabled).input_title
-                                        textarea(type="text"  disabled).input_description
-                                        .date_completion 
-                                            input(type="number" disabled).date_field
-                                            div.calendar
-                                            button.calendar_btn change date
-                                    .button_item
-                                        button.edit edit
-                                        button.delete delete
+                            div.incompleted_tasks.task_dashboard 
                     .tabs_dashboard.js-tab-content(data-tab="3")
                         .container_completed.container_item
                             h3 completed task
-                            ul.completed_tasks
-                                li.changes
-                                    input(type="checkbox")
-                                    .block_text_description
-                                        textarea(type="text"  disabled).input_title
-                                        textarea(type="text"  disabled).input_description
-                                        .date_completion 
-                                            input(type="number" disabled).date_field
-                                            div.calendar
-                                            button.calendar_btn change date
-                                    .button_item
-                                        button.edit edit
-                                        button.delete delete
+                            div.completed_tasks.task_dashboard 
                     .tabs_dashboard.js-tab-content(data-tab="4")
                         .container_expired.container_item
                             h3 expired task
-                            ul.expired_tasks
-                                li.expired
+                            div.expired_tasks.task_dashboard 
+                                div.expired.task_card
                                     input(type="checkbox")
                                     .block_text_description
                                         textarea(type="text" disabled).input_title
