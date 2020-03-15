@@ -128,9 +128,9 @@
             flex-direction: column;
             align-items: flex-start;
             justify-content: center;
-            background-color: rgba(255, 255, 255, 1);
             padding: calc(10px + 1vw);
             border-radius: 10px;  
+            background-color: rgba(255, 255, 255, .7);
               h3{
                 width: 100%;
                 font-family: 'MontserratBold';
@@ -138,7 +138,10 @@
                 text-transform: capitalize;
                 text-align: center;
                 margin-bottom: calc(10px + .5vw);
-                color: rgb(0, 17, 255);  
+                padding: 10px 0;
+                background-color: rgba(255, 255, 255, 1);
+                border-radius: 10px;
+                color: rgb(0, 17, 255); 
               }
               .tabs_dashboard_list_card_title{
                   h4{
@@ -147,7 +150,7 @@
                     font-size: calc(10px + .6vw);
                     text-transform: capitalize;
                     margin-bottom: 5px;
-                    color: rgba(120, 120, 120, 1);
+                    color: rgb(97, 97, 97);
                     padding-left: 10px; 
                   }
               }
@@ -159,7 +162,7 @@
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
+                color: rgb(97, 97, 97);
                 text-transform: capitalize;
                 outline:none;
                 resize: none;
@@ -186,7 +189,7 @@
                 padding-right: 20px;
                 font-family: 'MontserratBold';
                 font-size: calc(5px + .5vw);
-                color: rgb(104, 104, 104);
+                color: rgb(97, 97, 97);
               }
               .warning{
                 color: rgba(218, 3, 3, 0.954);
@@ -198,7 +201,7 @@
                     font-size: calc(10px + .6vw);
                     text-transform: capitalize;
                     margin-bottom: 5px;
-                    color: rgba(120, 120, 120, 1);
+                    color: rgb(97, 97, 97);
                     padding-left: 10px;
                   }
               } 
@@ -215,17 +218,44 @@
                 margin-bottom: 20px;
                 outline:none;
                 resize: none;
-              }  
-              input[type="date"]{
-                width: auto;
-                border: 1px solid rgba(120, 120, 120, 1);
-                border-radius: 10px;
-                padding: 5px 10px;
-                font-family: 'MontserratRegular';
-                font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
-                outline:none;
-                margin-bottom: 20px;
+              } 
+              .date_completion{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                position: relative;
+                p{
+                  flex: 1 1 100%;
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgb(97, 97, 97);
+                  padding: 0 10px;
+                  text-transform: capitalize; 
+                  margin-bottom: 5px;
+                }
+                .date_field{
+                  width: auto;
+                  max-width: 30%;
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgba(120, 120, 120, 1);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  margin-right: 10px;
+                }
+                .calendar_btn{
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgb(97, 97, 97);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  text-transform: capitalize;
+                }
               }
               .add_btn{
                   display: flex;
@@ -262,7 +292,7 @@
               flex-direction: row;
               align-items: center;
               justify-content: center;
-              background-color: rgba(255, 255, 255, 1);
+              background-color: rgba(255, 255, 255, .7);
               padding: calc(10px + 1vw);
               border-radius: 10px;
               margin-bottom: calc(10px + .5vw);
@@ -285,7 +315,7 @@
                 border-radius: 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
+                color: rgb(97, 97, 97);
                 text-transform: capitalize;
                 padding: 0 10px;
                 outline:none;
@@ -299,7 +329,7 @@
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
+                color: rgb(97, 97, 97);
                 text-transform: capitalize;
                 outline:none;
                 margin-bottom: 10px;
@@ -308,15 +338,34 @@
               .input_title{
                 margin-bottom: 10px;
               }
-              input[type="date"]{
-                width: auto;
-                border: 1px solid rgba(120, 120, 120, 1);
-                border-radius: 10px;
-                padding: 5px 10px;
-                font-family: 'MontserratRegular';
-                font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
-                outline:none;
+              .date_completion{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                position: relative;
+                .date_field{
+                  width: auto;
+                  max-width: 30%;
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgba(120, 120, 120, 1);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  margin-right: 10px;
+                }
+                .calendar_btn{
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgba(120, 120, 120, 1);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  text-transform: capitalize;
+                }
               }
             }
             .button_item{
