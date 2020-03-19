@@ -604,13 +604,17 @@ input {
       -webkit-transition: all .5s ease-in-out;
       -o-transition: all .5s ease-in-out;
       transition: all .5s ease-in-out;
-      cursor: pointer; }
+      cursor: pointer;
+      width: 100%; }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs i {
         padding-left: 20px;
         padding-right: -webkit-calc(10px + 1vw);
         padding-right: calc(10px + 1vw);
         font-size: -webkit-calc(15px + 1vw);
         font-size: calc(15px + 1vw); }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_title {
+        margin-right: -webkit-calc(20px + 1vw);
+        margin-right: calc(20px + 1vw); }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle,
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle ~ span {
         color: #0011ff; }

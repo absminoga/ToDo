@@ -49,11 +49,16 @@
                 margin-bottom: 5px;
                 transition: all .5s ease-in-out;
                 cursor: pointer;
+                width: 100%;
                 i{
                 padding-left: 20px;
                 padding-right: calc(10px + 1vw);
                 font-size: calc(15px + 1vw);
                 }
+                .section_two_tabs_title{
+                  margin-right: calc(20px + 1vw);
+                }
+               
                 .fa-plus-circle, 
                 .fa-plus-circle ~ span {
                 color: rgb(0, 17, 255);   

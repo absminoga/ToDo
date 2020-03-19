@@ -26,11 +26,17 @@ class ToDoList{
         this.incompletedTask = document.querySelector('.incompleted_tasks');
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
+        // this.task = document.querySelector('.container_item');
+        this.taskCounter = document.querySelector('.task_dashboard');
         this.textArea = document.getElementById('new_title');
         this.addButton.onclick = () => this.addTask();
         this.textArea.oninput = ()=> this.changeTitle();
+        this.taskCounter.onchange = ()=> this.changeСounterTask();
         setInterval(this.getDate, 0);
         this.removedTask = null;
+
+        console.log(this.taskCounter.childNodes.length - 1);
+        
         
     }
     creatureNewItem(title, task, date){
@@ -93,8 +99,7 @@ class ToDoList{
         listItem.appendChild(buttonItem)
         buttonItem.appendChild(buttonEdit);
         buttonItem.appendChild(buttonDelete);
-        console.log(listItem);
-        console.log(1);
+        
         return listItem;   
     }
     
@@ -111,6 +116,11 @@ class ToDoList{
             this.textCounter.classList.remove('warning');
             this.addButton.classList.remove('btn_warning');
           }
+    }
+
+    changeСounterTask(){
+    console.log("Counter numbers");
+
     }
 
     buttonTaskEvents(listItem){ 
