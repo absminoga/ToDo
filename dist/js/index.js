@@ -26,17 +26,15 @@ class ToDoList{
         this.incompletedTask = document.querySelector('.incompleted_tasks');
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
-        // this.task = document.querySelector('.container_item');
-        this.taskCounter = document.querySelector('.task_dashboard');
         this.textArea = document.getElementById('new_title');
-        this.addButton.onclick = () => this.addTask();
-        this.textArea.oninput = ()=> this.changeTitle();
-        this.taskCounter.onchange = ()=> this.changeСounterTask();
+        this.taskCounter = document.querySelectorAll('.task_counter');
+    
+        this.addButton.onclick = () =>  this.addTask();
+        this.textArea.oninput = () => this.changeTitle();
         setInterval(this.getDate, 0);
-        this.removedTask = null;
-
-        console.log(this.taskCounter.childNodes.length - 1);
+        this.removedTask = null;    
         
+        console.log(this.taskCounter);
         
     }
     creatureNewItem(title, task, date){
@@ -45,6 +43,7 @@ class ToDoList{
 
         let checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
+        checkbox.classList.add('task_counter');
         
         let textDescription = document.createElement('div');
         textDescription.classList.add('block_text_description');
@@ -85,7 +84,7 @@ class ToDoList{
         buttonEdit.innerText = 'edit';
 
         let buttonDelete = document.createElement('button');
-        buttonDelete.classList.add('delete');
+        buttonDelete.classList.add('delete', 'task_counter');
         buttonDelete.innerText = 'delete';
         
         listItem.appendChild(checkbox);
@@ -119,8 +118,8 @@ class ToDoList{
     }
 
     changeСounterTask(){
-    console.log("Counter numbers");
-
+       console.log('changeСounterTask');
+       
     }
 
     buttonTaskEvents(listItem){ 
@@ -129,9 +128,10 @@ class ToDoList{
     
         let deleteButton = listItem.querySelector('button.delete');
         deleteButton.onclick = () => this.deleteTask(listItem); 
-    
+
         let checkboxOut = listItem.querySelector('input[type=checkbox]');
         checkboxOut.onclick = () => this.completedTask(listItem);
+
     }
     
     addTask(){
@@ -142,7 +142,7 @@ class ToDoList{
             this.inputTitle.value = ''; 
             this.inputTask.value = ''; 
             this.inputDate.value = '';
-            this.charCounter.textContent = '0';
+            this.charCounter.textContent = '1';
 
         } 
     }
