@@ -125,6 +125,7 @@
       margin: 0;
     
       .tabs_dashboard{
+        position: relative;
         width: 100%;
         height: 85vh;
         padding: calc(10px + 1vw) 0;
@@ -288,6 +289,58 @@
                 background-color: rgb(228, 3, 3);
               }
           }
+          #calendar3{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            font-family: 'MontserratRegular';
+            line-height: 1.2em;
+            text-align: center;
+            background-color:  rgba(0, 0, 0, .3);
+            border-radius: 5px;
+            z-index: 999;
+            thead {
+              tr:first-child{
+                margin-bottom: 5px;
+              }
+              tr:last-child {
+              font-size: calc(10px +.2vw);
+              color: rgb(34, 34, 34);
+              border-bottom: 1px solid rgba(0, 0, 0, 1);
+            }
+          }
+          tbody{
+            tr{
+              td{
+                font-family: 'MontserratRegular';
+                color: rgba(0, 0, 0, 1);
+                font-size: calc(10px +.2vw);
+                border: 1px solid transparent;
+                box-shadow: 0 0 4px transparent;
+                transition: all .5s ease-in-out;
+              }
+              .today {
+                font-family: 'MontserratBold';
+                color: rgb(1, 167, 15);
+                font-size: calc(10px +.2vw);
+              }
+              .holiday{
+                font-family: 'MontserratBold';
+                color: rgb(255, 0, 0);
+              }
+              td:hover{
+                border: 1px solid rgba(0, 0, 0, .3);
+                box-shadow: 0 0 4px rgba(8, 1, 136, 0.701);
+              }
+            }
+            
+          } 
+          }
+          .calendar_card{
+            display: none;
+          }
         .container_item{
           h3{
             width: 100%;
@@ -369,7 +422,7 @@
                 position: relative;
                 .date_field{
                   width: auto;
-                  max-width: 30%;
+                  max-width: 40%;
                   height: 35px;
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
@@ -439,6 +492,7 @@
             }
             }
           }
+          
         }
         .container_todo{
           h3{
