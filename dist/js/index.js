@@ -59,7 +59,7 @@ function Calendar3(id, year, month) {
     if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
         document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
     }
-    document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)';
+    document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)'; // в выпадающем списке выделен текущий месяц
     }
     Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
     document.querySelector('#calendar3').onchange = function Kalendar3() {
