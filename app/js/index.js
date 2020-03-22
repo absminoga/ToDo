@@ -16,6 +16,7 @@ jsTriggers.forEach(function(trigger) {
        content.classList.add('active');
     });
  });
+<<<<<<< HEAD
 //  Calendar
 function Calendar3(id, year, month) {
     var Dlast = new Date(year,month+1,0).getDate(),
@@ -72,6 +73,8 @@ function Calendar3(id, year, month) {
 >>>>>>> parent of c09fb1ef... Add new calendar
 =======
 >>>>>>> parent of c09fb1ef... Add new calendar
+=======
+>>>>>>> parent of 7ca1e8d3... add calendar
 // Add task
 class ToDoList{
     constructor (){
@@ -84,6 +87,7 @@ class ToDoList{
         this.textCounter = document.querySelector('.text-counter');
         this.textArea = document.getElementById('new_title');
         this.taskCounter = document.querySelectorAll('.task_counter');
+<<<<<<< HEAD
         this.calendarBtn = document.querySelector('.calendar_btn');
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -107,10 +111,15 @@ class ToDoList{
 =======
         this.taskDate.onclick = () =>  this.inputDate();
 >>>>>>> parent of c09fb1ef... Add new calendar
+=======
+    
+        this.addButton.onclick = () =>  this.addTask();
+>>>>>>> parent of 7ca1e8d3... add calendar
         this.textArea.oninput = () => this.changeTitle();
         setInterval(this.getDate, 0);
         this.removedTask = null;    
         
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         // this.taskDate.forEach(e => {
@@ -124,6 +133,9 @@ class ToDoList{
 >>>>>>> parent of c09fb1ef... Add new calendar
 =======
         console.log(this.taskDate);
+=======
+        console.log(this.taskCounter);
+>>>>>>> parent of 7ca1e8d3... add calendar
         
 >>>>>>> parent of c09fb1ef... Add new calendar
     }
@@ -211,15 +223,6 @@ class ToDoList{
        console.log('changeСounterTask');
        
     }
-    addCalendar(){
-        let calendar = document.getElementById('calendar3');
-       calendar.classList.toggle('calendar_card'); 
-    }
-
-    inputDate(){
-        console.log("Input date");
-        
-    }
 
     buttonTaskEvents(listItem){ 
         let editButton = listItem.querySelector('button.edit');
@@ -261,7 +264,8 @@ class ToDoList{
              editButton.innerText = "edit";
              changeTitle.setAttribute('disabled', '');
              changeDescription.setAttribute('disabled', '');
-             changeDate.setAttribute('disabled', '');      
+             changeDate.setAttribute('disabled', '');
+                
          } else{
             editButton.innerText = "save";
             changeTitle.removeAttribute('disabled', '');
