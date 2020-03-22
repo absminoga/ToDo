@@ -16,80 +16,154 @@ jsTriggers.forEach(function(trigger) {
        content.classList.add('active');
     });
  });
-//  Calendar
-function Calendar3(id, year, month) {
-    var Dlast = new Date(year,month+1,0).getDate(),
-        D = new Date(year,month,Dlast),
-        DNlast = D.getDay(),
-        DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
-        calendar = '<tr>',
-        m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
-        g = document.querySelector('#'+id+' input');
-    if (DNfirst != 0) {
-      for(var  i = 1; i < DNfirst; i++) calendar += '<tdclass="date_fields">';
-    }else{
-      for(var  i = 0; i < 6; i++) calendar += '<td>';
-    }
-    for(var  i = 1; i <= Dlast; i++) {
-      if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
-        calendar += '<td class="today date_field">' + i;
-      }else{
-        if (  // список официальных праздников
-            (i == 1 && D.getMonth() == 0 && ((D.getFullYear() > 1897 && D.getFullYear() < 1930) || D.getFullYear() > 1947)) || // Новый год
-            (i == 2 && D.getMonth() == 0 && D.getFullYear() > 1992) || // Новий Рік
-            ((i == 3 || i == 4 || i == 5 || i == 6 || i == 8) && D.getMonth() == 0 && D.getFullYear() > 2004) || // Новий Рік
-            (i == 7 && D.getMonth() == 0 && D.getFullYear() > 1990) || // Різдво
-            (i == 8 && D.getMonth() == 2 && D.getFullYear() > 1965) || // 8 Березня
-            (i == 1 && D.getMonth() == 4 && D.getFullYear() > 1917) || // 1 травня
-            (i == 9 && D.getMonth() == 4 && D.getFullYear() > 1964) // День Перемоги
-           ) {
-          calendar += '<td class="holiday date_fields">' + i;
-        }else{
-          calendar += '<td class="date_fields">' + i;
-        }
-      }
-      if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
-        calendar += '<tr>';
-      }
-    }
-    for(var  i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
-    document.querySelector('#'+id+' tbody').innerHTML = calendar;
-    g.value = D.getFullYear();
-    m.selected = true;
-    if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
-        document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
-    }
-    document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)'; // в выпадающем списке выделен текущий месяц
-    }
-    Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
-    document.querySelector('#calendar3').onchange = function Kalendar3() {
-      Calendar3("calendar3",document.querySelector('#calendar3 input').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
-    }
+ 
+ const date_picker_element = document.querySelector('.date-picker');
+ const selected_date_element = document.querySelector('.date-picker .selected-date');
+ const dates_element = document.querySelector('.date-picker .dates');
+ const mth_element = document.querySelector('.date-picker .dates .month .mth');
+ const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
+ const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
+ const days_element = document.querySelector('.date-picker .dates .days');
+ 
+ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+ let date = new Date();
+ let day = date.getDate();
+ let month = date.getMonth();
+ let year = date.getFullYear();
+ 
+ let selectedDate = date;
+ let selectedDay = day;
+ let selectedMonth = month;
+ let selectedYear = year;
+ 
+ mth_element.textContent = months[month] + ' ' + year;
+ 
+ selected_date_element.textContent = formatDate(date);
+ selected_date_element.dataset.value = selectedDate;
+ 
+ populateDates();
+ 
+ // EVENT LISTENERS
+ date_picker_element.addEventListener('click', toggleDatePicker);
+ next_mth_element.addEventListener('click', goToNextMonth);
+ prev_mth_element.addEventListener('click', goToPrevMonth);
+ 
+ // FUNCTIONS
+ function toggleDatePicker (e) {
+     if (!checkEventPathForClass(e.path, 'dates')) {
+         dates_element.classList.toggle('active');
+     }
+ }
+ 
+ function goToNextMonth (e) {
+     month++;
+     if (month > 11) {
+         month = 0;
+         year++;
+     }
+     mth_element.textContent = months[month] + ' ' + year;
+     populateDates();
+ }
+ 
+ function goToPrevMonth (e) {
+     month--;
+     if (month < 0) {
+         month = 11;
+         year--;
+     }
+     mth_element.textContent = months[month] + ' ' + year;
+     populateDates();
+ }
+ 
+ function populateDates (e) {
+     days_element.innerHTML = '';
+     let amount_days = 31;
+ 
+     if (month == 1) {
+         amount_days = 28;
+     }
+ 
+     for (let i = 0; i < amount_days; i++) {
+         const day_element = document.createElement('div');
+         day_element.classList.add('day');
+         day_element.textContent = i + 1;
+ 
+         if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+             day_element.classList.add('selected');
+         }
+ 
+         day_element.addEventListener('click', function () {
+             selectedDate = new Date(year + '-' + (month + 1) + '-' + (i + 1));
+             selectedDay = (i + 1);
+             selectedMonth = month;
+             selectedYear = year;
+ 
+             selected_date_element.textContent = formatDate(selectedDate);
+             selected_date_element.dataset.value = selectedDate;
+ 
+             populateDates();
+         });
+         days_element.appendChild(day_element);
+     }
+ }
+ 
+ // HELPER FUNCTIONS
+ function checkEventPathForClass (path, selector) {
+     for (let i = 0; i < path.length; i++) {
+         if (path[i].classList && path[i].classList.contains(selector)) {
+             return true;
+         }
+     }
+     return false;
+ }
+ function formatDate (d) {
+     let day = d.getDate();
+     if (day < 10) {
+         day = '0' + day;
+     }
+     let year = d.getFullYear();
+     return day + ', ' + months[month] + ', ' + year;
+ };
+ 
 // Add task
 class ToDoList{
     constructor (){
         this.addButton = document.querySelector('.add_btn');
         this.inputTitle = document.getElementById('new_title');
         this.inputTask = document.getElementById('new_task');
-        this.inputDate = document.querySelector('.date_field');
+        this.inputDate = document.querySelector('.selected-date');
+        this.datePosition = document.querySelector('.container_date');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
         this.textArea = document.getElementById('new_title');
         this.taskCounter = document.querySelectorAll('.task_counter');
         this.calendarBtn = document.querySelector('.calendar_btn');
-        this.taskDate = document.querySelectorAll('.date_fields')
-
     
-        this.addButton.onclick = () =>  this.addTask();
+        this.addButton.onclick = () =>  {
+            this.addTask();
+            this.expiredTask();
+        };
         this.calendarBtn.onclick = () =>  this.addCalendar();
-        this.taskDate.onclick = () =>  this.inputDate();
         this.textArea.oninput = () => this.changeTitle();
+        
         setInterval(this.getDate, 0);
         this.removedTask = null;    
-        
-        console.log(this.taskDate);
-        
+    }
+    // -------- DATE ----------
+    getDate(){
+        let d = new Date();
+        let month = new Array("January","February","March","April","May","June",
+      "July","August","September","October","November","December");
+        let datePosition = document.querySelector('.container_date');
+        let  timePosition = document.querySelector('.container_time');
+        datePosition.innerHTML = (addZero(d.getDate()) + ", " + month[d.getMonth()] + ", " + d.getFullYear());
+        timePosition.innerHTML = (addZero(d.getHours()) + ":" +  addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()));
+        function addZero(num) {
+            let str = num.toString();
+            return str.length == 1? "0" + str : str;
+         };
     }
     creatureNewItem(title, task, date){
         let listItem = document.createElement('div');
@@ -126,9 +200,9 @@ class ToDoList{
         let calendar = document.createElement('div');
         calendar.classList.add('calendar');
 
-        let calendarBtn = document.createElement('button');
-        calendarBtn.classList.add('calendar_btn');
-        calendarBtn.innerText = 'change date';
+        // let calendarBtn = document.createElement('button');
+        // calendarBtn.classList.add('calendar_btn');
+        // calendarBtn.innerText = 'change date';
 
         let buttonItem = document.createElement('div');
         buttonItem.classList.add('button_item');
@@ -148,7 +222,7 @@ class ToDoList{
         textDescription.appendChild(dateCompletion);
         dateCompletion.appendChild(dateField);
         dateCompletion.appendChild(calendar);
-        dateCompletion.appendChild(calendarBtn);
+        // dateCompletion.appendChild(calendarBtn);
         listItem.appendChild(buttonItem)
         buttonItem.appendChild(buttonEdit);
         buttonItem.appendChild(buttonDelete);
@@ -194,17 +268,15 @@ class ToDoList{
 
         let checkboxOut = listItem.querySelector('input[type=checkbox]');
         checkboxOut.onclick = () => this.completedTask(listItem);
-
     }
     
     addTask(){
-        if(this.inputTask.value && this.inputTitle.value && this.inputDate.value){
-            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
+        if(this.inputTask.value && this.inputTitle.value && this.inputDate.innerHTML){
+            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.innerHTML);
             this.incompletedTask.appendChild(listItem);
             this.buttonTaskEvents(listItem); 
             this.inputTitle.value = ''; 
             this.inputTask.value = ''; 
-            this.inputDate.value = '';
             this.charCounter.textContent = '1';
 
         } 
@@ -257,20 +329,11 @@ class ToDoList{
          checkboxIn.onclick = () => this.completedTask(listItem);
     }
 
-    // -------- DATE ----------
-    getDate(){
-        let d = new Date();
-        let month = new Array("January","February","March","April","May","June",
-      "July","August","September","October","November","December");
-        let datePosition = document.querySelector('.container_date');
-        let timePosition = document.querySelector('.container_time');
-        datePosition.innerText = (addZero(d.getDate()) + ", " + month[d.getMonth()] + ", " + d.getFullYear());
-        timePosition.innerText = (addZero(d.getHours()) + ":" +  addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()));
-        function addZero(num) {
-            let str = num.toString();
-            return str.length == 1? "0" + str : str;
-         };
+    expiredTask(){
+        console.log( this.inputDate.innerHTML); 
+        console.log(this.datePosition.innerHTML);
     }
+   
     };
 
     let todolist = new ToDoList();

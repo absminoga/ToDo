@@ -132,6 +132,7 @@ gulp.task('watch', async function(){
   gulp.watch('app/jade/**/*.jade', gulp.series('jade'));
   gulp.watch('app/libs/**/*.css', gulp.series('css-libs'));
   gulp.watch('app/js/*.js', gulp.series('js'));
+  gulp.watch('app/libs/**/*.js', gulp.series('js-libs'));
   gulp.watch('app/img/**/*.*', gulp.series('img'));
   gulp.watch('app/fonts/**/*.*', gulp.series('fonts'));
   gulp.watch('app/*.html');
