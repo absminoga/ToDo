@@ -40,16 +40,39 @@
                                 h4 description task
                             textarea(type="text")#new_task
                             .date_completion 
-                                h4 date
-                                .date-picker
-                                    .selected-date
-                                    .dates
-                                        .month
-                                            .arrows.prev-mth &lt;
-                                            .mth
-                                            .arrows.next-mth &gt;
-                                        .days
+                                p select due date
+                                input(type="number").date_field
+                                div.calendar
+                                button.calendar_btn add date
                             button.add_btn.task_counter add task
+                        table#calendar3.calendar_card
+                            thead
+                                tr
+                                    td(colspan='4')
+                                        select
+                                            option(value='0') Январь
+                                            option(value='1') Февраль
+                                            option(value='2') Март
+                                            option(value='3') Апрель
+                                            option(value='4') Май
+                                            option(value='5') Июнь
+                                            option(value='6') Июль
+                                            option(value='7') Август
+                                            option(value='8') Сентябрь
+                                            option(value='9') Октябрь
+                                            option(value='10') Ноябрь
+                                            option(value='11') Декабрь
+                                    td(colspan='3')
+                                        input(type='number', value='', min='0', max='9999', size='4')
+                                tr
+                                    td Пн
+                                    td Вт
+                                    td Ср
+                                    td Чт
+                                    td Пт
+                                    td Сб
+                                    td Вс
+                            tbody
                     .tabs_dashboard.js-tab-content(data-tab="2")
                         .container_todo.container_item
                             h3 todo task

@@ -229,116 +229,45 @@
                 outline:none;
                 resize: none;
               } 
-              // .date_completion{
-              //   display: flex;
-              //   flex-direction: row;
-              //   flex-wrap: wrap;
-              //   align-items: center;
-              //   justify-content: flex-start;
-              //   width: 100%;
-              //   position: relative;
-              //   p{
-              //     flex: 1 1 100%;
-              //     font-family: 'MontserratBold'; 
-              //     font-size: calc(10px + .6vw);
-              //     color: rgb(97, 97, 97);
-              //     padding: 0 10px;
-              //     text-transform: capitalize; 
-              //     margin-bottom: 5px;
-              //   }
-              //   .date_field{
-              //     width: auto;
-              //     max-width: 30%;
-              //     height: 35px;
-              //     font-family: 'MontserratBold'; 
-              //     font-size: calc(10px + .6vw);
-              //     color: rgba(120, 120, 120, 1);
-              //     padding: 5px 10px;
-              //     border: 1px solid rgba(120, 120, 120, 1);
-              //     border-radius: 10px;
-              //     margin-right: 10px;
-              //     outline: none;
-              //     resize: none;
-              //   }
-              //   .calendar_btn{
-              //     font-family: 'MontserratBold'; 
-              //     font-size: calc(10px + .6vw);
-              //     color: rgb(97, 97, 97);
-              //     padding: 5px 10px;
-              //     border: 1px solid rgba(120, 120, 120, 1);
-              //     border-radius: 10px;
-              //     text-transform: capitalize;
-              //   }
-              // }
               .date_completion{
-                .date-picker{
-                  position: relative;
-                  width: 100%;
-                  max-width: 320px;
-                  height: 60px;
-                  background-color: #FFF;
-                  margin: 30px auto;
-                  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-                  cursor: pointer;
-                  user-select: none;
-                  .selected-date{
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #313131;
-                    font-size: 28px;
-                  }
-                  .dates{
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    right: 0;
-                    background-color: #FFF;
-                    .month{
-                      display: flex;
-                      justify-content: space-between;
-                      align-items: center;
-                      border-bottom: 2px solid #EEE;
-                      .arrows{
-                        width: 35px;
-                        height: 35px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: #313131;
-                        font-size: 20px;
-                      }
-                      .arrows:hover {
-                        background-color: #F3F3F3;
-                      }
-                      .arrows:active {
-                        background-color: #00CA85;
-                      }
-                    }
-                    .days{
-                      display: grid;
-                      grid-template-columns: repeat(7, 1fr);
-                      height: 150px;
-                      .day { 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: rgba(120, 120, 120, 1);
-                      }
-                      .selected {
-                        background-color: #00CA85;
-                      }
-                    }
-                  }
-                  .active {
-                    display: block;
-                  }
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                position: relative;
+                p{
+                  flex: 1 1 100%;
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgb(97, 97, 97);
+                  padding: 0 10px;
+                  text-transform: capitalize; 
+                  margin-bottom: 5px;
                 }
-                .date-picker:hover {
-                  background-color: #F3F3F3;
+                .date_field{
+                  width: auto;
+                  max-width: 30%;
+                  height: 35px;
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgba(120, 120, 120, 1);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  margin-right: 10px;
+                  outline: none;
+                  resize: none;
+                }
+                .calendar_btn{
+                  font-family: 'MontserratBold'; 
+                  font-size: calc(10px + .6vw);
+                  color: rgb(97, 97, 97);
+                  padding: 5px 10px;
+                  border: 1px solid rgba(120, 120, 120, 1);
+                  border-radius: 10px;
+                  text-transform: capitalize;
                 }
               }
               .add_btn{
@@ -359,6 +288,58 @@
               .btn_warning{
                 background-color: rgb(228, 3, 3);
               }
+          }
+          #calendar3{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            font-family: 'MontserratRegular';
+            line-height: 1.2em;
+            text-align: center;
+            background-color:  rgba(0, 0, 0, .3);
+            border-radius: 5px;
+            z-index: 999;
+            thead {
+              tr:first-child{
+                margin-bottom: 5px;
+              }
+              tr:last-child {
+              font-size: calc(10px +.2vw);
+              color: rgb(34, 34, 34);
+              border-bottom: 1px solid rgba(0, 0, 0, 1);
+            }
+          }
+          tbody{
+            tr{
+              td{
+                font-family: 'MontserratRegular';
+                color: rgba(0, 0, 0, 1);
+                font-size: calc(10px +.2vw);
+                border: 1px solid transparent;
+                box-shadow: 0 0 4px transparent;
+                transition: all .5s ease-in-out;
+              }
+              .today {
+                font-family: 'MontserratBold';
+                color: rgb(1, 167, 15);
+                font-size: calc(10px +.2vw);
+              }
+              .holiday{
+                font-family: 'MontserratBold';
+                color: rgb(255, 0, 0);
+              }
+              td:hover{
+                border: 1px solid rgba(0, 0, 0, .3);
+                box-shadow: 0 0 4px rgba(8, 1, 136, 0.701);
+              }
+            }
+            
+          } 
+          }
+          .calendar_card{
+            display: none;
           }
         .container_item{
           h3{

@@ -42,20 +42,41 @@
                       <h4>description task</h4>
                     </label><textarea type="text" id="new_task"></textarea>
                     <div class="date_completion">
-                      <h4>date</h4>
-                      <div class="date-picker">
-                        <div class="selected-date"></div>
-                        <div class="dates">
-                          <div class="month">
-                            <div class="arrows prev-mth">&lt;</div>
-                            <div class="mth"></div>
-                            <div class="arrows next-mth">&gt;</div>
-                          </div>
-                          <div class="days"></div>
-                        </div>
-                      </div>
+                      <p>select due date</p><input type="number" class="date_field">
+                      <div class="calendar"></div><button class="calendar_btn">add date</button>
                     </div><button class="add_btn task_counter">add task</button>
                   </div>
+                  <table id="calendar3" class="calendar_card">
+                    <thead>
+                      <tr>
+                        <td colspan="4"><select>
+                            <option value="0">Январь</option>
+                            <option value="1">Февраль</option>
+                            <option value="2">Март</option>
+                            <option value="3">Апрель</option>
+                            <option value="4">Май</option>
+                            <option value="5">Июнь</option>
+                            <option value="6">Июль</option>
+                            <option value="7">Август</option>
+                            <option value="8">Сентябрь</option>
+                            <option value="9">Октябрь</option>
+                            <option value="10">Ноябрь</option>
+                            <option value="11">Декабрь</option>
+                          </select></td>
+                        <td colspan="3"><input type="number" value="" min="0" max="9999" size="4"></td>
+                      </tr>
+                      <tr>
+                        <td>Пн</td>
+                        <td>Вт</td>
+                        <td>Ср</td>
+                        <td>Чт</td>
+                        <td>Пт</td>
+                        <td>Сб</td>
+                        <td>Вс</td>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
                 <div data-tab="2" class="tabs_dashboard js-tab-content">
                   <div class="container_todo container_item">
