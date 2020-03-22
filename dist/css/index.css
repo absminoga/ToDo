@@ -682,6 +682,7 @@ input {
     padding: 0;
     margin: 0; }
     .container_section_task_dashboard .tab_content .tabs_dashboard {
+      position: relative;
       width: 100%;
       height: 85vh;
       padding: -webkit-calc(10px + 1vw) 0;
@@ -1030,7 +1031,7 @@ input {
               position: relative; }
               .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field {
                 width: auto;
-                max-width: 30%;
+                max-width: 40%;
                 height: 35px;
                 font-family: 'MontserratBold';
                 font-size: -webkit-calc(10px + .6vw);
