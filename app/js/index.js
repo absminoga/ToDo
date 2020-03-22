@@ -65,7 +65,10 @@ function Calendar3(id, year, month) {
     document.querySelector('#calendar3').onchange = function Kalendar3() {
       Calendar3("calendar3",document.querySelector('#calendar3 input').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of c09fb1ef... Add new calendar
 // Add task
 class ToDoList{
     constructor (){
@@ -79,22 +82,34 @@ class ToDoList{
         this.textArea = document.getElementById('new_title');
         this.taskCounter = document.querySelectorAll('.task_counter');
         this.calendarBtn = document.querySelector('.calendar_btn');
+<<<<<<< HEAD
         // this.taskDate = document.querySelectorAll('.date_fields');
+=======
+        this.taskDate = document.querySelectorAll('.date_fields')
+>>>>>>> parent of c09fb1ef... Add new calendar
 
     
         this.addButton.onclick = () =>  this.addTask();
         this.calendarBtn.onclick = () =>  this.addCalendar();
+<<<<<<< HEAD
         // this.taskDate.onclick = () =>  this.inputDate();
+=======
+        this.taskDate.onclick = () =>  this.inputDate();
+>>>>>>> parent of c09fb1ef... Add new calendar
         this.textArea.oninput = () => this.changeTitle();
-        
         setInterval(this.getDate, 0);
         this.removedTask = null;    
         
+<<<<<<< HEAD
         // this.taskDate.forEach(e => {
         //     e.addEventListener('click', date => {
                 
         //     });
         // });     
+=======
+        console.log(this.taskDate);
+        
+>>>>>>> parent of c09fb1ef... Add new calendar
     }
     creatureNewItem(title, task, date){
         let listItem = document.createElement('div');
