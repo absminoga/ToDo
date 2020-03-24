@@ -36,10 +36,10 @@ class ToDoList{
 
     
         this.addButton.onclick = () =>  this.addTask();
-        this.calendarBtn.onclick = () =>  this.addCalendar();
+        // this.calendarBtn.onclick = () =>  this.addCalendar();
         this.taskDate.onclick = () =>  this.inputDate();
         this.textArea.oninput = () => this.changeTitle();
-        
+        window.onload = () => this.getTaskDate();        
         setInterval(this.getDate, 0);
         this.removedTask = null;    
         
@@ -129,19 +129,19 @@ class ToDoList{
           }
     }
 
-    changeСounterTask(){
-       console.log('changeСounterTask');
+    // changeСounterTask(){
+    //    console.log('changeСounterTask');
        
-    }
-    addCalendar(){
-        let calendar = document.getElementById('calendar3');
-       calendar.classList.toggle('calendar_card'); 
-    }
+    // }
+    // addCalendar(){
+    //     let calendar = document.getElementById('calendar3');
+    //    calendar.classList.toggle('calendar_card'); 
+    // }
 
-    inputDate(){
-        console.log("Input date");
+    // inputDate(){
+    //     console.log("Input date");
         
-    }
+    // }
 
     buttonTaskEvents(listItem){ 
         let editButton = listItem.querySelector('button.edit');
@@ -229,8 +229,124 @@ class ToDoList{
             return str.length == 1? "0" + str : str;
          };
     }
-    };
+    getTaskDate(){
+        
+        let d = new Date();
+        let month_name = ["January","February","March","April","May","June", "July","August","September","October","November","December"];
+        let month = d.getMonth();
+        let year = d.getFullYear(); 
+        let first_date = 1 + ' ' + month_name[month] +  ' ' + year;  // Определяем первый день текущего месяца
+        let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
+        let DNfirst = new Date(d.getFullYear(),d.getMonth(),1).getDay();
+        let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
+        let day_name = ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"];
+        let day_number = day_name.indexOf(first_day); // Возвращаем индекс первого дня недели
+        let days = new Date(year, month+1, 0).getDate(); // Узнаем сколько дней в текущем месяце. "0" - пишем для перевода на последний день месяца 
+        let calendar = getCalendar(day_number, days);
+        let next_mth_element = document.querySelector('.fa-arrow-right');
+        let prev_mth_element = document.querySelector('.fa-arrow-left');
 
+        document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+        document.querySelector('.calendar_dates').appendChild(calendar);
+
+        next_mth_element.addEventListener('click', goToNextMonth);
+        prev_mth_element.addEventListener('click', goToPrevMonth);
+
+        function getCalendar(day_number, days){
+            let table = document.createElement('table');
+            let tr = document.createElement('tr');
+        
+            //Создаем первую строку таблицы 
+            for (let c=0; c <= 6; c++) {
+                let td = document.createElement('td');
+                td.innerHTML = day_name[c];
+                tr.classList.add("row_fields");
+                tr.appendChild(td);     
+            }
+            table.appendChild(tr); 
+            // Создаем вторую строку таблицы - пустые елементы
+            tr = document.createElement('tr');
+            let c;
+            for (c = 0; c <= 6; c++) {
+               if (c == day_number){
+                   break;
+               }
+               let td = document.createElement('td');
+               td.innerHTML = " ";
+               tr.appendChild(td);
+            }
+
+            let count = 1;
+            for (; c<=6;c++) {
+                let td = document.createElement('td');
+                td.classList.add("date_fields");
+                td.innerHTML = count;
+                count++;
+                tr.appendChild(td); 
+            }
+            table.appendChild(tr);  
+            
+            for (let r=3; r<= 7; r++) {
+                tr = document.createElement('tr');
+                for (let c=0; c<=6; c++) {
+                    if (count > days){
+                        table.appendChild(tr);
+                        return table;
+                    }
+                    let td = document.createElement('td');
+                    td.classList.add("date_fields");
+                    td.innerHTML = count;
+                    count++;
+                    tr.appendChild(td);
+
+                } 
+                table.appendChild(tr); 
+            }
+            return table;
+        };
+        // Дабовляем класс для сегоднешнего дня
+        for(let i = 1; i <= days; i++) {
+            let tdFields = document.querySelectorAll('.date_fields');
+            for (let tdField of tdFields){
+            if (tdField.innerHTML == new Date().getDate()) {
+                tdField.classList.add('today_day_field');
+            }
+        }
+    }
+    function goToNextMonth(e){
+        month++;
+        if (month > 11) {
+            month = 0;
+            year++;
+        }
+        document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+        let first_date = 1 + ' ' + month_name[month] +  ' ' + year;  // Определяем первый день текущего месяца
+        let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
+        let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
+        let day_name = ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"];
+        let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
+        let days = new Date(year, month+1, 0).getDate();
+        let calendar = getCalendar(day_number, days);
+        getCalendar(day_number,days);
+    };
+    function goToPrevMonth (e){
+        month--;
+     if (month < 0) {
+         month = 11;
+         year--;
+     }
+        document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+        let first_date = 1 + ' ' + month_name[month] +  ' ' + year;  // Определяем первый день текущего месяца
+        let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
+        let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
+        let day_name = ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"];
+        let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
+        let days = new Date(year, month+1, 0).getDate();
+        console.log('Prev');
+        getCalendar(day_number,days);
+    }
+    } //
+    };    
     let todolist = new ToDoList();
 
     

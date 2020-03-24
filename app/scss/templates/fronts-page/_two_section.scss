@@ -61,7 +61,7 @@
                
                 .fa-plus-circle, 
                 .fa-plus-circle ~ span {
-                color: rgb(0, 17, 255);   
+                color: rgb(101, 118, 218);  
                 }
                 .fa-calendar-alt,
                 .fa-calendar-alt ~ span{
@@ -69,11 +69,11 @@
                 }
                 .fa-calendar-check,
                 .fa-calendar-check ~ span {
-                    color: rgb(2, 193, 94);
+                    color: rgb(60, 142, 135);
                 }
                 .fa-calendar-times,
                 .fa-calendar-times ~ span{
-                    color: rgba(176, 4, 4, 0.975);
+                    color: rgb(167, 71, 71);
                 }
                 span{
                 font-size: calc(10px + .6vw);
@@ -133,6 +133,7 @@
         margin-top: -1px;
         overflow: auto;
           .tabs_dashboard_list_card{
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -145,12 +146,13 @@
                 font-family: 'MontserratBold';
                 font-size: calc(10px + 1vw);
                 text-transform: capitalize;
-                text-align: center;
+                text-align: left;
                 margin-bottom: calc(10px + .5vw);
                 padding: 10px 0;
+                padding-left: 10px;
                 background-color: rgba(255, 255, 255, 1);
                 border-radius: 10px;
-                color: rgb(0, 17, 255); 
+                color:  rgb(101, 118, 218);  
               }
               .tabs_dashboard_list_card_title{
                   h4{
@@ -247,8 +249,7 @@
                   margin-bottom: 5px;
                 }
                 .date_field{
-                  width: auto;
-                  max-width: 30%;
+                  width: calc(50px + 10vw);
                   height: 35px;
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
@@ -279,7 +280,7 @@
                   border: 1px solid rgba(120, 120, 120, 1);
                   border-radius: 10px;
                   text-transform: capitalize;
-                  color: rgb(0, 17, 255);
+                  color:  rgb(101, 118, 218);   
                   background-color: rgba(255, 255, 255, 1);
                   transition: all .4s ease-in-out; 
                   cursor: pointer; 
@@ -288,19 +289,72 @@
               .btn_warning{
                 background-color: rgb(228, 3, 3);
               }
-          }
+              .clendar_container{
+                position: absolute;
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #eee;
+                border-radius: 10px;
+                font-size: calc(14px + .3vw);
+                background-image: linear-gradient(#fff, #d3d3d3);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                div{
+                  padding: 0;
+                }
+                .calendar_header{
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  margin-bottom: 10px;
+                  .calendar_month_year{
+                    font-family: 'MontserratBold';
+                  }
+                }
+                .calendar_dates{
+                  .date_fields{
+                    font-family: 'MontserratRegular';
+                    padding: 5px;
+                    background-color: transparent;
+                    border-radius: 50%;
+                    transition: all .6s ease-in-out;
+                    color: rgba(0, 0, 0, 1);
+                  }
+                  .date_fields:hover{
+                    background-color: rgba(120, 120, 120, .3);
 
+                  }
+                  .today_day_field{
+                    background-color: rgb(167, 71, 71);
+                    color: rgba(255, 255, 255, 1);
+                  }
+                  .row_fields{
+                    border: 1px solid rdba(0, 0, 0, 1);
+                    background-color: rgba(120, 120, 120, .3);
+                    td{
+                      font-family: 'MontserratBold';
+                      font-size: 10px;
+                      padding: 5px;
+                    }
+                  }
+                }
+              } 
+    
+          }
         .container_item{
           h3{
             width: 100%;
             font-family: 'MontserratBold';
             font-size: calc(10px + 1vw);
             text-transform: capitalize;
-            text-align: center;
+            text-align: left;
             margin-bottom: calc(10px + .5vw);
             padding: 10px 0;
+            padding-left: 10px;
             background-color: rgba(255, 255, 255, 1);
             border-radius: 10px;
+
           }
           .task_dashboard{
             display: flex;
@@ -343,6 +397,7 @@
                 padding: 0 10px;
                 outline:none;
                 resize: none;
+                background-color: transparent;
               }
               .input_description{
                 width: 100%;
@@ -357,10 +412,9 @@
                 outline:none;
                 margin-bottom: 10px;
                 resize: none;
+                background-color: transparent;
               }
-              .input_title{
-                margin-bottom: 10px;
-              }
+              
               .date_completion{
                 display: flex;
                 flex-direction: row;
@@ -370,8 +424,7 @@
                 width: 100%;
                 position: relative;
                 .date_field{
-                  width: auto;
-                  max-width: 40%;
+                  width: calc(50px + 10vw);
                   height: 35px;
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
@@ -415,7 +468,7 @@
                   transition: color .4s ease-in-out;
               }
               .edit:hover {
-                  color:rgb(55, 97, 0);
+                  color:rgb(60, 142, 135);
               }
               .delete:hover{
                   color:rgb(255, 2, 2);
@@ -450,12 +503,12 @@
         }
         .container_completed{
           h3{
-          color: rgb(2, 193, 94);
+          color: rgb(60, 142, 135);
           }
         }
         .container_expired{
           h3{
-          color: rgba(176, 4, 4, 0.975)
+          color: rgb(167, 71, 71);
           }
         }
       } 

@@ -42,9 +42,14 @@
                       <h4>description task</h4>
                     </label><textarea type="text" id="new_task"></textarea>
                     <div class="date_completion">
-                      <p>select due date</p><input type="number" class="date_field">
+                      <p>select due date</p>
+                      <div class="date_field"></div>
                       <div class="calendar"></div><button class="calendar_btn">add date</button>
                     </div><button class="add_btn task_counter">add task</button>
+                    <div class="clendar_container">
+                      <div class="calendar_header"><i class="fas fa-arrow-left"></i><span class="calendar_month_year"></span><i class="fas fa-arrow-right"></i></div>
+                      <div class="calendar_dates"></div>
+                    </div>
                   </div>
                 </div>
                 <div data-tab="2" class="tabs_dashboard js-tab-content">

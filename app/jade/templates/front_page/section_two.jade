@@ -41,10 +41,16 @@
                             textarea(type="text")#new_task
                             .date_completion 
                                 p select due date
-                                input(type="number").date_field
+                                .date_field
                                 div.calendar
                                 button.calendar_btn add date
                             button.add_btn.task_counter add task
+                            .clendar_container
+                                .calendar_header
+                                    i.fas.fa-arrow-left
+                                    span.calendar_month_year
+                                    i.fas.fa-arrow-right
+                                .calendar_dates
                     .tabs_dashboard.js-tab-content(data-tab="2")
                         .container_todo.container_item
                             h3 todo task
