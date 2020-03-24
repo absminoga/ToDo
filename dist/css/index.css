@@ -907,7 +907,10 @@ input {
           left: 50%;
           -webkit-transform: translate(-50%, -50%);
               -ms-transform: translate(-50%, -50%);
-                  transform: translate(-50%, -50%); }
+                  transform: translate(-50%, -50%);
+          -webkit-transition: all .8s ease-in-out;
+          -o-transition: all .8s ease-in-out;
+          transition: all .8s ease-in-out; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container div {
             padding: 0; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header {
@@ -948,6 +951,8 @@ input {
               font-family: 'MontserratBold';
               font-size: 10px;
               padding: 5px; }
+        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .calendar_card {
+          display: none; }
       .container_section_task_dashboard .tab_content .tabs_dashboard .container_item h3 {
         width: 100%;
         font-family: 'MontserratBold';

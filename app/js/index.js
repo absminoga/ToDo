@@ -36,7 +36,7 @@ class ToDoList{
 
     
         this.addButton.onclick = () =>  this.addTask();
-        // this.calendarBtn.onclick = () =>  this.addCalendar();
+        this.calendarBtn.onclick = () =>  this.addCalendar();
         this.taskDate.onclick = () =>  this.inputDate();
         this.textArea.oninput = () => this.changeTitle();
         window.onload = () => this.getTaskDate();        
@@ -133,10 +133,12 @@ class ToDoList{
     //    console.log('changeСounterTask');
        
     // }
-    // addCalendar(){
-    //     let calendar = document.getElementById('calendar3');
-    //    calendar.classList.toggle('calendar_card'); 
-    // }
+    addCalendar(){
+        console.log("Toggle");
+        
+        let calendar = document.querySelector('.clendar_container');
+        calendar.classList.toggle('calendar_card'); 
+    }
 
     // inputDate(){
     //     console.log("Input date");
@@ -230,7 +232,6 @@ class ToDoList{
          };
     }
     getTaskDate(){
-        
         let d = new Date();
         let month_name = ["January","February","March","April","May","June", "July","August","September","October","November","December"];
         let month = d.getMonth();
@@ -243,6 +244,7 @@ class ToDoList{
         let day_number = day_name.indexOf(first_day); // Возвращаем индекс первого дня недели
         let days = new Date(year, month+1, 0).getDate(); // Узнаем сколько дней в текущем месяце. "0" - пишем для перевода на последний день месяца 
         let calendar = getCalendar(day_number, days);
+        
         let next_mth_element = document.querySelector('.fa-arrow-right');
         let prev_mth_element = document.querySelector('.fa-arrow-left');
 
@@ -345,7 +347,7 @@ class ToDoList{
         console.log('Prev');
         getCalendar(day_number,days);
     }
-    } //
+    } 
     };    
     let todolist = new ToDoList();
 
