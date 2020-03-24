@@ -321,7 +321,7 @@ class ToDoList {
                 month = 0;
                 year++;
             }
-            document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+            
             let first_date = 1 + ' ' + month_name[month] + ' ' + year;  // Определяем первый день текущего месяца
             let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
             let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
@@ -330,6 +330,9 @@ class ToDoList {
             let days = new Date(year, month + 1, 0).getDate();
             let calendar = getCalendar(day_number, days);
             getCalendar(day_number, days);
+            document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+            document.querySelector('.calendar_dates table').remove();
+            document.querySelector('.calendar_dates').appendChild(calendar);
         };
         function goToPrevMonth(e) {
             month--;
@@ -337,15 +340,19 @@ class ToDoList {
                 month = 11;
                 year--;
             }
-            document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+            
             let first_date = 1 + ' ' + month_name[month] + ' ' + year;  // Определяем первый день текущего месяца
             let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
             let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
             let day_name = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
             let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
             let days = new Date(year, month + 1, 0).getDate();
-            console.log('Prev');
+            let calendar = getCalendar(day_number, days);
             getCalendar(day_number, days);
+            
+            document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
+            document.querySelector('.calendar_dates table').remove();
+            document.querySelector('.calendar_dates').appendChild(calendar);
         }
     }
 };
