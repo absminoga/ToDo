@@ -1,23 +1,3 @@
-// Tab
-let jsTriggers = document.querySelectorAll('.js-tab-trigger');
-let jsContents = document.querySelectorAll('.js-tab-content');
-
-jsTriggers.forEach(function (trigger) {
-    trigger.addEventListener('click', function () {
-        let id = this.getAttribute('data-tab'),
-            content = document.querySelector('.js-tab-content[data-tab="' + id + '"]'),
-            activeTrigger = document.querySelector('.js-tab-trigger.active'),
-            activeContent = document.querySelector('.js-tab-content.active');
-
-        activeTrigger.classList.remove('active');
-        trigger.classList.add('active');
-
-        activeContent.classList.remove('active');
-        content.classList.add('active');
-    });
-});
-//  Calendar
-
 
 // Add task
 class ToDoList {
@@ -27,29 +7,24 @@ class ToDoList {
         this.inputTask = document.getElementById('new_task');
         this.inputDate = document.querySelector('.date_field');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
+        this.expiredTask = document.querySelector('.expired_tasks');
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
         this.textArea = document.getElementById('new_title');
         this.taskCounter = document.querySelectorAll('.task_counter');
-        this.calendarBtn = document.querySelector('.calendar_btn');
-        this.taskDate = document.querySelectorAll('.date_fields');
-
+        this.calendarBtn = document.querySelector('.date_field_container');
 
         this.addButton.onclick = () => this.addTask();
         this.calendarBtn.onclick = () => this.addCalendar();
-        this.taskDate.onclick = () => this.inputDate();
         this.textArea.oninput = () => this.changeTitle();
         window.onload = () => this.getTaskDate();
+
         setInterval(this.getDate, 0);
         this.removedTask = null;
-
-        // this.taskDate.forEach(e => {
-        //     e.addEventListener('click', date => {
-
-        //     });
-        // });     
+        this.dateToday = new Date();
     }
-    creatureNewItem(title, task, date) {
+    // -------------------- Creatur New Task - JS-HTML
+    creatureNewItem(title, task) {
         let listItem = document.createElement('div');
         listItem.classList.add('task_card');
 
@@ -75,18 +50,21 @@ class ToDoList {
         let dateCompletion = document.createElement('div');
         dateCompletion.classList.add('date_completion');
 
-        let dateField = document.createElement('textarea');
-        dateField.setAttribute('type', 'number');
+        let dateFieldContainer = document.createElement('div');
+        dateFieldContainer.classList.add('date_field_container');
+
+        let dateField = document.createElement('span');
         dateField.classList.add('date_field');
-        dateField.setAttribute('disabled', '');
-        dateField.innerText = date;
-
-        let calendar = document.createElement('div');
-        calendar.classList.add('calendar');
-
-        let calendarBtn = document.createElement('button');
-        calendarBtn.classList.add('calendar_btn');
-        calendarBtn.innerText = 'change date';
+        let inputDate = document.querySelector('.date_field');
+        if (!inputDate.textContent) {
+            dateField.innerText = "Without date";
+            dateField.classList.add('without_date');
+            dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+        } else {
+            dateField.innerText = inputDate.textContent;
+            dateField.classList.add('fulfillment_date');
+            dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+        }
 
         let buttonItem = document.createElement('div');
         buttonItem.classList.add('button_item');
@@ -104,9 +82,8 @@ class ToDoList {
         textDescription.appendChild(inputTitle);
         textDescription.appendChild(inputDescription);
         textDescription.appendChild(dateCompletion);
-        dateCompletion.appendChild(dateField);
-        dateCompletion.appendChild(calendar);
-        dateCompletion.appendChild(calendarBtn);
+        dateCompletion.appendChild(dateFieldContainer);
+        dateFieldContainer.appendChild(dateField);
         listItem.appendChild(buttonItem)
         buttonItem.appendChild(buttonEdit);
         buttonItem.appendChild(buttonDelete);
@@ -129,21 +106,17 @@ class ToDoList {
         }
     }
 
-    // changeСounterTask(){
-    //    console.log('changeСounterTask');
-
-    // }
     addCalendar() {
-        console.log("Toggle");
-
         let calendar = document.querySelector('.clendar_container');
-        calendar.classList.toggle('calendar_card');
+        setTimeout(() => {
+            calendar.classList.remove('calendar_card');
+            this.inputTitle.setAttribute('disabled', '');
+            this.inputTitle.style.background = 'rgba(255, 255, 255, .5)';
+            this.inputTask.setAttribute('disabled', '');
+            this.inputTask.style.background = 'rgba(255, 255, 255, .5)';
+            this.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
+        }, 100);
     }
-
-    // inputDate(){
-    //     console.log("Input date");
-
-    // }
 
     buttonTaskEvents(listItem) {
         let editButton = listItem.querySelector('button.edit');
@@ -158,14 +131,31 @@ class ToDoList {
     }
 
     addTask() {
-        if (this.inputTask.value && this.inputTitle.value && this.inputDate.value) {
-            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
-            this.incompletedTask.appendChild(listItem);
-            this.buttonTaskEvents(listItem);
-            this.inputTitle.value = '';
-            this.inputTask.value = '';
-            this.inputDate.value = '';
-            this.charCounter.textContent = '1';
+        let inputDate = document.querySelector('.date_field');
+        let dateTask = new Date(inputDate.textContent);
+        if (this.inputTask.value && this.inputTitle.value) {
+            if (inputDate.textContent == '') {
+                let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
+                this.incompletedTask.appendChild(listItem);
+                this.buttonTaskEvents(listItem);
+                this.inputTitle.value = '';
+                this.inputTask.value = '';
+                this.inputDate.textContent = '';
+            } else if (this.dateToday > dateTask) {
+                let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
+                this.expiredTask.appendChild(listItem);
+                this.buttonTaskEvents(listItem);
+                this.inputTitle.value = '';
+                this.inputTask.value = '';
+                this.inputDate.textContent = '';
+            } else {
+                let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
+                this.incompletedTask.appendChild(listItem);
+                this.buttonTaskEvents(listItem);
+                this.inputTitle.value = '';
+                this.inputTask.value = '';
+                this.inputDate.textContent = '';
+            }
 
         }
     }
@@ -208,14 +198,43 @@ class ToDoList {
 
     uncompletedTask(listItem) {
         let ulInCompleted = document.querySelector('.incompleted_tasks');
+        let checkboxIn = listItem.querySelector('input[type=checkbox]');
         this.removedTask = listItem;
+        let inputDate = document.querySelector('.date_field');
+        let dateTask = new Date(inputDate.textContent);
+        let expiredTask = document.querySelector('.expired_tasks');
+       
+        console.log(inputDate);
+        console.log(dateTask);
+        
         listItem.classList.remove('completed');
         listItem.remove()
-        ulInCompleted.appendChild(listItem);
+        if (inputDate.textContent == '') {
+            ulInCompleted.appendChild(listItem);
+            checkboxIn.onclick = () => this.completedTask(listItem);
+            console.log(1);
+        } else if (this.dateToday > dateTask) {
+            expiredTask.appendChild(listItem);
+            checkboxIn.onclick = () => this.expiredTask(listItem);
+            console.log(2);
+        } else {
+            ulInCompleted.appendChild(listItem);
+            checkboxIn.onclick = () => this.completedTask(listItem);
+            console.log(3);
+        }
 
-        let checkboxIn = listItem.querySelector('input[type=checkbox]');
-        checkboxIn.onclick = () => this.completedTask(listItem);
     }
+
+    // expiredTask(listItem) {
+    //     let ulInCompleted = document.querySelector('.incompleted_tasks');
+    //     this.removedTask = listItem;
+    //     listItem.classList.remove('completed');
+    //     listItem.remove()
+    //     ulInCompleted.appendChild(listItem);
+
+    //     let checkboxIn = listItem.querySelector('input[type=checkbox]');
+    //     checkboxIn.onclick = () => this.completedTask(listItem);
+    // }
 
     // -------- DATE ----------
     getDate() {
@@ -238,18 +257,32 @@ class ToDoList {
         let year = d.getFullYear();
         let first_date = 1 + ' ' + month_name[month] + ' ' + year;  // Определяем первый день текущего месяца
         let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
-        let DNfirst = new Date(d.getFullYear(), d.getMonth(), 1).getDay();
         let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
         let day_name = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         let day_number = day_name.indexOf(first_day); // Возвращаем индекс первого дня недели
         let days = new Date(year, month + 1, 0).getDate(); // Узнаем сколько дней в текущем месяце. "0" - пишем для перевода на последний день месяца 
         let calendar = getCalendar(day_number, days);
-
         let next_mth_element = document.querySelector('.fa-arrow-right');
         let prev_mth_element = document.querySelector('.fa-arrow-left');
-
         document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
         document.querySelector('.calendar_dates').appendChild(calendar);
+
+        let taskDate = document.querySelectorAll('.date_fields');
+        for (let element of taskDate) {
+            element.onclick = () => {
+                this.inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                let calendar = document.querySelector('.clendar_container');
+
+                setTimeout(() => {
+                    calendar.classList.add('calendar_card');
+                }, 200);
+                this.inputTitle.removeAttribute('disabled', '');
+                this.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+                this.inputTask.removeAttribute('disabled', '');
+                this.inputTask.style.background = 'rgba(255, 255, 255, 1)';
+                this.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+            }
+        }
 
         next_mth_element.addEventListener('click', goToNextMonth);
         prev_mth_element.addEventListener('click', goToPrevMonth);
@@ -315,13 +348,15 @@ class ToDoList {
                 }
             }
         }
+
+
         function goToNextMonth(e) {
             month++;
             if (month > 11) {
                 month = 0;
                 year++;
             }
-            
+            let month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             let first_date = 1 + ' ' + month_name[month] + ' ' + year;  // Определяем первый день текущего месяца
             let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
             let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
@@ -333,6 +368,35 @@ class ToDoList {
             document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
             document.querySelector('.calendar_dates table').remove();
             document.querySelector('.calendar_dates').appendChild(calendar);
+
+            let taskDate = document.querySelectorAll('.date_fields');
+            let inputDate = document.querySelector('.date_field');
+            let inputTitle = document.getElementById('new_title');
+            let inputTask = document.getElementById('new_task');
+            let calendarBtn = document.querySelector('.date_field_container');
+            for (let element of taskDate) {
+                element.onclick = () => {
+                    inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                    let calendar = document.querySelector('.clendar_container');
+                    setTimeout(() => {
+                        calendar.classList.add('calendar_card');
+                    }, 200);
+                    inputTitle.removeAttribute('disabled', '');
+                    inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+                    inputTask.removeAttribute('disabled', '');
+                    inputTask.style.background = 'rgba(255, 255, 255, 1)';
+                    calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+                }
+            }
+
+            for (let i = 1; i <= days; i++) {
+                let tdFields = document.querySelectorAll('.date_fields');
+                for (let tdField of tdFields) {
+                    if (tdField.innerHTML == new Date().getDate()) {
+                        tdField.classList.add('today_day_field');
+                    }
+                }
+            }
         };
         function goToPrevMonth(e) {
             month--;
@@ -340,7 +404,7 @@ class ToDoList {
                 month = 11;
                 year--;
             }
-            
+            let month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             let first_date = 1 + ' ' + month_name[month] + ' ' + year;  // Определяем первый день текущего месяца
             let tmp = new Date(first_date).toDateString(); // Возвращаем дату в формате: Wed Jul 28 1993
             let first_day = tmp.substring(0, 3); // Обрезаем строку : Wed Jul 28 1993 - до третего символа: Wed
@@ -348,12 +412,57 @@ class ToDoList {
             let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
             let days = new Date(year, month + 1, 0).getDate();
             let calendar = getCalendar(day_number, days);
-            getCalendar(day_number, days);
-            
             document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
             document.querySelector('.calendar_dates table').remove();
             document.querySelector('.calendar_dates').appendChild(calendar);
+
+            let taskDate = document.querySelectorAll('.date_fields');
+            let inputDate = document.querySelector('.date_field');
+            let inputTitle = document.getElementById('new_title');
+            let inputTask = document.getElementById('new_task');
+            let calendarBtn = document.querySelector('.date_field_container');
+            for (let element of taskDate) {
+                element.onclick = () => {
+                    inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                    let calendar = document.querySelector('.clendar_container');
+                    setTimeout(() => {
+                        calendar.classList.add('calendar_card');
+                    }, 200);
+                    inputTitle.removeAttribute('disabled', '');
+                    inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+                    inputTask.removeAttribute('disabled', '');
+                    inputTask.style.background = 'rgba(255, 255, 255, 1)';
+                    calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+                }
+            }
+
+            for (let i = 1; i <= days; i++) {
+                let tdFields = document.querySelectorAll('.date_fields');
+                for (let tdField of tdFields) {
+                    if (tdField.innerHTML == new Date().getDate()) {
+                        tdField.classList.add('today_day_field');
+                    }
+                }
+            }
         }
     }
 };
 let todolist = new ToDoList();
+// ------------------------- Tab ----------------------
+let jsTriggers = document.querySelectorAll('.js-tab-trigger');
+let jsContents = document.querySelectorAll('.js-tab-content');
+
+jsTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+        let id = this.getAttribute('data-tab'),
+            content = document.querySelector('.js-tab-content[data-tab="' + id + '"]'),
+            activeTrigger = document.querySelector('.js-tab-trigger.active'),
+            activeContent = document.querySelector('.js-tab-content.active');
+
+        activeTrigger.classList.remove('active');
+        trigger.classList.add('active');
+
+        activeContent.classList.remove('active');
+        content.classList.add('active');
+    });
+});

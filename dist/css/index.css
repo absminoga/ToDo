@@ -535,7 +535,7 @@ input {
   width: 100%;
   height: 100vh;
   min-width: 300px;
-  background-image: url(/img/86066ddc.png); }
+  background: #f9f3f3; }
 
 .container_section_menu {
   -webkit-box-flex: 1;
@@ -565,7 +565,7 @@ input {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    border-bottom: 2px solid rgba(8, 1, 136, 0.701); }
+    border-bottom: 2px solid #888888; }
     .container_section_menu .container_section_menu_top .container_date,
     .container_section_menu .container_section_menu_top .container_time {
       font-family: 'MontserratBold';
@@ -573,7 +573,7 @@ input {
       font-size: calc(10px + 0.5vw);
       text-transform: uppercase;
       text-align: center;
-      color: #787878;
+      color: #888888;
       font-weight: 700; }
   .container_section_menu .container_section_menu_buttom {
     padding: -webkit-calc(10px + 1vw) 0;
@@ -632,9 +632,9 @@ input {
         font-size: calc(10px + .6vw);
         font-family: 'MontserratBold';
         text-transform: capitalize;
-        color: #787878; }
+        color: #888888; }
     .container_section_menu .container_section_menu_buttom .container_tabs .active {
-      background-color: rgba(120, 120, 120, 0.3);
+      background-color: rgba(136, 136, 136, 0.4);
       border-radius: 10px; }
 
 .container_section_task_dashboard {
@@ -740,7 +740,7 @@ input {
           width: 100%;
           height: 35px;
           margin-bottom: 3px;
-          border: 1px solid #787878;
+          border: 1px solid #888888;
           border-radius: 10px;
           padding: 5px 10px;
           font-family: 'MontserratRegular';
@@ -749,11 +749,13 @@ input {
           color: #616161;
           text-transform: capitalize;
           outline: none;
-          resize: none; }
+          resize: none;
+          background: white; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #warning {
           width: 100%;
           margin-bottom: 3px;
           border-radius: 10px;
+          height: 35px;
           padding: 5px 10px;
           font-family: 'MontserratRegular';
           font-size: -webkit-calc(10px + .6vw);
@@ -802,17 +804,18 @@ input {
           width: 100%;
           height: -webkit-calc(100px + 2vw);
           height: calc(100px + 2vw);
-          border: 1px solid #787878;
+          border: 1px solid #888888;
           border-radius: 10px;
           padding: 5px 10px;
           font-family: 'MontserratRegular';
           font-size: -webkit-calc(10px + .6vw);
           font-size: calc(10px + .6vw);
-          color: #787878;
+          color: #888888;
           text-transform: capitalize;
           margin-bottom: 20px;
           outline: none;
-          resize: none; }
+          resize: none;
+          background: white; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion {
           display: -webkit-box;
           display: -webkit-flex;
@@ -830,10 +833,10 @@ input {
           -webkit-align-items: center;
               -ms-flex-align: center;
                   align-items: center;
-          -webkit-box-pack: start;
-          -webkit-justify-content: flex-start;
-              -ms-flex-pack: start;
-                  justify-content: flex-start;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
           width: 100%;
           position: relative; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion p {
@@ -848,29 +851,54 @@ input {
             padding: 0 10px;
             text-transform: capitalize;
             margin-bottom: 5px; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field {
-            width: -webkit-calc(50px + 10vw);
-            width: calc(50px + 10vw);
-            height: 35px;
-            font-family: 'MontserratBold';
-            font-size: -webkit-calc(10px + .6vw);
-            font-size: calc(10px + .6vw);
-            color: #787878;
+          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-box-pack: start;
+            -webkit-justify-content: flex-start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            height: 32px;
+            width: -webkit-calc(200px + 10vw);
+            width: calc(200px + 10vw);
             padding: 5px 10px;
-            border: 1px solid #787878;
+            border: 1px solid #888888;
             border-radius: 10px;
             margin-right: 10px;
+            margin-bottom: 10px;
             outline: none;
-            resize: none; }
+            text-align: left;
+            resize: none;
+            background: white;
+            cursor: pointer; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container .date_field {
+              font-family: 'MontserratBold';
+              font-size: -webkit-calc(10px + .5vw);
+              font-size: calc(10px + .5vw);
+              color: #888888; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container .without_date {
+              color: #008872; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .calendar_btn {
             font-family: 'MontserratBold';
             font-size: -webkit-calc(10px + .6vw);
             font-size: calc(10px + .6vw);
             color: #616161;
             padding: 5px 10px;
-            border: 1px solid #787878;
+            border: 1px solid #888888;
             border-radius: 10px;
-            text-transform: capitalize; }
+            text-transform: capitalize;
+            cursor: pointer; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .add_btn {
           -webkit-align-self: flex-end;
               -ms-flex-item-align: end;
@@ -881,7 +909,7 @@ input {
           font-size: -webkit-calc(10px + .6vw);
           font-size: calc(10px + .6vw);
           padding: 5px 10px;
-          border: 1px solid #787878;
+          border: 1px solid #888888;
           border-radius: 10px;
           text-transform: capitalize;
           color: #6576da;
@@ -891,7 +919,8 @@ input {
           transition: all .4s ease-in-out;
           cursor: pointer; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .btn_warning {
-          background-color: #e40303; }
+          background-color: #ac0202;
+          color: white; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container {
           position: absolute;
           padding: 10px;
@@ -930,6 +959,16 @@ input {
             margin-bottom: 10px; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header .calendar_month_year {
               font-family: 'MontserratBold'; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header .fa-arrow-left,
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header .fa-arrow-right {
+              cursor: pointer;
+              color: black;
+              -webkit-transition: color .4s ease-in-out;
+              -o-transition: color .4s ease-in-out;
+              transition: color .4s ease-in-out; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header .fa-arrow-left:hover,
+            .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_header .fa-arrow-right:hover {
+              color: #b33a3a; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .date_fields {
             font-family: 'MontserratRegular';
             padding: 5px;
@@ -938,15 +977,16 @@ input {
             -webkit-transition: all .6s ease-in-out;
             -o-transition: all .6s ease-in-out;
             transition: all .6s ease-in-out;
-            color: black; }
+            color: black;
+            cursor: pointer; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .date_fields:hover {
-            background-color: rgba(120, 120, 120, 0.3); }
+            background-color: #dcc3fc; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .today_day_field {
-            background-color: #a74747;
+            background-color: #542aea;
             color: white; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .row_fields {
             border: 1px solid rdba(0, 0, 0, 1);
-            background-color: rgba(120, 120, 120, 0.3); }
+            background-color: rgba(136, 136, 136, 0.4); }
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .row_fields td {
               font-family: 'MontserratBold';
               font-size: 10px;
@@ -1043,33 +1083,34 @@ input {
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_title {
               width: 100%;
               height: auto;
-              border: 1px solid #787878;
+              border: 1px solid #888888;
               border-radius: 10px;
               font-family: 'MontserratRegular';
-              font-size: -webkit-calc(10px + .6vw);
-              font-size: calc(10px + .6vw);
-              color: #616161;
+              font-size: -webkit-calc(12px + .6vw);
+              font-size: calc(12px + .6vw);
+              color: #434343;
               text-transform: capitalize;
               padding: 0 10px;
+              margin-bottom: 10px;
               outline: none;
               resize: none;
-              background-color: transparent; }
+              background-color: rgba(255, 255, 255, 0.5); }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_description {
               width: 100%;
               height: -webkit-calc(50px + 2vw);
               height: calc(50px + 2vw);
-              border: 1px solid #787878;
+              border: 1px solid #888888;
               border-radius: 10px;
               padding: 5px 10px;
               font-family: 'MontserratRegular';
-              font-size: -webkit-calc(10px + .6vw);
-              font-size: calc(10px + .6vw);
-              color: #616161;
+              font-size: -webkit-calc(12px + .6vw);
+              font-size: calc(12px + .6vw);
+              color: #434343;
               text-transform: capitalize;
               outline: none;
               margin-bottom: 10px;
               resize: none;
-              background-color: transparent; }
+              background-color: rgba(255, 255, 255, 0.5); }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion {
               display: -webkit-box;
               display: -webkit-flex;
@@ -1093,29 +1134,54 @@ input {
                       justify-content: flex-start;
               width: 100%;
               position: relative; }
-              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field {
-                width: -webkit-calc(50px + 10vw);
-                width: calc(50px + 10vw);
-                height: 35px;
-                font-family: 'MontserratBold';
-                font-size: -webkit-calc(10px + .6vw);
-                font-size: calc(10px + .6vw);
-                color: #787878;
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field_container {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -webkit-flex-direction: row;
+                    -ms-flex-direction: row;
+                        flex-direction: row;
+                -webkit-box-pack: start;
+                -webkit-justify-content: flex-start;
+                    -ms-flex-pack: start;
+                        justify-content: flex-start;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+                height: 32px;
+                width: -webkit-calc(200px + 10vw);
+                width: calc(200px + 10vw);
+                color: #888888;
                 padding: 5px 10px;
-                border: 1px solid #787878;
+                border: 1px solid #888888;
                 border-radius: 10px;
                 margin-right: 10px;
+                outline: none;
+                text-align: left;
                 resize: none;
-                outline: none; }
+                background: rgba(255, 255, 255, 0.5); }
+                .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field_container .date_field {
+                  font-family: 'MontserratBold';
+                  font-size: -webkit-calc(10px + .5vw);
+                  font-size: calc(10px + .5vw); }
+                .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field_container .without_date {
+                  color: #357d74; }
+                .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .date_field_container .fulfillment_date {
+                  color: #943437; }
               .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion .calendar_btn {
                 font-family: 'MontserratBold';
                 font-size: -webkit-calc(10px + .6vw);
                 font-size: calc(10px + .6vw);
-                color: #787878;
+                color: #888888;
                 padding: 5px 10px;
-                border: 1px solid #787878;
+                border: 1px solid #888888;
                 border-radius: 10px;
-                text-transform: capitalize; }
+                text-transform: capitalize;
+                cursor: pointer; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item {
             -webkit-box-flex: 1;
             -webkit-flex: 1 1 10%;
@@ -1149,10 +1215,10 @@ input {
               outline: none;
               border: 0;
               cursor: pointer;
-              color: #787878;
-              -webkit-transition: color .4s ease-in-out;
-              -o-transition: color .4s ease-in-out;
-              transition: color .4s ease-in-out; }
+              color: #888888;
+              -webkit-transition: color .7s ease-in-out;
+              -o-transition: color .7s ease-in-out;
+              transition: color .7s ease-in-out; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit:hover {
               color: #3c8e87; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete:hover {

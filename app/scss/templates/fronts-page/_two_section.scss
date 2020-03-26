@@ -10,7 +10,7 @@
             width: 100%;
             height: 100vh;
             min-width: 300px;
-            background-image: url(/img/86066ddc.png);
+            background: rgb(249, 243, 243);
         }
     }
 }
@@ -25,14 +25,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-bottom: 2px solid rgba(8, 1, 136, 0.701);
+        border-bottom: 2px solid rgba(136, 136, 136, 1);
         .container_date,
         .container_time{
             font-family: 'MontserratBold';
             font-size: calc(10px + 0.5vw);
             text-transform: uppercase;
             text-align: center;
-            color: rgba(120, 120, 120, 1);
+            color: rgba(136, 136, 136, 1);
             font-weight: 700;
       }
     }
@@ -79,11 +79,11 @@
                 font-size: calc(10px + .6vw);
                 font-family: 'MontserratBold';
                 text-transform: capitalize;
-                color: rgba(120, 120, 120, 1);
+                color: rgba(136, 136, 136, 1);
                 }   
             }
             .active{
-                background-color: rgba(120, 120, 120, .3);
+                background-color: rgba(136, 136, 136, .4);
                 border-radius: 10px;
             }
         }
@@ -169,7 +169,7 @@
                 width: 100%;
                 height: 35px;
                 margin-bottom: 3px;
-                border: 1px solid rgba(120, 120, 120, 1);
+                border: 1px solid rgba(136, 136, 136, 1);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
@@ -178,11 +178,13 @@
                 text-transform: capitalize;
                 outline:none;
                 resize: none;
+                background: rgba(255,255,255, 1);
               }
               #warning{
                 width: 100%;
                 margin-bottom: 3px;
                 border-radius: 10px;
+                height: 35px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
@@ -220,23 +222,24 @@
               #new_task{
                 width: 100%;
                 height: calc(100px + 2vw);
-                border: 1px solid rgba(120, 120, 120, 1);
+                border: 1px solid rgba(136, 136, 136, 1);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
-                color: rgba(120, 120, 120, 1);
+                color: rgba(136, 136, 136, 1);
                 text-transform: capitalize;
                 margin-bottom: 20px;
                 outline:none;
                 resize: none;
+                background: rgba(255,255,255, 1);
               } 
               .date_completion{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: space-between;
                 width: 100%;
                 position: relative;
                 p{
@@ -248,27 +251,41 @@
                   text-transform: capitalize; 
                   margin-bottom: 5px;
                 }
-                .date_field{
-                  width: calc(50px + 10vw);
-                  height: 35px;
-                  font-family: 'MontserratBold'; 
-                  font-size: calc(10px + .6vw);
-                  color: rgba(120, 120, 120, 1);
+                .date_field_container{
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: flex-start;
+                  align-items: center;
+                  height: 32px;
+                  width: calc(200px + 10vw);
                   padding: 5px 10px;
-                  border: 1px solid rgba(120, 120, 120, 1);
+                  border: 1px solid rgba(136, 136, 136, 1);
                   border-radius: 10px;
                   margin-right: 10px;
+                  margin-bottom: 10px;
                   outline: none;
+                  text-align: left;
                   resize: none;
+                  background: rgba(255, 255, 255, 1);
+                  cursor: pointer;
+                  .date_field{
+                    font-family: 'MontserratBold'; 
+                    font-size: calc(10px + .5vw);  
+                    color: rgba(136, 136, 136, 1); 
+                }
+                .without_date{
+                  color: rgb(0, 136, 114);
+                }
                 }
                 .calendar_btn{
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
                   color: rgb(97, 97, 97);
                   padding: 5px 10px;
-                  border: 1px solid rgba(120, 120, 120, 1);
+                  border: 1px solid rgba(136, 136, 136, 1);
                   border-radius: 10px;
                   text-transform: capitalize;
+                  cursor: pointer;
                 }
               }
               .add_btn{
@@ -277,7 +294,7 @@
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
                   padding: 5px 10px;
-                  border: 1px solid rgba(120, 120, 120, 1);
+                  border: 1px solid rgba(136, 136, 136, 1);
                   border-radius: 10px;
                   text-transform: capitalize;
                   color:  rgb(101, 118, 218);   
@@ -287,7 +304,8 @@
                 
               }
               .btn_warning{
-                background-color: rgb(228, 3, 3);
+                background-color: rgb(172, 2, 2);
+                color: rgba(255, 255, 255, 1);
               }
               .clendar_container{
                 position: absolute;
@@ -312,6 +330,16 @@
                   .calendar_month_year{
                     font-family: 'MontserratBold';
                   }
+                  .fa-arrow-left,
+                  .fa-arrow-right{
+                    cursor: pointer;
+                    color: rgba(0, 0, 0, 1);
+                    transition: color .4s ease-in-out;
+                  }
+                  .fa-arrow-left:hover,
+                  .fa-arrow-right:hover{
+                    color: rgba(179, 58, 58, 1);
+                  }
                 }
                 .calendar_dates{
                   .date_fields{
@@ -321,29 +349,30 @@
                     border-radius: 50%;
                     transition: all .6s ease-in-out;
                     color: rgba(0, 0, 0, 1);
+                    cursor: pointer;
                   }
                   .date_fields:hover{
-                    background-color: rgba(120, 120, 120, .3);
+                    background-color: rgb(220, 195, 252);
 
                   }
                   .today_day_field{
-                    background-color: rgb(167, 71, 71);
+                    background-color: rgb(84, 42, 234);
                     color: rgba(255, 255, 255, 1);
                   }
                   .row_fields{
                     border: 1px solid rdba(0, 0, 0, 1);
-                    background-color: rgba(120, 120, 120, .3);
+                    background-color: rgba(136, 136, 136, .4);
                     td{
                       font-family: 'MontserratBold';
                       font-size: 10px;
                       padding: 5px;
+                      
                     }
                   }
                 }
               } 
               .calendar_card{
-                display: none;
-                
+                display: none; 
               }
     
           }
@@ -393,31 +422,32 @@
               .input_title{
                 width: 100%;
                 height:auto;
-                border: 1px solid rgba(120, 120, 120, 1);
+                border: 1px solid rgba(136, 136, 136, 1);
                 border-radius: 10px;
                 font-family: 'MontserratRegular';
-                font-size: calc(10px + .6vw);
-                color: rgb(97, 97, 97);
+                font-size: calc(12px + .6vw);
+                color:  rgb(67, 67, 67);
                 text-transform: capitalize;
                 padding: 0 10px;
+                margin-bottom: 10px;
                 outline:none;
                 resize: none;
-                background-color: transparent;
+                background-color: rgba(255, 255, 255, 0.5);
               }
               .input_description{
                 width: 100%;
                 height: calc(50px + 2vw);
-                border: 1px solid rgba(120, 120, 120, 1);
+                border: 1px solid rgba(136, 136, 136, 1);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
-                font-size: calc(10px + .6vw);
-                color: rgb(97, 97, 97);
+                font-size: calc(12px + .6vw);
+                color: rgb(67, 67, 67);
                 text-transform: capitalize;
                 outline:none;
                 margin-bottom: 10px;
                 resize: none;
-                background-color: transparent;
+                background-color: rgba(255, 255, 255, 0.5);
               }
               
               .date_completion{
@@ -428,27 +458,42 @@
                 justify-content: flex-start;
                 width: 100%;
                 position: relative;
-                .date_field{
-                  width: calc(50px + 10vw);
-                  height: 35px;
-                  font-family: 'MontserratBold'; 
-                  font-size: calc(10px + .6vw);
-                  color: rgba(120, 120, 120, 1);
+                .date_field_container{
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: flex-start;
+                  align-items: center;
+                  height: 32px;
+                  width: calc(200px + 10vw);
+                  color: rgba(136, 136, 136, 1);
                   padding: 5px 10px;
-                  border: 1px solid rgba(120, 120, 120, 1);
+                  border: 1px solid rgba(136, 136, 136, 1);
                   border-radius: 10px;
                   margin-right: 10px;
-                  resize: none;
                   outline: none;
+                  text-align: left;
+                  resize: none;
+                  background: rgba(255, 255, 255, 0.5);
+                  .date_field{
+                    font-family: 'MontserratBold'; 
+                    font-size: calc(10px + .5vw);  
+                }
+                .without_date{
+                  color: rgb(53, 125, 116);
+                }
+                .fulfillment_date{
+                  color: rgb(148, 52, 55);
+                }
                 }
                 .calendar_btn{
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
-                  color: rgba(120, 120, 120, 1);
+                  color: rgba(136, 136, 136, 1);
                   padding: 5px 10px;
-                  border: 1px solid rgba(120, 120, 120, 1);
+                  border: 1px solid rgba(136, 136, 136, 1);
                   border-radius: 10px;
                   text-transform: capitalize;
+                  cursor: pointer;
                 }
               }
             }
@@ -469,8 +514,8 @@
                   outline: none;
                   border: 0;
                   cursor: pointer;
-                  color: rgba(120, 120, 120, 1);
-                  transition: color .4s ease-in-out;
+                  color: rgba(136, 136, 136, 1);
+                  transition: color .7s ease-in-out;
               }
               .edit:hover {
                   color:rgb(60, 142, 135);
