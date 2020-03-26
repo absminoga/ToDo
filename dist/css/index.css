@@ -565,7 +565,7 @@ input {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    border-bottom: 2px solid #888888; }
+    border-bottom: 2px solid rgba(69, 69, 69, 0.7); }
     .container_section_menu .container_section_menu_top .container_date,
     .container_section_menu .container_section_menu_top .container_time {
       font-family: 'MontserratBold';
@@ -573,7 +573,7 @@ input {
       font-size: calc(10px + 0.5vw);
       text-transform: uppercase;
       text-align: center;
-      color: #888888;
+      color: #454545;
       font-weight: 700; }
   .container_section_menu .container_section_menu_buttom {
     padding: -webkit-calc(10px + 1vw) 0;
@@ -632,9 +632,9 @@ input {
         font-size: calc(10px + .6vw);
         font-family: 'MontserratBold';
         text-transform: capitalize;
-        color: #888888; }
+        color: #454545; }
     .container_section_menu .container_section_menu_buttom .container_tabs .active {
-      background-color: rgba(136, 136, 136, 0.4);
+      background-color: rgba(69, 69, 69, 0.2);
       border-radius: 10px; }
 
 .container_section_task_dashboard {
@@ -643,7 +643,7 @@ input {
       -ms-flex: 1 1 75%;
           flex: 1 1 75%;
   min-width: 320px;
-  background-image: url(/img/AddTask.png);
+  background-image: url(../img/AddTask.png);
   background-size: cover;
   background-position: top center;
   height: 100%;
@@ -740,7 +740,7 @@ input {
           width: 100%;
           height: 35px;
           margin-bottom: 3px;
-          border: 1px solid #888888;
+          border: 1px solid rgba(69, 69, 69, 0.7);
           border-radius: 10px;
           padding: 5px 10px;
           font-family: 'MontserratRegular';
@@ -804,13 +804,13 @@ input {
           width: 100%;
           height: -webkit-calc(100px + 2vw);
           height: calc(100px + 2vw);
-          border: 1px solid #888888;
+          border: 1px solid rgba(69, 69, 69, 0.7);
           border-radius: 10px;
           padding: 5px 10px;
           font-family: 'MontserratRegular';
           font-size: -webkit-calc(10px + .6vw);
           font-size: calc(10px + .6vw);
-          color: #888888;
+          color: #454545;
           text-transform: capitalize;
           margin-bottom: 20px;
           outline: none;
@@ -873,7 +873,7 @@ input {
             width: -webkit-calc(200px + 10vw);
             width: calc(200px + 10vw);
             padding: 5px 10px;
-            border: 1px solid #888888;
+            border: 1px solid rgba(69, 69, 69, 0.7);
             border-radius: 10px;
             margin-right: 10px;
             margin-bottom: 10px;
@@ -886,7 +886,7 @@ input {
               font-family: 'MontserratBold';
               font-size: -webkit-calc(10px + .5vw);
               font-size: calc(10px + .5vw);
-              color: #888888; }
+              color: #454545; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container .without_date {
               color: #008872; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .calendar_btn {
@@ -895,7 +895,7 @@ input {
             font-size: calc(10px + .6vw);
             color: #616161;
             padding: 5px 10px;
-            border: 1px solid #888888;
+            border: 1px solid rgba(69, 69, 69, 0.7);
             border-radius: 10px;
             text-transform: capitalize;
             cursor: pointer; }
@@ -909,7 +909,7 @@ input {
           font-size: -webkit-calc(10px + .6vw);
           font-size: calc(10px + .6vw);
           padding: 5px 10px;
-          border: 1px solid #888888;
+          border: 1px solid rgba(69, 69, 69, 0.7);
           border-radius: 10px;
           text-transform: capitalize;
           color: #6576da;
@@ -986,7 +986,7 @@ input {
             color: white; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .row_fields {
             border: 1px solid rdba(0, 0, 0, 1);
-            background-color: rgba(136, 136, 136, 0.4); }
+            background-color: rgba(69, 69, 69, 0.4); }
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container .calendar_dates .row_fields td {
               font-family: 'MontserratBold';
               font-size: 10px;
@@ -1083,7 +1083,7 @@ input {
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_title {
               width: 100%;
               height: auto;
-              border: 1px solid #888888;
+              border: 1px solid #5c5c5c;
               border-radius: 10px;
               font-family: 'MontserratRegular';
               font-size: -webkit-calc(12px + .6vw);
@@ -1094,12 +1094,12 @@ input {
               margin-bottom: 10px;
               outline: none;
               resize: none;
-              background-color: rgba(255, 255, 255, 0.5); }
+              background: rgba(255, 255, 255, 0.5); }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .input_description {
               width: 100%;
               height: -webkit-calc(50px + 2vw);
               height: calc(50px + 2vw);
-              border: 1px solid #888888;
+              border: 1px solid rgba(69, 69, 69, 0.7);
               border-radius: 10px;
               padding: 5px 10px;
               font-family: 'MontserratRegular';
@@ -1110,7 +1110,15 @@ input {
               outline: none;
               margin-bottom: 10px;
               resize: none;
-              background-color: rgba(255, 255, 255, 0.5); }
+              background: rgba(255, 255, 255, 0.5);
+              -webkit-transition: all .6s ease-in-out;
+              -o-transition: all .6s ease-in-out;
+              transition: all .6s ease-in-out; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .bg_field {
+              background: white;
+              -webkit-transition: all .6s ease-in-out;
+              -o-transition: all .6s ease-in-out;
+              transition: all .6s ease-in-out; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description .date_completion {
               display: -webkit-box;
               display: -webkit-flex;
@@ -1155,9 +1163,9 @@ input {
                 height: 32px;
                 width: -webkit-calc(200px + 10vw);
                 width: calc(200px + 10vw);
-                color: #888888;
+                color: #454545;
                 padding: 5px 10px;
-                border: 1px solid #888888;
+                border: 1px solid rgba(69, 69, 69, 0.7);
                 border-radius: 10px;
                 margin-right: 10px;
                 outline: none;
@@ -1176,9 +1184,9 @@ input {
                 font-family: 'MontserratBold';
                 font-size: -webkit-calc(10px + .6vw);
                 font-size: calc(10px + .6vw);
-                color: #888888;
+                color: #454545;
                 padding: 5px 10px;
-                border: 1px solid #888888;
+                border: 1px solid rgba(69, 69, 69, 0.7);
                 border-radius: 10px;
                 text-transform: capitalize;
                 cursor: pointer; }
@@ -1215,7 +1223,7 @@ input {
               outline: none;
               border: 0;
               cursor: pointer;
-              color: #888888;
+              color: #454545;
               -webkit-transition: color .7s ease-in-out;
               -o-transition: color .7s ease-in-out;
               transition: color .7s ease-in-out; }

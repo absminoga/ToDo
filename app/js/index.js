@@ -91,6 +91,74 @@ class ToDoList {
         return listItem;
     }
 
+ // -------------------- Creatur Expired Task - JS-HTML
+    creatureExpiredItem(title, task) {
+        let listItem = document.createElement('div');
+        listItem.classList.add('task_card');
+       
+        let checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.setAttribute('disabled', '');
+        checkbox.classList.add('task_counter');
+        checkbox.style.display = 'none';
+
+        let textDescription = document.createElement('div');
+        textDescription.classList.add('block_text_description');
+
+        let inputTitle = document.createElement('textarea');
+        inputTitle.setAttribute('type', 'text');
+        inputTitle.classList.add('input_title');
+        inputTitle.setAttribute('disabled', '');
+        inputTitle.innerText = title;
+
+        let inputDescription = document.createElement('textarea');
+        inputDescription.setAttribute('type', 'text');
+        inputDescription.classList.add('input_description');
+        inputDescription.setAttribute('disabled', '');
+        inputDescription.innerText = task;
+
+        let dateCompletion = document.createElement('div');
+        dateCompletion.classList.add('date_completion');
+
+        let dateFieldContainer = document.createElement('div');
+        dateFieldContainer.classList.add('date_field_container');
+
+        let dateField = document.createElement('span');
+        dateField.classList.add('date_field');
+        let inputDate = document.querySelector('.date_field');
+    
+        dateField.innerText = inputDate.textContent;
+        dateField.classList.add('fulfillment_date');
+        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+       
+        let buttonItem = document.createElement('div');
+        buttonItem.classList.add('button_item');
+
+        let buttonEdit = document.createElement('button');
+        buttonEdit.classList.add('edit');
+        buttonEdit.setAttribute('disabled', '');
+        buttonEdit.innerText = 'edit';
+        buttonEdit.style.display = 'none';
+
+
+        let buttonDelete = document.createElement('button');
+        buttonDelete.classList.add('delete', 'task_counter');
+        buttonDelete.innerText = 'delete';
+
+        listItem.appendChild(checkbox);
+        listItem.appendChild(textDescription);
+        textDescription.appendChild(inputTitle);
+        textDescription.appendChild(inputDescription);
+        textDescription.appendChild(dateCompletion);
+        dateCompletion.appendChild(dateFieldContainer);
+        dateFieldContainer.appendChild(dateField);
+        listItem.appendChild(buttonItem)
+        buttonItem.appendChild(buttonEdit);
+        buttonItem.appendChild(buttonDelete);
+
+        return listItem;
+    }
+
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
         if (this.textArea.value.length > 30) {
@@ -141,13 +209,15 @@ class ToDoList {
                 this.inputTitle.value = '';
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
+                this.charCounter.textContent = '0';
             } else if (this.dateToday > dateTask) {
-                let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
+                let listItem = this.creatureExpiredItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
                 this.expiredTask.appendChild(listItem);
                 this.buttonTaskEvents(listItem);
                 this.inputTitle.value = '';
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
+                this.charCounter.textContent = '0';
             } else {
                 let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
                 this.incompletedTask.appendChild(listItem);
@@ -155,6 +225,7 @@ class ToDoList {
                 this.inputTitle.value = '';
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
+                this.charCounter.textContent = '0';
             }
 
         }
@@ -174,12 +245,16 @@ class ToDoList {
         if (containsClass) {
             editButton.innerText = "edit";
             changeTitle.setAttribute('disabled', '');
+            changeTitle.classList.remove('bg_field');
             changeDescription.setAttribute('disabled', '');
+            changeDescription.classList.remove('bg_field');
             changeDate.setAttribute('disabled', '');
         } else {
             editButton.innerText = "save";
             changeTitle.removeAttribute('disabled', '');
+            changeTitle.classList.add('bg_field');
             changeDescription.removeAttribute('disabled', '');
+            changeDescription.classList.add('bg_field');
             changeDate.removeAttribute('disabled', '');
         }
         listItem.classList.toggle('changes');
@@ -198,43 +273,22 @@ class ToDoList {
 
     uncompletedTask(listItem) {
         let ulInCompleted = document.querySelector('.incompleted_tasks');
-        let checkboxIn = listItem.querySelector('input[type=checkbox]');
         this.removedTask = listItem;
-        let inputDate = document.querySelector('.date_field');
-        let dateTask = new Date(inputDate.textContent);
-        let expiredTask = document.querySelector('.expired_tasks');
-       
-        console.log(inputDate);
-        console.log(dateTask);
-        
         listItem.classList.remove('completed');
         listItem.remove()
-        if (inputDate.textContent == '') {
-            ulInCompleted.appendChild(listItem);
-            checkboxIn.onclick = () => this.completedTask(listItem);
-            console.log(1);
-        } else if (this.dateToday > dateTask) {
-            expiredTask.appendChild(listItem);
-            checkboxIn.onclick = () => this.expiredTask(listItem);
-            console.log(2);
-        } else {
-            ulInCompleted.appendChild(listItem);
-            checkboxIn.onclick = () => this.completedTask(listItem);
-            console.log(3);
-        }
+        ulInCompleted.appendChild(listItem);
 
+        let checkboxIn = listItem.querySelector('input[type=checkbox]');
+        checkboxIn.onclick = () => this.completedTask(listItem);
     }
 
-    // expiredTask(listItem) {
-    //     let ulInCompleted = document.querySelector('.incompleted_tasks');
-    //     this.removedTask = listItem;
-    //     listItem.classList.remove('completed');
-    //     listItem.remove()
-    //     ulInCompleted.appendChild(listItem);
-
-    //     let checkboxIn = listItem.querySelector('input[type=checkbox]');
-    //     checkboxIn.onclick = () => this.completedTask(listItem);
-    // }
+    expiredTask(listItem) {
+        let ulInCompleted = document.querySelector('.incompleted_tasks');
+        this.expiredTask = listItem;
+        listItem.classList.remove('completed');
+        listItem.remove()
+        ulInCompleted.appendChild(listItem);
+    }
 
     // -------- DATE ----------
     getDate() {

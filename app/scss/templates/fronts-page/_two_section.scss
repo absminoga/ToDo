@@ -25,14 +25,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-bottom: 2px solid rgba(136, 136, 136, 1);
+        border-bottom: 2px solid rgba(69, 69, 69, .7);
         .container_date,
         .container_time{
             font-family: 'MontserratBold';
             font-size: calc(10px + 0.5vw);
             text-transform: uppercase;
             text-align: center;
-            color: rgba(136, 136, 136, 1);
+            color: rgba(69, 69, 69, 1);
             font-weight: 700;
       }
     }
@@ -79,11 +79,11 @@
                 font-size: calc(10px + .6vw);
                 font-family: 'MontserratBold';
                 text-transform: capitalize;
-                color: rgba(136, 136, 136, 1);
+                color: rgba(69, 69, 69, 1);
                 }   
             }
             .active{
-                background-color: rgba(136, 136, 136, .4);
+                background-color: rgba(69, 69, 69, .2);
                 border-radius: 10px;
             }
         }
@@ -93,7 +93,7 @@
 .container_section_task_dashboard{
     flex: 1 1 75%;
     min-width: 320px;
-    background-image: url(/img/AddTask.png);
+    background-image: url(../img/AddTask.png);
     background-size: cover;
     background-position: top center;
     height: 100%;
@@ -169,7 +169,7 @@
                 width: 100%;
                 height: 35px;
                 margin-bottom: 3px;
-                border: 1px solid rgba(136, 136, 136, 1);
+                border: 1px solid rgba(69, 69, 69, .7);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
@@ -222,12 +222,12 @@
               #new_task{
                 width: 100%;
                 height: calc(100px + 2vw);
-                border: 1px solid rgba(136, 136, 136, 1);
+                border: 1px solid rgba(69, 69, 69, .7);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(10px + .6vw);
-                color: rgba(136, 136, 136, 1);
+                color: rgba(69, 69, 69, 1);
                 text-transform: capitalize;
                 margin-bottom: 20px;
                 outline:none;
@@ -259,7 +259,7 @@
                   height: 32px;
                   width: calc(200px + 10vw);
                   padding: 5px 10px;
-                  border: 1px solid rgba(136, 136, 136, 1);
+                  border: 1px solid rgba(69, 69, 69, .7);
                   border-radius: 10px;
                   margin-right: 10px;
                   margin-bottom: 10px;
@@ -271,7 +271,7 @@
                   .date_field{
                     font-family: 'MontserratBold'; 
                     font-size: calc(10px + .5vw);  
-                    color: rgba(136, 136, 136, 1); 
+                    color: rgba(69, 69, 69, 1);
                 }
                 .without_date{
                   color: rgb(0, 136, 114);
@@ -282,7 +282,7 @@
                   font-size: calc(10px + .6vw);
                   color: rgb(97, 97, 97);
                   padding: 5px 10px;
-                  border: 1px solid rgba(136, 136, 136, 1);
+                  border: 1px solid rgba(69, 69, 69, .7);
                   border-radius: 10px;
                   text-transform: capitalize;
                   cursor: pointer;
@@ -294,7 +294,7 @@
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
                   padding: 5px 10px;
-                  border: 1px solid rgba(136, 136, 136, 1);
+                  border: 1px solid rgba(69, 69, 69, .7);
                   border-radius: 10px;
                   text-transform: capitalize;
                   color:  rgb(101, 118, 218);   
@@ -361,7 +361,7 @@
                   }
                   .row_fields{
                     border: 1px solid rdba(0, 0, 0, 1);
-                    background-color: rgba(136, 136, 136, .4);
+                    background-color: rgba(69, 69, 69, .4);
                     td{
                       font-family: 'MontserratBold';
                       font-size: 10px;
@@ -422,7 +422,7 @@
               .input_title{
                 width: 100%;
                 height:auto;
-                border: 1px solid rgba(136, 136, 136, 1);
+                border: 1px solid rgb(92, 92, 92);
                 border-radius: 10px;
                 font-family: 'MontserratRegular';
                 font-size: calc(12px + .6vw);
@@ -432,12 +432,12 @@
                 margin-bottom: 10px;
                 outline:none;
                 resize: none;
-                background-color: rgba(255, 255, 255, 0.5);
+                background: rgba(255, 255, 255, 0.5);
               }
               .input_description{
                 width: 100%;
                 height: calc(50px + 2vw);
-                border: 1px solid rgba(136, 136, 136, 1);
+                border: 1px solid rgba(69, 69, 69, .7);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: 'MontserratRegular';
@@ -447,9 +447,13 @@
                 outline:none;
                 margin-bottom: 10px;
                 resize: none;
-                background-color: rgba(255, 255, 255, 0.5);
+                background: rgba(255, 255, 255, 0.5);
+                transition: all .6s ease-in-out;
               }
-              
+              .bg_field{
+                background: rgba(255, 255, 255, 1);
+                transition: all .6s ease-in-out;
+              }
               .date_completion{
                 display: flex;
                 flex-direction: row;
@@ -465,9 +469,9 @@
                   align-items: center;
                   height: 32px;
                   width: calc(200px + 10vw);
-                  color: rgba(136, 136, 136, 1);
+                  color: rgba(69, 69, 69, 1);
                   padding: 5px 10px;
-                  border: 1px solid rgba(136, 136, 136, 1);
+                  border: 1px solid rgba(69, 69, 69, .7);
                   border-radius: 10px;
                   margin-right: 10px;
                   outline: none;
@@ -488,9 +492,9 @@
                 .calendar_btn{
                   font-family: 'MontserratBold'; 
                   font-size: calc(10px + .6vw);
-                  color: rgba(136, 136, 136, 1);
+                  color: rgba(69, 69, 69, 1);
                   padding: 5px 10px;
-                  border: 1px solid rgba(136, 136, 136, 1);
+                  border: 1px solid rgba(69, 69, 69, .7);
                   border-radius: 10px;
                   text-transform: capitalize;
                   cursor: pointer;
@@ -514,7 +518,7 @@
                   outline: none;
                   border: 0;
                   cursor: pointer;
-                  color: rgba(136, 136, 136, 1);
+                  color: rgb(69, 69, 69);
                   transition: color .7s ease-in-out;
               }
               .edit:hover {
