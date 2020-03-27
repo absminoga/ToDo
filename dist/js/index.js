@@ -192,22 +192,22 @@ class ToDoList {
         editButton.onclick = () => this.changeTask(listItem);
 
         let deleteButton = listItem.querySelector('button.delete');
-        deleteButton.onclick = () => this.deleteTask(listItem);
+        deleteButton.onclick = () => {
+            this.deleteTask(listItem);
+            this.itemСounter();
+        };
 
         let checkboxOut = listItem.querySelector('input[type=checkbox]');
-        checkboxOut.onclick = () => this.completedTask(listItem);
+        checkboxOut.onclick = () => {
+            this.completedTask(listItem);
+            this.itemСounter();
+        }
 
     }
 
     addTask() {
         let inputDate = document.querySelector('.date_field');
         let dateTask = new Date(inputDate.textContent);
-        let incompletedTask = document.querySelector('.incompleted_tasks');
-        let incompletCoint = incompletedTask.querySelector('.task_card').length
-        let completedTasks = document.querySelector('.completed_tasks');
-
-        let expiredTask = document.querySelector('.expired_tasks');
-
         if (this.inputTask.value && this.inputTitle.value) {
             if (inputDate.textContent == '') {
                 let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
@@ -217,6 +217,7 @@ class ToDoList {
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
                 this.charCounter.textContent = '0';
+                this.itemСounter();
             } else if (this.dateToday > dateTask) {
                 let listItem = this.creatureExpiredItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
                 this.expiredTask.appendChild(listItem);
@@ -225,6 +226,7 @@ class ToDoList {
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
                 this.charCounter.textContent = '0';
+                this.itemСounter();
             } else {
                 let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
                 this.incompletedTask.appendChild(listItem);
@@ -233,6 +235,7 @@ class ToDoList {
                 this.inputTask.value = '';
                 this.inputDate.textContent = '';
                 this.charCounter.textContent = '0';
+                this.itemСounter();
             }
         }
     }
@@ -274,7 +277,10 @@ class ToDoList {
         ulCompleted.appendChild(listItem);
 
         let checkboxIn = listItem.querySelector('input[type=checkbox]');
-        checkboxIn.onclick = () => this.uncompletedTask(listItem);
+        checkboxIn.onclick = () => {
+            this.uncompletedTask(listItem);
+            this.itemСounter();
+        }
     }
 
     uncompletedTask(listItem) {
@@ -285,7 +291,10 @@ class ToDoList {
         ulInCompleted.appendChild(listItem);
 
         let checkboxIn = listItem.querySelector('input[type=checkbox]');
-        checkboxIn.onclick = () => this.completedTask(listItem);
+        checkboxIn.onclick = () => {
+            this.completedTask(listItem);
+            this.itemСounter();
+        }
     }
 
     expiredTask(listItem) {
@@ -294,6 +303,20 @@ class ToDoList {
         listItem.classList.remove('completed');
         listItem.remove()
         ulInCompleted.appendChild(listItem);
+    }
+
+    itemСounter() {
+        let incompletetTask = document.querySelector('.incompleted_tasks');
+        let incompledCounter = document.querySelector('.incomplet_task_counter');
+        incompledCounter.textContent = incompletetTask.childNodes.length - 1;
+
+        let completedTask = document.querySelector('.completed_tasks');
+        let compledCounter = document.querySelector('.complet_task_counter');
+        compledCounter.textContent = completedTask.childNodes.length - 1;
+
+        let expiredTask = document.querySelector('.expired_tasks');
+        let expiredCounter = document.querySelector('.expire_task_counter');
+        expiredCounter.textContent = expiredTask.childNodes.length - 1;
     }
 
     // -------- DATE ----------
@@ -507,6 +530,7 @@ class ToDoList {
         }
     };
 };
+
 let todolist = new ToDoList();
 // ------------------------- Tab ----------------------
 let jsTriggers = document.querySelectorAll('.js-tab-trigger');
@@ -528,19 +552,19 @@ jsTriggers.forEach(function (trigger) {
 });
 
 /// ----------------- BACKGROUND SLIDER --------------
-let mas = [
-    '../img/beach-1851083_1920.jpg',
-    '../img/kangaroo-iceland-4899656_1920.jpg',
-    '../img/lighthouse-2490743_1920.jpg',
-    '../img/lighthouse-1421704_1920.jpg',
-    '../img/lighthouse-4082369_1920.jpg'
-], i = 1;
-function csaHead() {
-    if (i > (mas.length - 1)) {
-        i = 0;
-    }
-    document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
-    i++;
-    setTimeout(csaHead, 5000)
-};
-csaHead();
+// let mas = [
+//     '../img/beach-1851083_1920.jpg',
+//     '../img/kangaroo-iceland-4899656_1920.jpg',
+//     '../img/lighthouse-2490743_1920.jpg',
+//     '../img/lighthouse-1421704_1920.jpg',
+//     '../img/lighthouse-4082369_1920.jpg'
+// ], i = 1;
+// function csaHead() {
+//     if (i > (mas.length - 1)) {
+//         i = 0;
+//     }
+//     document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
+//     i++;
+//     setTimeout(csaHead, 5000)
+// };
+// csaHead();

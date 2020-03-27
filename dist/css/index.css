@@ -612,27 +612,36 @@ input {
         padding-right: calc(10px + 1vw);
         font-size: -webkit-calc(15px + 1vw);
         font-size: calc(15px + 1vw); }
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_title {
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
         margin-right: -webkit-calc(20px + 1vw);
         margin-right: calc(20px + 1vw); }
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle,
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle ~ span {
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle ~ span {
         color: #6576da; }
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt,
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt ~ span {
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt ~ span {
         color: #9f6d02; }
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check,
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check ~ span {
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check ~ span {
         color: #3c8e87; }
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times,
-      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times ~ span {
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times,
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times ~ span {
         color: #a74747; }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs span {
         font-size: -webkit-calc(10px + 0.6vw);
         font-size: calc(10px + 0.6vw);
         font-family: "MontserratBold";
         text-transform: capitalize;
-        color: #454545; }
+        color: #454545;
+        margin-right: 15px; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .add_task_counter {
+        color: #6576da; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .incomplet_task_counter {
+        color: #9f6d02; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .complet_task_counter {
+        color: #3c8e87; }
+      .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .expire_task_counter {
+        color: #a74747; }
     .container_section_menu .container_section_menu_buttom .container_tabs .active {
       background-color: rgba(69, 69, 69, 0.2);
       border-radius: 10px; }
@@ -1217,21 +1226,25 @@ input {
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit,
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete {
               padding: 5px;
+              margin-bottom: 10px;
               font-family: "MontserratBold";
               font-size: 14px;
               background: transparent;
               text-transform: capitalize;
               outline: none;
-              border: 0;
+              border: 1px solid rgba(69, 69, 69, 0.7);
+              border-radius: 20px;
               cursor: pointer;
               color: #454545;
-              -webkit-transition: color 0.7s ease-in-out;
-              -o-transition: color 0.7s ease-in-out;
-              transition: color 0.7s ease-in-out; }
+              -webkit-transition: all 0.7s ease-in-out;
+              -o-transition: all 0.7s ease-in-out;
+              transition: all 0.7s ease-in-out; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit:hover {
-              color: #3c8e87; }
+              color: #3c8e87;
+              border: 1px solid #1eb180; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete:hover {
-              color: #ff0202; }
+              color: #ff0202;
+              border: 1px solid #ff0202; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_title,
         .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_description {
           color: #518f01;
@@ -1273,11 +1286,11 @@ input {
       -webkit-flex: 1 1 100%;
           -ms-flex: 1 1 100%;
               flex: 1 1 100%;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
-          -ms-flex-direction: row;
-              flex-direction: row;
+      -webkit-box-orient: horizontal !important;
+      -webkit-box-direction: normal !important;
+      -webkit-flex-direction: row !important;
+          -ms-flex-direction: row !important;
+              flex-direction: row !important;
       -webkit-box-align: center;
       -webkit-align-items: center;
           -ms-flex-align: center;
@@ -1289,9 +1302,74 @@ input {
       -webkit-flex-wrap: wrap;
           -ms-flex-wrap: wrap;
               flex-wrap: wrap; }
+      .task_card .button_item .edit {
+        margin-right: 10px; }
       .task_card .button_item .edit,
       .task_card .button_item .delete {
         -webkit-box-flex: 1;
-        -webkit-flex: 1 1 auto;
-            -ms-flex: 1 1 auto;
-                flex: 1 1 auto; } }
+        -webkit-flex: 1 1 40%;
+            -ms-flex: 1 1 40%;
+                flex: 1 1 40%;
+        max-width: 100px; } }
+
+@media screen and (max-width: 640px) {
+  .section_two .container {
+    overflow: hidden;
+    width: 200vw;
+    max-width: 1280px; }
+    .section_two .container .wrapper .container_section_menu {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 100%;
+          -ms-flex: 1 1 100%;
+              flex: 1 1 100%;
+      max-width: 640px; }
+    .section_two .container .wrapper .container_section_task_dashboard {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 100%;
+          -ms-flex: 1 1 100%;
+              flex: 1 1 100%;
+      max-width: 640px; }
+  .task_card {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+    .task_card input[type="checkbox"] {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 5%;
+          -ms-flex: 1 1 5%;
+              flex: 1 1 5%; }
+    .task_card .block_text_description {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 95%;
+          -ms-flex: 1 1 95%;
+              flex: 1 1 95%; }
+    .task_card .button_item {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 100%;
+          -ms-flex: 1 1 100%;
+              flex: 1 1 100%;
+      -webkit-box-orient: horizontal !important;
+      -webkit-box-direction: normal !important;
+      -webkit-flex-direction: row !important;
+          -ms-flex-direction: row !important;
+              flex-direction: row !important;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap; }
+      .task_card .button_item .edit {
+        margin-right: 10px; }
+      .task_card .button_item .edit,
+      .task_card .button_item .delete {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 40%;
+            -ms-flex: 1 1 40%;
+                flex: 1 1 40%;
+        max-width: 100px; } }

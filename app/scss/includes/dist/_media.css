@@ -11,13 +11,57 @@
   }
   .task_card .button_item {
     flex: 1 1 100%;
-    flex-direction: row;
+    flex-direction: row !important;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
   }
+  .task_card .button_item .edit {
+    margin-right: 10px;
+  }
   .task_card .button_item .edit,
   .task_card .button_item .delete {
-    flex: 1 1 auto;
+    flex: 1 1 40%;
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .section_two .container {
+    overflow: hidden;
+    width: 200vw;
+    max-width: 1280px;
+  }
+  .section_two .container .wrapper .container_section_menu {
+    flex: 1 1 100%;
+    max-width: 640px;
+  }
+  .section_two .container .wrapper .container_section_task_dashboard {
+    flex: 1 1 100%;
+    max-width: 640px;
+  }
+  .task_card {
+    flex-wrap: wrap;
+  }
+  .task_card input[type="checkbox"] {
+    flex: 1 1 5%;
+  }
+  .task_card .block_text_description {
+    flex: 1 1 95%;
+  }
+  .task_card .button_item {
+    flex: 1 1 100%;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .task_card .button_item .edit {
+    margin-right: 10px;
+  }
+  .task_card .button_item .edit,
+  .task_card .button_item .delete {
+    flex: 1 1 40%;
+    max-width: 100px;
   }
 }

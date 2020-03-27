@@ -59,27 +59,27 @@
   font-size: calc(15px + 1vw);
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_title {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
   margin-right: calc(20px + 1vw);
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle,
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-plus-circle ~ span {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle,
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle ~ span {
   color: #6576da;
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt,
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-alt ~ span {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt,
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt ~ span {
   color: #9f6d02;
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check,
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-check ~ span {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check,
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check ~ span {
   color: #3c8e87;
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times,
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .fa-calendar-times ~ span {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times,
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times ~ span {
   color: #a74747;
 }
 
@@ -88,6 +88,23 @@
   font-family: "MontserratBold";
   text-transform: capitalize;
   color: #454545;
+  margin-right: 15px;
+}
+
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .add_task_counter {
+  color: #6576da;
+}
+
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .incomplet_task_counter {
+  color: #9f6d02;
+}
+
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .complet_task_counter {
+  color: #3c8e87;
+}
+
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .expire_task_counter {
+  color: #a74747;
 }
 
 .container_section_menu .container_section_menu_buttom .container_tabs .active {
@@ -557,23 +574,27 @@
 .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit,
 .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete {
   padding: 5px;
+  margin-bottom: 10px;
   font-family: "MontserratBold";
   font-size: 14px;
   background: transparent;
   text-transform: capitalize;
   outline: none;
-  border: 0;
+  border: 1px solid rgba(69, 69, 69, 0.7);
+  border-radius: 20px;
   cursor: pointer;
   color: #454545;
-  transition: color 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit:hover {
   color: #3c8e87;
+  border: 1px solid #1eb180;
 }
 
 .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete:hover {
   color: #ff0202;
+  border: 1px solid #ff0202;
 }
 
 .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_title,

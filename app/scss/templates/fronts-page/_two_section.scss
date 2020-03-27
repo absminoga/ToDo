@@ -55,32 +55,44 @@
             padding-right: calc(10px + 1vw);
             font-size: calc(15px + 1vw);
           }
-        }
-        .section_two_tabs_title {
-          margin-right: calc(20px + 1vw);
-        }
-
-        .fa-plus-circle,
-        .fa-plus-circle ~ span {
-          color: rgb(101, 118, 218);
-        }
-        .fa-calendar-alt,
-        .fa-calendar-alt ~ span {
-          color: rgba(159, 109, 2, 1);
-        }
-        .fa-calendar-check,
-        .fa-calendar-check ~ span {
-          color: rgb(60, 142, 135);
-        }
-        .fa-calendar-times,
-        .fa-calendar-times ~ span {
-          color: rgb(167, 71, 71);
+          .section_two_tabs_title {
+            margin-right: calc(20px + 1vw);
+          }
+          .fa-plus-circle,
+          .fa-plus-circle ~ span {
+            color: rgb(101, 118, 218);
+          }
+          .fa-calendar-alt,
+          .fa-calendar-alt ~ span {
+            color: rgba(159, 109, 2, 1);
+          }
+          .fa-calendar-check,
+          .fa-calendar-check ~ span {
+            color: rgb(60, 142, 135);
+          }
+          .fa-calendar-times,
+          .fa-calendar-times ~ span {
+            color: rgb(167, 71, 71);
+          }
         }
         span {
           font-size: calc(10px + 0.6vw);
           font-family: "MontserratBold";
           text-transform: capitalize;
           color: rgba(69, 69, 69, 1);
+          margin-right: 15px;
+        }
+        .add_task_counter{
+          color: rgb(101, 118, 218);
+        }
+        .incomplet_task_counter{
+          color: rgba(159, 109, 2, 1);
+        }
+        .complet_task_counter{
+          color: rgb(60, 142, 135);
+        }
+        .expire_task_counter{
+          color: rgb(167, 71, 71);
         }
       }
       .active {
@@ -507,21 +519,25 @@
               .edit,
               .delete {
                 padding: 5px;
+                margin-bottom: 10px;
                 font-family: "MontserratBold";
                 font-size: 14px;
                 background: transparent;
                 text-transform: capitalize;
                 outline: none;
-                border: 0;
+                border: 1px solid rgba(69, 69, 69, 0.7);
+                border-radius: 20px;
                 cursor: pointer;
                 color: rgb(69, 69, 69);
-                transition: color 0.7s ease-in-out;
+                transition: all 0.7s ease-in-out;
               }
               .edit:hover {
                 color: rgb(60, 142, 135);
+                border: 1px solid rgb(30, 177, 128);
               }
               .delete:hover {
                 color: rgb(255, 2, 2);
+                border: 1px solid  rgb(255, 2, 2);
               }
             }
           }

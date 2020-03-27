@@ -213,13 +213,17 @@ function () {
       var deleteButton = listItem.querySelector('button.delete');
 
       deleteButton.onclick = function () {
-        return _this3.deleteTask(listItem);
+        _this3.deleteTask(listItem);
+
+        _this3.itemСounter();
       };
 
       var checkboxOut = listItem.querySelector('input[type=checkbox]');
 
       checkboxOut.onclick = function () {
-        return _this3.completedTask(listItem);
+        _this3.completedTask(listItem);
+
+        _this3.itemСounter();
       };
     }
   }, {
@@ -227,10 +231,6 @@ function () {
     value: function addTask() {
       var inputDate = document.querySelector('.date_field');
       var dateTask = new Date(inputDate.textContent);
-      var incompletedTask = document.querySelector('.incompleted_tasks');
-      var incompletCoint = incompletedTask.querySelector('.task_card').length;
-      var completedTasks = document.querySelector('.completed_tasks');
-      var expiredTask = document.querySelector('.expired_tasks');
 
       if (this.inputTask.value && this.inputTitle.value) {
         if (inputDate.textContent == '') {
@@ -241,6 +241,7 @@ function () {
           this.inputTask.value = '';
           this.inputDate.textContent = '';
           this.charCounter.textContent = '0';
+          this.itemСounter();
         } else if (this.dateToday > dateTask) {
           var _listItem = this.creatureExpiredItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
 
@@ -250,6 +251,7 @@ function () {
           this.inputTask.value = '';
           this.inputDate.textContent = '';
           this.charCounter.textContent = '0';
+          this.itemСounter();
         } else {
           var _listItem2 = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
 
@@ -259,6 +261,7 @@ function () {
           this.inputTask.value = '';
           this.inputDate.textContent = '';
           this.charCounter.textContent = '0';
+          this.itemСounter();
         }
       }
     }
@@ -308,7 +311,9 @@ function () {
       var checkboxIn = listItem.querySelector('input[type=checkbox]');
 
       checkboxIn.onclick = function () {
-        return _this4.uncompletedTask(listItem);
+        _this4.uncompletedTask(listItem);
+
+        _this4.itemСounter();
       };
     }
   }, {
@@ -324,7 +329,9 @@ function () {
       var checkboxIn = listItem.querySelector('input[type=checkbox]');
 
       checkboxIn.onclick = function () {
-        return _this5.completedTask(listItem);
+        _this5.completedTask(listItem);
+
+        _this5.itemСounter();
       };
     }
   }, {
@@ -335,6 +342,19 @@ function () {
       listItem.classList.remove('completed');
       listItem.remove();
       ulInCompleted.appendChild(listItem);
+    }
+  }, {
+    key: "item\u0421ounter",
+    value: function itemOunter() {
+      var incompletetTask = document.querySelector('.incompleted_tasks');
+      var incompledCounter = document.querySelector('.incomplet_task_counter');
+      incompledCounter.textContent = incompletetTask.childNodes.length - 1;
+      var completedTask = document.querySelector('.completed_tasks');
+      var compledCounter = document.querySelector('.complet_task_counter');
+      compledCounter.textContent = completedTask.childNodes.length - 1;
+      var expiredTask = document.querySelector('.expired_tasks');
+      var expiredCounter = document.querySelector('.expire_task_counter');
+      expiredCounter.textContent = expiredTask.childNodes.length - 1;
     } // -------- DATE ----------
 
   }, {
@@ -494,7 +514,7 @@ function () {
 
       ; // Дабовляем класс для сегоднешнего дня
 
-      for (var _i = 1; _i <= days; _i++) {
+      for (var i = 1; i <= days; i++) {
         var tdFields = document.querySelectorAll('.date_fields');
         var _iteratorNormalCompletion2 = true;
         var _didIteratorError2 = false;
@@ -593,7 +613,7 @@ function () {
           }
         }
 
-        for (var _i2 = 1; _i2 <= days; _i2++) {
+        for (var _i = 1; _i <= days; _i++) {
           var _tdFields = document.querySelectorAll('.date_fields');
 
           var _iteratorNormalCompletion4 = true;
@@ -695,7 +715,7 @@ function () {
           }
         }
 
-        for (var _i3 = 1; _i3 <= days; _i3++) {
+        for (var _i2 = 1; _i2 <= days; _i2++) {
           var _tdFields2 = document.querySelectorAll('.date_fields');
 
           var _iteratorNormalCompletion6 = true;
@@ -749,19 +769,19 @@ jsTriggers.forEach(function (trigger) {
     content.classList.add('active');
   });
 }); /// ----------------- BACKGROUND SLIDER --------------
-
-var mas = ['../img/beach-1851083_1920.jpg', '../img/kangaroo-iceland-4899656_1920.jpg', '../img/lighthouse-2490743_1920.jpg', '../img/lighthouse-1421704_1920.jpg', '../img/lighthouse-4082369_1920.jpg'],
-    i = 1;
-
-function csaHead() {
-  if (i > mas.length - 1) {
-    i = 0;
-  }
-
-  document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
-  i++;
-  setTimeout(csaHead, 5000);
-}
-
-;
-csaHead();
+// let mas = [
+//     '../img/beach-1851083_1920.jpg',
+//     '../img/kangaroo-iceland-4899656_1920.jpg',
+//     '../img/lighthouse-2490743_1920.jpg',
+//     '../img/lighthouse-1421704_1920.jpg',
+//     '../img/lighthouse-4082369_1920.jpg'
+// ], i = 1;
+// function csaHead() {
+//     if (i > (mas.length - 1)) {
+//         i = 0;
+//     }
+//     document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
+//     i++;
+//     setTimeout(csaHead, 5000)
+// };
+// csaHead();
