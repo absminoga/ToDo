@@ -1,0 +1,1 @@
+@media screen and (max-width:680px){.task_card{flex-wrap:wrap}.task_card input[type=checkbox]{flex:1 1 5%}.task_card .block_text_description{flex:1 1 95%}.task_card .button_item{flex:1 1 100%;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}.task_card .button_item .delete,.task_card .button_item .edit{flex:1 1 auto}}

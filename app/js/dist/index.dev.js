@@ -20,6 +20,7 @@ function () {
     this.inputTask = document.getElementById('new_task');
     this.inputDate = document.querySelector('.date_field');
     this.incompletedTask = document.querySelector('.incompleted_tasks');
+    this.completedTasks = document.querySelector('.completed_tasks');
     this.expiredTask = document.querySelector('.expired_tasks');
     this.charCounter = document.querySelector('.char-counter');
     this.textCounter = document.querySelector('.text-counter');
@@ -226,6 +227,10 @@ function () {
     value: function addTask() {
       var inputDate = document.querySelector('.date_field');
       var dateTask = new Date(inputDate.textContent);
+      var incompletedTask = document.querySelector('.incompleted_tasks');
+      var incompletCoint = incompletedTask.querySelector('.task_card').length;
+      var completedTasks = document.querySelector('.completed_tasks');
+      var expiredTask = document.querySelector('.expired_tasks');
 
       if (this.inputTask.value && this.inputTitle.value) {
         if (inputDate.textContent == '') {
@@ -489,7 +494,7 @@ function () {
 
       ; // Дабовляем класс для сегоднешнего дня
 
-      for (var i = 1; i <= days; i++) {
+      for (var _i = 1; _i <= days; _i++) {
         var tdFields = document.querySelectorAll('.date_fields');
         var _iteratorNormalCompletion2 = true;
         var _didIteratorError2 = false;
@@ -588,7 +593,7 @@ function () {
           }
         }
 
-        for (var _i = 1; _i <= days; _i++) {
+        for (var _i2 = 1; _i2 <= days; _i2++) {
           var _tdFields = document.querySelectorAll('.date_fields');
 
           var _iteratorNormalCompletion4 = true;
@@ -690,7 +695,7 @@ function () {
           }
         }
 
-        for (var _i2 = 1; _i2 <= days; _i2++) {
+        for (var _i3 = 1; _i3 <= days; _i3++) {
           var _tdFields2 = document.querySelectorAll('.date_fields');
 
           var _iteratorNormalCompletion6 = true;
@@ -743,4 +748,20 @@ jsTriggers.forEach(function (trigger) {
     activeContent.classList.remove('active');
     content.classList.add('active');
   });
-});
+}); /// ----------------- BACKGROUND SLIDER --------------
+
+var mas = ['../img/beach-1851083_1920.jpg', '../img/kangaroo-iceland-4899656_1920.jpg', '../img/lighthouse-2490743_1920.jpg', '../img/lighthouse-1421704_1920.jpg', '../img/lighthouse-4082369_1920.jpg'],
+    i = 1;
+
+function csaHead() {
+  if (i > mas.length - 1) {
+    i = 0;
+  }
+
+  document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
+  i++;
+  setTimeout(csaHead, 5000);
+}
+
+;
+csaHead();

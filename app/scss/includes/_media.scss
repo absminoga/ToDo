@@ -10,6 +10,28 @@
 @media screen and (max-width: 768px) {
 
 }
+@media screen and (max-width: 680px) {
+    .task_card {
+        flex-wrap: wrap;
+        input[type="checkbox"] {
+          flex: 1 1 5%;
+        }
+        .block_text_description {
+          flex: 1 1 95%;
+        }
+        .button_item {
+          flex: 1 1 100%;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          .edit,
+          .delete {
+            flex: 1 1 auto;
+          }
+        }
+      }
+}
 
 @media screen and (max-width: 480px) {
 

@@ -7,6 +7,7 @@ class ToDoList {
         this.inputTask = document.getElementById('new_task');
         this.inputDate = document.querySelector('.date_field');
         this.incompletedTask = document.querySelector('.incompleted_tasks');
+        this.completedTasks = document.querySelector('.completed_tasks');
         this.expiredTask = document.querySelector('.expired_tasks');
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
@@ -201,6 +202,12 @@ class ToDoList {
     addTask() {
         let inputDate = document.querySelector('.date_field');
         let dateTask = new Date(inputDate.textContent);
+        let incompletedTask = document.querySelector('.incompleted_tasks');
+        let incompletCoint = incompletedTask.querySelector('.task_card').length
+        let completedTasks = document.querySelector('.completed_tasks');
+
+        let expiredTask = document.querySelector('.expired_tasks');
+
         if (this.inputTask.value && this.inputTitle.value) {
             if (inputDate.textContent == '') {
                 let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, this.inputDate.value);
@@ -498,7 +505,7 @@ class ToDoList {
                 }
             }
         }
-    }
+    };
 };
 let todolist = new ToDoList();
 // ------------------------- Tab ----------------------
@@ -519,3 +526,21 @@ jsTriggers.forEach(function (trigger) {
         content.classList.add('active');
     });
 });
+
+/// ----------------- BACKGROUND SLIDER --------------
+let mas = [
+    '../img/beach-1851083_1920.jpg',
+    '../img/kangaroo-iceland-4899656_1920.jpg',
+    '../img/lighthouse-2490743_1920.jpg',
+    '../img/lighthouse-1421704_1920.jpg',
+    '../img/lighthouse-4082369_1920.jpg'
+], i = 1;
+function csaHead() {
+    if (i > (mas.length - 1)) {
+        i = 0;
+    }
+    document.querySelector('.container_section_task_dashboard').style.backgroundImage = "url('" + mas[i] + "')";
+    i++;
+    setTimeout(csaHead, 5000)
+};
+csaHead();

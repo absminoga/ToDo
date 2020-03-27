@@ -45,7 +45,7 @@
   flex-direction: row;
   flex-wrap: unset;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 10px 0;
   margin-bottom: 5px;
   transition: all 0.5s ease-in-out;
@@ -53,7 +53,7 @@
   width: 100%;
 }
 
-.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs i {
+.container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text i {
   padding-left: 20px;
   padding-right: calc(10px + 1vw);
   font-size: calc(15px + 1vw);
@@ -98,9 +98,9 @@
 .container_section_task_dashboard {
   flex: 1 1 75%;
   min-width: 320px;
-  background-image: url(../img/AddTask.png);
+  background-image: url(../img/lighthouse-4082369_1920.jpg);
   background-size: cover;
-  background-position: top center;
+  background-position: center center;
   height: 100%;
   padding: calc(10px + 1vw);
   border-left: 1px solid rgba(255, 255, 255, 0);
@@ -141,6 +141,7 @@
   display: none;
   margin-top: -1px;
   overflow: auto;
+  overflow-y: none;
 }
 
 .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card {
@@ -508,7 +509,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 32px;
-  width: calc(200px + 10vw);
+  width: calc(50px + 20vw);
   color: #454545;
   padding: 5px 10px;
   border: 1px solid rgba(69, 69, 69, 0.7);
