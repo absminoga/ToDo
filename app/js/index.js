@@ -91,11 +91,11 @@ class ToDoList {
         return listItem;
     }
 
- // -------------------- Creatur Expired Task - JS-HTML
+    // -------------------- Creatur Expired Task - JS-HTML
     creatureExpiredItem(title, task) {
         let listItem = document.createElement('div');
         listItem.classList.add('task_card');
-       
+
         let checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('disabled', '');
@@ -126,11 +126,11 @@ class ToDoList {
         let dateField = document.createElement('span');
         dateField.classList.add('date_field');
         let inputDate = document.querySelector('.date_field');
-    
+
         dateField.innerText = inputDate.textContent;
         dateField.classList.add('fulfillment_date');
         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-       
+
         let buttonItem = document.createElement('div');
         buttonItem.classList.add('button_item');
 
@@ -227,7 +227,6 @@ class ToDoList {
                 this.inputDate.textContent = '';
                 this.charCounter.textContent = '0';
             }
-
         }
     }
 
