@@ -39,47 +39,113 @@
 @media screen and (max-width: 640px) {
   .section_two{
     .container{
+      display: block;
+      position: fixed;
+      top:0;
+      left: 0;
       overflow: hidden;
         width: 200vw;
         max-width: 1280px;
+
       .wrapper{
         
         .container_section_menu {
           flex: 1 1 100%;
           max-width: 640px;
+          .container_section_menu_buttom {
+            .container_tabs {
+              .section_two_tabs {
+                .section_two_tabs_text{
+                  i {
+                    font-size: calc(20px + 1vw);
+                  }
+                  .section_two_tabs_title {
+                    font-size: calc(18px + .7vw);
+                  }
+                  .fa-plus-circle,
+                  .fa-plus-circle ~ span {
+                    color: rgb(101, 118, 218);
+                  }
+                  .fa-calendar-alt,
+                  .fa-calendar-alt ~ span {
+                    color: rgba(159, 109, 2, 1);
+                  }
+                  .fa-calendar-check,
+                  .fa-calendar-check ~ span {
+                    color: rgb(60, 142, 135);
+                  }
+                  .fa-calendar-times,
+                  .fa-calendar-times ~ span {
+                    color: rgb(167, 71, 71);
+                  }
+                }
+                span {
+                  font-size: calc(18px + 0.7vw);
+                  font-family: "MontserratBold";
+                  text-transform: capitalize;
+                  color: rgba(69, 69, 69, 1);
+                  margin-right: 15px;
+                }
+                .add_task_counter{
+                  color: rgb(101, 118, 218);
+                }
+                .incomplet_task_counter{
+                  color: rgba(159, 109, 2, 1);
+                }
+                .complet_task_counter{
+                  color: rgb(60, 142, 135);
+                }
+                .expire_task_counter{
+                  color: rgb(167, 71, 71);
+                }
+              }
+              .active {
+                background-color:transparent !important;
+                border-radius: 10px;
+              }
+              .section_two_tabs:hover {
+                background-color: rgba(69, 69, 69, 0.2);
+                border-radius: 10px;
+              }
+            }
+          }
         }
         .container_section_task_dashboard{
           flex: 1 1 100%;
           max-width: 640px;
+          .task_card {
+            flex-wrap: wrap;
+            input[type="checkbox"] {
+              flex: 1 1 5%;
+            }
+            .block_text_description {
+              flex: 1 1 95%;
+            }
+            .button_item {
+              flex: 1 1 100%;
+              flex-direction: row !important;
+              align-items: center;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              .edit{
+                margin-right: 10px;
+              }
+              .edit,
+              .delete {
+                flex: 1 1 40%;
+                max-width: 100px;
+              }
+            }
+          }
         }
       }
+    }
+    .menu_movement{
+      left:-100vw;
     }
   }
  
-  .task_card {
-      flex-wrap: wrap;
-      input[type="checkbox"] {
-        flex: 1 1 5%;
-      }
-      .block_text_description {
-        flex: 1 1 95%;
-      }
-      .button_item {
-        flex: 1 1 100%;
-        flex-direction: row !important;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        .edit{
-          margin-right: 10px;
-        }
-        .edit,
-        .delete {
-          flex: 1 1 40%;
-          max-width: 100px;
-        }
-      }
-    }
+  
 }
 
 @media screen and (max-width: 480px) {

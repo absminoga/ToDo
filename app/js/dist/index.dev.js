@@ -15,6 +15,7 @@ function () {
 
     _classCallCheck(this, ToDoList);
 
+    this.windowsContainer = document.querySelector('.container');
     this.addButton = document.querySelector('.add_btn');
     this.inputTitle = document.getElementById('new_title');
     this.inputTask = document.getElementById('new_task');
@@ -162,7 +163,8 @@ function () {
       buttonItem.appendChild(buttonEdit);
       buttonItem.appendChild(buttonDelete);
       return listItem;
-    }
+    } // --------------------  Control change the name of the task ---------
+
   }, {
     key: "changeTitle",
     value: function changeTitle() {
@@ -198,7 +200,8 @@ function () {
         _this2.inputTask.style.background = 'rgba(255, 255, 255, .5)';
         _this2.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
       }, 100);
-    }
+    } // ------------------ Events when clicking on hemp tasks --------------------
+
   }, {
     key: "buttonTaskEvents",
     value: function buttonTaskEvents(listItem) {
@@ -225,7 +228,8 @@ function () {
 
         _this3.itemСounter();
       };
-    }
+    } // -------------- Event classes -----------
+
   }, {
     key: "addTask",
     value: function addTask() {
@@ -342,7 +346,8 @@ function () {
       listItem.classList.remove('completed');
       listItem.remove();
       ulInCompleted.appendChild(listItem);
-    }
+    } // ------------ Task counter ---------------
+
   }, {
     key: "item\u0421ounter",
     value: function itemOunter() {
@@ -355,7 +360,7 @@ function () {
       var expiredTask = document.querySelector('.expired_tasks');
       var expiredCounter = document.querySelector('.expire_task_counter');
       expiredCounter.textContent = expiredTask.childNodes.length - 1;
-    } // -------- DATE ----------
+    } // -------- Date related classes ----------
 
   }, {
     key: "getDate",

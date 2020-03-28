@@ -539,15 +539,15 @@ input {
 
 .container_section_menu {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 25%;
-      -ms-flex: 1 1 25%;
-          flex: 1 1 25%;
+  -webkit-flex: 1 1 35%;
+      -ms-flex: 1 1 35%;
+          flex: 1 1 35%;
   min-width: 320px;
   padding: -webkit-calc(10px + 1vw);
   padding: calc(10px + 1vw); }
   .container_section_menu .container_section_menu_top {
     width: 100%;
-    height: 10vh;
+    height: 6vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -569,8 +569,8 @@ input {
     .container_section_menu .container_section_menu_top .container_date,
     .container_section_menu .container_section_menu_top .container_time {
       font-family: "MontserratBold";
-      font-size: -webkit-calc(10px + 0.5vw);
-      font-size: calc(10px + 0.5vw);
+      font-size: -webkit-calc(16px + 0.5vw);
+      font-size: calc(16px + 0.5vw);
       text-transform: uppercase;
       text-align: center;
       color: #454545;
@@ -610,9 +610,11 @@ input {
         padding-left: 20px;
         padding-right: -webkit-calc(10px + 1vw);
         padding-right: calc(10px + 1vw);
-        font-size: -webkit-calc(15px + 1vw);
-        font-size: calc(15px + 1vw); }
+        font-size: -webkit-calc(20px + .4vw);
+        font-size: calc(20px + .4vw); }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
+        font-size: -webkit-calc(16px + .3vw);
+        font-size: calc(16px + .3vw);
         margin-right: -webkit-calc(20px + 1vw);
         margin-right: calc(20px + 1vw); }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle,
@@ -628,8 +630,8 @@ input {
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times ~ span {
         color: #a74747; }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs span {
-        font-size: -webkit-calc(10px + 0.6vw);
-        font-size: calc(10px + 0.6vw);
+        font-size: -webkit-calc(16px + 0.3vw);
+        font-size: calc(16px + 0.3vw);
         font-family: "MontserratBold";
         text-transform: capitalize;
         color: #454545;
@@ -648,9 +650,9 @@ input {
 
 .container_section_task_dashboard {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 75%;
-      -ms-flex: 1 1 75%;
-          flex: 1 1 75%;
+  -webkit-flex: 1 1 65%;
+      -ms-flex: 1 1 65%;
+          flex: 1 1 65%;
   min-width: 320px;
   background-image: url(../img/lighthouse-4082369_1920.jpg);
   background-size: cover;
@@ -661,7 +663,7 @@ input {
   border-left: 1px solid rgba(255, 255, 255, 0);
   z-index: 99; }
   .container_section_task_dashboard .container_section_task_dashboard_header {
-    height: 10vh;
+    height: 6vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1314,6 +1316,10 @@ input {
 
 @media screen and (max-width: 640px) {
   .section_two .container {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
     overflow: hidden;
     width: 200vw;
     max-width: 1280px; }
@@ -1323,53 +1329,94 @@ input {
           -ms-flex: 1 1 100%;
               flex: 1 1 100%;
       max-width: 640px; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text i {
+        font-size: -webkit-calc(20px + 1vw);
+        font-size: calc(20px + 1vw); }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
+        font-size: -webkit-calc(18px + .7vw);
+        font-size: calc(18px + .7vw); }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle,
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle ~ span {
+        color: #6576da; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt,
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-alt ~ span {
+        color: #9f6d02; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check,
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-check ~ span {
+        color: #3c8e87; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times,
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-calendar-times ~ span {
+        color: #a74747; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs span {
+        font-size: -webkit-calc(18px + 0.7vw);
+        font-size: calc(18px + 0.7vw);
+        font-family: "MontserratBold";
+        text-transform: capitalize;
+        color: #454545;
+        margin-right: 15px; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .add_task_counter {
+        color: #6576da; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .incomplet_task_counter {
+        color: #9f6d02; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .complet_task_counter {
+        color: #3c8e87; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .expire_task_counter {
+        color: #a74747; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .active {
+        background-color: transparent !important;
+        border-radius: 10px; }
+      .section_two .container .wrapper .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs:hover {
+        background-color: rgba(69, 69, 69, 0.2);
+        border-radius: 10px; }
     .section_two .container .wrapper .container_section_task_dashboard {
       -webkit-box-flex: 1;
       -webkit-flex: 1 1 100%;
           -ms-flex: 1 1 100%;
               flex: 1 1 100%;
       max-width: 640px; }
-  .task_card {
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap; }
-    .task_card input[type="checkbox"] {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1 1 5%;
-          -ms-flex: 1 1 5%;
-              flex: 1 1 5%; }
-    .task_card .block_text_description {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1 1 95%;
-          -ms-flex: 1 1 95%;
-              flex: 1 1 95%; }
-    .task_card .button_item {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1 1 100%;
-          -ms-flex: 1 1 100%;
-              flex: 1 1 100%;
-      -webkit-box-orient: horizontal !important;
-      -webkit-box-direction: normal !important;
-      -webkit-flex-direction: row !important;
-          -ms-flex-direction: row !important;
-              flex-direction: row !important;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
-      -webkit-flex-wrap: wrap;
-          -ms-flex-wrap: wrap;
-              flex-wrap: wrap; }
-      .task_card .button_item .edit {
-        margin-right: 10px; }
-      .task_card .button_item .edit,
-      .task_card .button_item .delete {
-        -webkit-box-flex: 1;
-        -webkit-flex: 1 1 40%;
-            -ms-flex: 1 1 40%;
-                flex: 1 1 40%;
-        max-width: 100px; } }
+      .section_two .container .wrapper .container_section_task_dashboard .task_card {
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap; }
+        .section_two .container .wrapper .container_section_task_dashboard .task_card input[type="checkbox"] {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 1 5%;
+              -ms-flex: 1 1 5%;
+                  flex: 1 1 5%; }
+        .section_two .container .wrapper .container_section_task_dashboard .task_card .block_text_description {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 1 95%;
+              -ms-flex: 1 1 95%;
+                  flex: 1 1 95%; }
+        .section_two .container .wrapper .container_section_task_dashboard .task_card .button_item {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1 1 100%;
+              -ms-flex: 1 1 100%;
+                  flex: 1 1 100%;
+          -webkit-box-orient: horizontal !important;
+          -webkit-box-direction: normal !important;
+          -webkit-flex-direction: row !important;
+              -ms-flex-direction: row !important;
+                  flex-direction: row !important;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+          -webkit-flex-wrap: wrap;
+              -ms-flex-wrap: wrap;
+                  flex-wrap: wrap; }
+          .section_two .container .wrapper .container_section_task_dashboard .task_card .button_item .edit {
+            margin-right: 10px; }
+          .section_two .container .wrapper .container_section_task_dashboard .task_card .button_item .edit,
+          .section_two .container .wrapper .container_section_task_dashboard .task_card .button_item .delete {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 40%;
+                -ms-flex: 1 1 40%;
+                    flex: 1 1 40%;
+            max-width: 100px; }
+  .section_two .menu_movement {
+    left: -100vw; } }

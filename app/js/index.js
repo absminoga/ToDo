@@ -2,6 +2,7 @@
 // Add task
 class ToDoList {
     constructor() {
+        this.windowsContainer = document.querySelector('.container');
         this.addButton = document.querySelector('.add_btn');
         this.inputTitle = document.getElementById('new_title');
         this.inputTask = document.getElementById('new_task');
@@ -159,7 +160,7 @@ class ToDoList {
 
         return listItem;
     }
-
+// --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
         if (this.textArea.value.length > 30) {
@@ -187,6 +188,7 @@ class ToDoList {
         }, 100);
     }
 
+    // ------------------ Events when clicking on hemp tasks --------------------
     buttonTaskEvents(listItem) {
         let editButton = listItem.querySelector('button.edit');
         editButton.onclick = () => this.changeTask(listItem);
@@ -205,6 +207,7 @@ class ToDoList {
 
     }
 
+    // -------------- Event classes -----------
     addTask() {
         let inputDate = document.querySelector('.date_field');
         let dateTask = new Date(inputDate.textContent);
@@ -305,6 +308,7 @@ class ToDoList {
         ulInCompleted.appendChild(listItem);
     }
 
+    // ------------ Task counter ---------------
     itemСounter() {
         let incompletetTask = document.querySelector('.incompleted_tasks');
         let incompledCounter = document.querySelector('.incomplet_task_counter');
@@ -319,7 +323,7 @@ class ToDoList {
         expiredCounter.textContent = expiredTask.childNodes.length - 1;
     }
 
-    // -------- DATE ----------
+    // -------- Date related classes ----------
     getDate() {
         let d = new Date();
         let month = new Array("January", "February", "March", "April", "May", "June",
@@ -529,9 +533,13 @@ class ToDoList {
             }
         }
     };
+
+    // ----------------Adapting a menu with a screen size less than 640 px ---------
+
 };
 
 let todolist = new ToDoList();
+
 // ------------------------- Tab ----------------------
 let jsTriggers = document.querySelectorAll('.js-tab-trigger');
 let jsContents = document.querySelectorAll('.js-tab-content');

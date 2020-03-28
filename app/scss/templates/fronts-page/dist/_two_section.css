@@ -11,14 +11,14 @@
 }
 
 .container_section_menu {
-  flex: 1 1 25%;
+  flex: 1 1 35%;
   min-width: 320px;
   padding: calc(10px + 1vw);
 }
 
 .container_section_menu .container_section_menu_top {
   width: 100%;
-  height: 10vh;
+  height: 6vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,7 +29,7 @@
 .container_section_menu .container_section_menu_top .container_date,
 .container_section_menu .container_section_menu_top .container_time {
   font-family: "MontserratBold";
-  font-size: calc(10px + 0.5vw);
+  font-size: calc(16px + 0.5vw);
   text-transform: uppercase;
   text-align: center;
   color: #454545;
@@ -56,10 +56,11 @@
 .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text i {
   padding-left: 20px;
   padding-right: calc(10px + 1vw);
-  font-size: calc(15px + 1vw);
+  font-size: calc(20px + .4vw);
 }
 
 .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
+  font-size: calc(16px + .3vw);
   margin-right: calc(20px + 1vw);
 }
 
@@ -84,7 +85,7 @@
 }
 
 .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs span {
-  font-size: calc(10px + 0.6vw);
+  font-size: calc(16px + 0.3vw);
   font-family: "MontserratBold";
   text-transform: capitalize;
   color: #454545;
@@ -113,7 +114,7 @@
 }
 
 .container_section_task_dashboard {
-  flex: 1 1 75%;
+  flex: 1 1 65%;
   min-width: 320px;
   background-image: url(../img/lighthouse-4082369_1920.jpg);
   background-size: cover;
@@ -125,7 +126,7 @@
 }
 
 .container_section_task_dashboard .container_section_task_dashboard_header {
-  height: 10vh;
+  height: 6vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
