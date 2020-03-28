@@ -131,13 +131,18 @@
     .fa-arrow-circle-left{
       display: none;
       color: rgba(255, 255, 255, 1);
-      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      // text-shadow: 0 0 10px rgba(0, 0, 0, 1);
       font-size: calc(25px + 1.2vw);
       margin-right: 40px;
       cursor: pointer;
       transition: color .8s linear;
     }
+    .btn_pulse{
+      animation: shadow-pulse 1s infinite;
+    }
+  
   }
+
   .tab_content {
     position: relative;
     width: 100%;
@@ -596,3 +601,13 @@
     }
   }
 }
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+  }
+}
+

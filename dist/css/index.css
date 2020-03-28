@@ -694,7 +694,6 @@ input {
     .container_section_task_dashboard .container_section_task_dashboard_header .fa-arrow-circle-left {
       display: none;
       color: white;
-      text-shadow: 0 0 10px black;
       font-size: -webkit-calc(25px + 1.2vw);
       font-size: calc(25px + 1.2vw);
       margin-right: 40px;
@@ -702,6 +701,9 @@ input {
       -webkit-transition: color .8s linear;
       -o-transition: color .8s linear;
       transition: color .8s linear; }
+    .container_section_task_dashboard .container_section_task_dashboard_header .btn_pulse {
+      -webkit-animation: shadow-pulse 1s infinite;
+              animation: shadow-pulse 1s infinite; }
   .container_section_task_dashboard .tab_content {
     position: relative;
     width: 100%;
@@ -1283,6 +1285,22 @@ input {
       background: rgba(255, 255, 255, 0); }
     .container_section_task_dashboard .tab_content .tabs_dashboard.active {
       display: block; }
+
+@-webkit-keyframes shadow-pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2); }
+  100% {
+    -webkit-box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+            box-shadow: 0 0 0 25px rgba(255, 255, 255, 0); } }
+
+@keyframes shadow-pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2); }
+  100% {
+    -webkit-box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+            box-shadow: 0 0 0 25px rgba(255, 255, 255, 0); } }
 
 /* ----------- Media ---------------*/
 @media screen and (max-width: 680px) {
