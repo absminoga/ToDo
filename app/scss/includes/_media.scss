@@ -48,7 +48,6 @@
         max-width: 1280px;
 
       .wrapper{
-        
         .container_section_menu {
           flex: 1 1 100%;
           max-width: 640px;
@@ -113,6 +112,14 @@
         .container_section_task_dashboard{
           flex: 1 1 100%;
           max-width: 640px;
+          .container_section_task_dashboard_header {
+            .fa-arrow-circle-left{
+              display: unset;
+            }
+            .fa-arrow-circle-left:hover{
+              color: rgb(69, 40, 229);
+            }
+          }
           .task_card {
             flex-wrap: wrap;
             input[type="checkbox"] {

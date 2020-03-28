@@ -1,8 +1,9 @@
 
-// Add task
+//  --------- Class Add task -------------- 
 class ToDoList {
     constructor() {
         this.windowsContainer = document.querySelector('.container');
+        this.sectionTabs = document.querySelectorAll('.section_two_tabs')
         this.addButton = document.querySelector('.add_btn');
         this.inputTitle = document.getElementById('new_title');
         this.inputTask = document.getElementById('new_task');
@@ -19,7 +20,12 @@ class ToDoList {
         this.addButton.onclick = () => this.addTask();
         this.calendarBtn.onclick = () => this.addCalendar();
         this.textArea.oninput = () => this.changeTitle();
-        window.onload = () => this.getTaskDate();
+        window.onload = () => {
+            this.getTaskDate();
+            this.movementMenu()
+        };
+        window.onresize = () => this.movementMenu();
+
 
         setInterval(this.getDate, 0);
         this.removedTask = null;
@@ -160,7 +166,7 @@ class ToDoList {
 
         return listItem;
     }
-// --------------------  Control change the name of the task ---------
+    // --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
         if (this.textArea.value.length > 30) {
@@ -185,6 +191,8 @@ class ToDoList {
             this.inputTask.setAttribute('disabled', '');
             this.inputTask.style.background = 'rgba(255, 255, 255, .5)';
             this.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
+            this.addButton.setAttribute('disabled', '');
+            this.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
         }, 100);
     }
 
@@ -368,6 +376,8 @@ class ToDoList {
                 this.inputTask.removeAttribute('disabled', '');
                 this.inputTask.style.background = 'rgba(255, 255, 255, 1)';
                 this.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+                this.addButton.removeAttribute('disabled', '');
+                this.addButton.style.background = 'rgba(255, 255, 255, 1)';
             }
         }
 
@@ -461,6 +471,7 @@ class ToDoList {
             let inputTitle = document.getElementById('new_title');
             let inputTask = document.getElementById('new_task');
             let calendarBtn = document.querySelector('.date_field_container');
+            let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
                     inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
@@ -473,6 +484,8 @@ class ToDoList {
                     inputTask.removeAttribute('disabled', '');
                     inputTask.style.background = 'rgba(255, 255, 255, 1)';
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+                    addButton.removeAttribute('disabled', '');
+                    addButton.style.background = 'rgba(255, 255, 255, 1)';
                 }
             }
 
@@ -508,6 +521,7 @@ class ToDoList {
             let inputTitle = document.getElementById('new_title');
             let inputTask = document.getElementById('new_task');
             let calendarBtn = document.querySelector('.date_field_container');
+            let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
                     inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
@@ -520,6 +534,8 @@ class ToDoList {
                     inputTask.removeAttribute('disabled', '');
                     inputTask.style.background = 'rgba(255, 255, 255, 1)';
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+                    addButton.removeAttribute('disabled', '');
+                    addButton.style.background = 'rgba(255, 255, 255, 1)';
                 }
             }
 
@@ -532,12 +548,26 @@ class ToDoList {
                 }
             }
         }
-    };
+    }
 
     // ----------------Adapting a menu with a screen size less than 640 px ---------
-
+    movementMenu() {
+        if (document.documentElement.clientWidth <= 640) {
+            let menuBackBtn = document.querySelector('.fa-arrow-circle-left');
+            this.sectionTabs.forEach(div => {
+                div.addEventListener('click', () => {
+                    this.windowsContainer.classList.add('menu_movement');
+                });
+                console.log('Go to Dashboard');
+            });
+            menuBackBtn.onclick = () => {
+                this.windowsContainer.classList.remove('menu_movement');
+                console.log('Back to Menu');
+            };
+        };
+        this.windowsContainer.classList.remove('menu_movement');
+    }
 };
-
 let todolist = new ToDoList();
 
 // ------------------------- Tab ----------------------

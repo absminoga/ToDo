@@ -93,6 +93,12 @@
     flex: 1 1 100%;
     max-width: 640px;
   }
+  .section_two .container .wrapper .container_section_task_dashboard .container_section_task_dashboard_header .fa-arrow-circle-left {
+    display: unset;
+  }
+  .section_two .container .wrapper .container_section_task_dashboard .container_section_task_dashboard_header .fa-arrow-circle-left:hover {
+    color: #4528e5;
+  }
   .section_two .container .wrapper .container_section_task_dashboard .task_card {
     flex-wrap: wrap;
   }

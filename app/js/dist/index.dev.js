@@ -6,7 +6,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// Add task
+//  --------- Class Add task -------------- 
 var ToDoList =
 /*#__PURE__*/
 function () {
@@ -16,6 +16,7 @@ function () {
     _classCallCheck(this, ToDoList);
 
     this.windowsContainer = document.querySelector('.container');
+    this.sectionTabs = document.querySelectorAll('.section_two_tabs');
     this.addButton = document.querySelector('.add_btn');
     this.inputTitle = document.getElementById('new_title');
     this.inputTask = document.getElementById('new_task');
@@ -42,7 +43,13 @@ function () {
     };
 
     window.onload = function () {
-      return _this.getTaskDate();
+      _this.getTaskDate();
+
+      _this.movementMenu();
+    };
+
+    window.onresize = function () {
+      return _this.movementMenu();
     };
 
     setInterval(this.getDate, 0);
@@ -199,6 +206,10 @@ function () {
 
         _this2.inputTask.style.background = 'rgba(255, 255, 255, .5)';
         _this2.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
+
+        _this2.addButton.setAttribute('disabled', '');
+
+        _this2.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
       }, 100);
     } // ------------------ Events when clicking on hemp tasks --------------------
 
@@ -428,6 +439,10 @@ function () {
 
             _this6.inputTask.style.background = 'rgba(255, 255, 255, 1)';
             _this6.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+
+            _this6.addButton.removeAttribute('disabled', '');
+
+            _this6.addButton.style.background = 'rgba(255, 255, 255, 1)';
           };
         };
 
@@ -578,6 +593,7 @@ function () {
         var inputTitle = document.getElementById('new_title');
         var inputTask = document.getElementById('new_task');
         var calendarBtn = document.querySelector('.date_field_container');
+        var addButton = document.querySelector('.add_btn');
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
         var _iteratorError3 = undefined;
@@ -597,6 +613,8 @@ function () {
               inputTask.removeAttribute('disabled', '');
               inputTask.style.background = 'rgba(255, 255, 255, 1)';
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+              addButton.removeAttribute('disabled', '');
+              addButton.style.background = 'rgba(255, 255, 255, 1)';
             };
           };
 
@@ -680,6 +698,7 @@ function () {
         var inputTitle = document.getElementById('new_title');
         var inputTask = document.getElementById('new_task');
         var calendarBtn = document.querySelector('.date_field_container');
+        var addButton = document.querySelector('.add_btn');
         var _iteratorNormalCompletion5 = true;
         var _didIteratorError5 = false;
         var _iteratorError5 = undefined;
@@ -699,6 +718,8 @@ function () {
               inputTask.removeAttribute('disabled', '');
               inputTask.style.background = 'rgba(255, 255, 255, 1)';
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+              addButton.removeAttribute('disabled', '');
+              addButton.style.background = 'rgba(255, 255, 255, 1)';
             };
           };
 
@@ -751,6 +772,31 @@ function () {
           }
         }
       }
+    } // ----------------Adapting a menu with a screen size less than 640 px ---------
+
+  }, {
+    key: "movementMenu",
+    value: function movementMenu() {
+      var _this7 = this;
+
+      if (document.documentElement.clientWidth <= 640) {
+        var menuBackBtn = document.querySelector('.fa-arrow-circle-left');
+        this.sectionTabs.forEach(function (div) {
+          div.addEventListener('click', function () {
+            _this7.windowsContainer.classList.add('menu_movement');
+          });
+          console.log('Go to Dashboard');
+        });
+
+        menuBackBtn.onclick = function () {
+          _this7.windowsContainer.classList.remove('menu_movement');
+
+          console.log('Back to Menu');
+        };
+      }
+
+      ;
+      this.windowsContainer.classList.remove('menu_movement');
     }
   }]);
 
