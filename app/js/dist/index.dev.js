@@ -46,6 +46,10 @@ function () {
       _this.getTaskDate();
 
       _this.movementMenu();
+
+      _this.creatureLocalItem();
+
+      _this.itemСounter();
     };
 
     window.onresize = function () {
@@ -85,17 +89,9 @@ function () {
       var dateField = document.createElement('span');
       dateField.classList.add('date_field');
       var inputDate = document.querySelector('.date_field');
-
-      if (!inputDate.textContent) {
-        dateField.innerText = "Without date";
-        dateField.classList.add('without_date');
-        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-      } else {
-        dateField.innerText = inputDate.textContent;
-        dateField.classList.add('fulfillment_date');
-        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-      }
-
+      dateField.innerText = inputDate.textContent;
+      dateField.classList.add('fulfillment_date');
+      dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
       var buttonItem = document.createElement('div');
       buttonItem.classList.add('button_item');
       var buttonEdit = document.createElement('button');
@@ -116,7 +112,12 @@ function () {
       buttonItem.appendChild(buttonDelete);
       return listItem;
     } // -------------------- Creatur New Task - localStorage ------------------
-    // creatureNewItem(itemsArray) {
+
+  }, {
+    key: "creatureLocalItem",
+    value: function creatureLocalItem(itemsArray) {
+      console.log(itemsArray);
+    } // creatureNewItem(itemsArray) {
     //     let todos;
     //     if (localStorage.getItem('items')) {
     //         todos = JSON.parse(localStorage.getItem('items'))
@@ -160,67 +161,6 @@ function () {
     //             let buttonEdit = document.createElement('button');
     //             buttonEdit.classList.add('edit');
     //             buttonEdit.innerText = 'edit';
-    //             let buttonDelete = document.createElement('button');
-    //             buttonDelete.classList.add('delete', 'task_counter');
-    //             buttonDelete.innerText = 'delete';
-    //             listItem.appendChild(checkbox);
-    //             listItem.appendChild(textDescription);
-    //             textDescription.appendChild(inputTitle);
-    //             textDescription.appendChild(inputDescription);
-    //             textDescription.appendChild(dateCompletion);
-    //             dateCompletion.appendChild(dateFieldContainer);
-    //             dateFieldContainer.appendChild(dateField);
-    //             listItem.appendChild(buttonItem)
-    //             buttonItem.appendChild(buttonEdit);
-    //             buttonItem.appendChild(buttonDelete);
-    //             return listItem;
-    //         }
-    //     } else {
-    //         todos = []
-    //     }
-    // }
-    // -------------------- Creatur Expired Task - JS-HTML
-    // creatureExpiredItem(itemsArray) {
-    //     let todos;
-    //     if (localStorage.getItem('items')) {
-    //         todos = JSON.parse(localStorage.getItem('items'))
-    //         for (let item of todos) {
-    //             let listItem = document.createElement('div');
-    //             listItem.classList.add('task_card');
-    //             let checkbox = document.createElement('input');
-    //             checkbox.setAttribute('type', 'checkbox');
-    //             checkbox.setAttribute('disabled', '');
-    //             checkbox.classList.add('task_counter');
-    //             checkbox.style.display = 'none';
-    //             let textDescription = document.createElement('div');
-    //             textDescription.classList.add('block_text_description');
-    //             let inputTitle = document.createElement('textarea');
-    //             inputTitle.setAttribute('type', 'text');
-    //             inputTitle.classList.add('input_title');
-    //             inputTitle.setAttribute('disabled', '');
-    //             inputTitle.innerText = item.titleTask;
-    //             let inputDescription = document.createElement('textarea');
-    //             inputDescription.setAttribute('type', 'text');
-    //             inputDescription.classList.add('input_description');
-    //             inputDescription.setAttribute('disabled', '');
-    //             inputDescription.innerText = item.descriptionTask;;
-    //             let dateCompletion = document.createElement('div');
-    //             dateCompletion.classList.add('date_completion');
-    //             let dateFieldContainer = document.createElement('div');
-    //             dateFieldContainer.classList.add('date_field_container');
-    //             let dateField = document.createElement('span');
-    //             dateField.classList.add('date_field');
-    //             let inputDate = document.querySelector('.date_field');
-    //             dateField.innerText = item.dateTask;
-    //             dateField.classList.add('fulfillment_date');
-    //             dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-    //             let buttonItem = document.createElement('div');
-    //             buttonItem.classList.add('button_item');
-    //             let buttonEdit = document.createElement('button');
-    //             buttonEdit.classList.add('edit');
-    //             buttonEdit.setAttribute('disabled', '');
-    //             buttonEdit.innerText = 'edit';
-    //             buttonEdit.style.display = 'none';
     //             let buttonDelete = document.createElement('button');
     //             buttonDelete.classList.add('delete', 'task_counter');
     //             buttonDelete.innerText = 'delete';
@@ -320,16 +260,16 @@ function () {
 
       if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
         //---------------------------------------local
-        // let localTask = {
-        //     titleTask: this.inputTitle.value,
-        //     descriptionTask: this.inputTask.value,
-        //     dateTask: inputDate.textContent
-        // };
-        // Добавление елементов в Local
-        // let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
-        // itemsArray.push(localTask);
-        // localStorage.setItem('items', JSON.stringify(itemsArray));
-        // let listItem = this.creatureNewItem(itemsArray);
+        var localTask = {
+          titleTask: this.inputTitle.value,
+          descriptionTask: this.inputTask.value,
+          dateTask: inputDate.textContent
+        }; // Добавление елементов в Local
+
+        var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+        itemsArray.push(localTask);
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+        var listItemLocal = this.creatureLocalItem(itemsArray);
         var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
         this.incompletedTask.appendChild(listItem);
         this.buttonTaskEvents(listItem);
@@ -375,8 +315,11 @@ function () {
     }
   }, {
     key: "completedTask",
-    value: function completedTask(listItem, dateTask) {
-      if (this.dateToday <= dateTask) {
+    value: function completedTask(listItem) {
+      var dateTask = document.querySelector('.fulfillment_date');
+      var dateValue = new Date(dateTask.textContent);
+
+      if (this.dateToday <= dateValue) {
         var ulCompleted = document.querySelector('.completed_tasks');
         this.removedTask = listItem;
         listItem.classList.add('completed');
@@ -386,6 +329,7 @@ function () {
         var checkboxIn = listItem.querySelector('input[type=checkbox]');
         checkboxIn.style.display = 'none';
       } else {
+        console.log(dateValue);
         var ulExpired = document.querySelector('.expired_tasks');
         this.removedTask = listItem;
         listItem.remove();
@@ -419,7 +363,7 @@ function () {
       var month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
       var datePosition = document.querySelector('.container_date');
       var timePosition = document.querySelector('.container_time');
-      datePosition.innerText = addZero(d.getDate()) + ", " + month[d.getMonth()] + ", " + d.getFullYear();
+      datePosition.innerText = month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
       timePosition.innerText = addZero(d.getHours()) + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds());
 
       function addZero(num) {
@@ -428,6 +372,7 @@ function () {
       }
 
       ;
+      return datePosition.innerText;
     }
   }, {
     key: "getTaskDate",
@@ -464,7 +409,7 @@ function () {
           var element = _step.value;
 
           element.onclick = function () {
-            _this4.inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+            _this4.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
             var calendar = document.querySelector('.clendar_container');
             setTimeout(function () {
               calendar.classList.add('calendar_card');
@@ -642,7 +587,7 @@ function () {
             var element = _step3.value;
 
             element.onclick = function () {
-              inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+              inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
               var calendar = document.querySelector('.clendar_container');
               setTimeout(function () {
                 calendar.classList.add('calendar_card');
@@ -747,7 +692,7 @@ function () {
             var element = _step5.value;
 
             element.onclick = function () {
-              inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+              inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
               var calendar = document.querySelector('.clendar_container');
               setTimeout(function () {
                 calendar.classList.add('calendar_card');

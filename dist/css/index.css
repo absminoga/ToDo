@@ -222,7 +222,7 @@ input {
       font-family: "MontserratBold";
       font-size: -webkit-calc(16px + 0.5vw);
       font-size: calc(16px + 0.5vw);
-      text-transform: uppercase;
+      text-transform: capitalize;
       text-align: center;
       color: #454545;
       font-weight: 700; }

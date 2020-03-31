@@ -24,9 +24,11 @@ class ToDoList {
         window.onload = () => {
             this.getTaskDate();
             this.movementMenu();
+            this.creatureLocalItem();
+             this.itemСounter();
         };
         window.onresize = () => this.movementMenu();
-        
+
         setInterval(this.getDate, 0);
         this.removedTask = null;
         this.dateToday = new Date();
@@ -64,15 +66,9 @@ class ToDoList {
         let dateField = document.createElement('span');
         dateField.classList.add('date_field');
         let inputDate = document.querySelector('.date_field');
-        if (!inputDate.textContent) {
-            dateField.innerText = "Without date";
-            dateField.classList.add('without_date');
-            dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-        } else {
-            dateField.innerText = inputDate.textContent;
-            dateField.classList.add('fulfillment_date');
-            dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-        }
+        dateField.innerText = inputDate.textContent;
+        dateField.classList.add('fulfillment_date');
+        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
 
         let buttonItem = document.createElement('div');
         buttonItem.classList.add('button_item');
@@ -100,12 +96,15 @@ class ToDoList {
     }
 
     // -------------------- Creatur New Task - localStorage ------------------
+    creatureLocalItem(itemsArray){
+        console.log(itemsArray);
+    }
     // creatureNewItem(itemsArray) {
     //     let todos;
     //     if (localStorage.getItem('items')) {
     //         todos = JSON.parse(localStorage.getItem('items'))
     //         console.log(localStorage);
-            
+
     //         for (let item of todos) {
     //             let listItem = document.createElement('div');
     //             listItem.classList.add('task_card');
@@ -178,81 +177,7 @@ class ToDoList {
 
 
     // }
-    // -------------------- Creatur Expired Task - JS-HTML
-    // creatureExpiredItem(itemsArray) {
-    //     let todos;
-    //     if (localStorage.getItem('items')) {
-    //         todos = JSON.parse(localStorage.getItem('items'))
-    //         for (let item of todos) {
-    //             let listItem = document.createElement('div');
-    //             listItem.classList.add('task_card');
-
-    //             let checkbox = document.createElement('input');
-    //             checkbox.setAttribute('type', 'checkbox');
-    //             checkbox.setAttribute('disabled', '');
-    //             checkbox.classList.add('task_counter');
-    //             checkbox.style.display = 'none';
-
-    //             let textDescription = document.createElement('div');
-    //             textDescription.classList.add('block_text_description');
-
-    //             let inputTitle = document.createElement('textarea');
-    //             inputTitle.setAttribute('type', 'text');
-    //             inputTitle.classList.add('input_title');
-    //             inputTitle.setAttribute('disabled', '');
-    //             inputTitle.innerText = item.titleTask;
-
-    //             let inputDescription = document.createElement('textarea');
-    //             inputDescription.setAttribute('type', 'text');
-    //             inputDescription.classList.add('input_description');
-    //             inputDescription.setAttribute('disabled', '');
-    //             inputDescription.innerText = item.descriptionTask;;
-
-    //             let dateCompletion = document.createElement('div');
-    //             dateCompletion.classList.add('date_completion');
-
-    //             let dateFieldContainer = document.createElement('div');
-    //             dateFieldContainer.classList.add('date_field_container');
-
-    //             let dateField = document.createElement('span');
-    //             dateField.classList.add('date_field');
-    //             let inputDate = document.querySelector('.date_field');
-
-    //             dateField.innerText = item.dateTask;
-    //             dateField.classList.add('fulfillment_date');
-    //             dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-
-    //             let buttonItem = document.createElement('div');
-    //             buttonItem.classList.add('button_item');
-
-    //             let buttonEdit = document.createElement('button');
-    //             buttonEdit.classList.add('edit');
-    //             buttonEdit.setAttribute('disabled', '');
-    //             buttonEdit.innerText = 'edit';
-    //             buttonEdit.style.display = 'none';
-
-
-    //             let buttonDelete = document.createElement('button');
-    //             buttonDelete.classList.add('delete', 'task_counter');
-    //             buttonDelete.innerText = 'delete';
-
-    //             listItem.appendChild(checkbox);
-    //             listItem.appendChild(textDescription);
-    //             textDescription.appendChild(inputTitle);
-    //             textDescription.appendChild(inputDescription);
-    //             textDescription.appendChild(dateCompletion);
-    //             dateCompletion.appendChild(dateFieldContainer);
-    //             dateFieldContainer.appendChild(dateField);
-    //             listItem.appendChild(buttonItem)
-    //             buttonItem.appendChild(buttonEdit);
-    //             buttonItem.appendChild(buttonDelete);
-
-    //             return listItem;
-    //         }
-    //     } else {
-    //         todos = []
-    //     }
-    // }
+    
     // --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
@@ -287,7 +212,7 @@ class ToDoList {
     buttonTaskEvents(listItem) {
         let editButton = listItem.querySelector('button.edit');
         editButton.onclick = () => this.changeTask(listItem);
-        
+
         let deleteButton = listItem.querySelector('button.delete');
         deleteButton.onclick = () => {
             this.deleteTask(listItem);
@@ -298,36 +223,36 @@ class ToDoList {
         let inputDate = document.querySelector('.date_field');
         let dateTask = new Date(inputDate.textContent);
         checkboxOut.onclick = () => {
-                this.completedTask(listItem, dateTask);
-                this.itemСounter();
-            }  
+            this.completedTask(listItem, dateTask);
+            this.itemСounter();
+        }
     }
 
     // -------------- Event classes -----------
     addTask() {
         let inputDate = document.querySelector('.date_field');
-        if (this.inputTitle.value &&  this.inputTask.value && inputDate.textContent) {
-                //---------------------------------------local
-                // let localTask = {
-                //     titleTask: this.inputTitle.value,
-                //     descriptionTask: this.inputTask.value,
-                //     dateTask: inputDate.textContent
-                // };
-                // Добавление елементов в Local
-                // let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
-                // itemsArray.push(localTask);
-                // localStorage.setItem('items', JSON.stringify(itemsArray));
+        if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
+            //---------------------------------------local
+            let localTask = {
+                titleTask: this.inputTitle.value,
+                descriptionTask: this.inputTask.value,
+                dateTask: inputDate.textContent
+            };
+            // Добавление елементов в Local
+            let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+            itemsArray.push(localTask);
+            localStorage.setItem('items', JSON.stringify(itemsArray));
+            let listItemLocal = this.creatureLocalItem(itemsArray);
 
-                // let listItem = this.creatureNewItem(itemsArray);
-                let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
+            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
 
-                this.incompletedTask.appendChild(listItem);
-                this.buttonTaskEvents(listItem);
-                this.inputTitle.value = '';
-                this.inputTask.value = '';
-                this.inputDate.textContent = '';
-                this.charCounter.textContent = '0';
-                this.itemСounter();
+            this.incompletedTask.appendChild(listItem);
+            this.buttonTaskEvents(listItem);
+            this.inputTitle.value = '';
+            this.inputTask.value = '';
+            this.inputDate.textContent = '';
+            this.charCounter.textContent = '0';
+            this.itemСounter();
         }
     }
 
@@ -360,25 +285,29 @@ class ToDoList {
         listItem.classList.toggle('changes');
     }
 
-    completedTask(listItem, dateTask) {
-            if(this.dateToday <= dateTask){ 
-                let ulCompleted = document.querySelector('.completed_tasks');
-                this.removedTask = listItem;
-                listItem.classList.add('completed');
-                listItem.remove();
-                ulCompleted.appendChild(listItem);
-                this.itemСounter();
-                let checkboxIn = listItem.querySelector('input[type=checkbox]');
-                checkboxIn.style.display = 'none';
-            }else{
-                let ulExpired = document.querySelector('.expired_tasks');
-                this.removedTask = listItem;
-                listItem.remove()
-                ulExpired.appendChild(listItem);
-                this.itemСounter();
-                let checkboxIn = listItem.querySelector('input[type=checkbox]');
-                checkboxIn.style.display = 'none';
-            } 
+    completedTask(listItem) {
+        let dateTask = document.querySelector('.fulfillment_date');
+        let dateValue = new Date(dateTask.textContent);
+        if (this.dateToday <= dateValue) {
+            let ulCompleted = document.querySelector('.completed_tasks');
+            this.removedTask = listItem;
+            listItem.classList.add('completed');
+            listItem.remove();
+            ulCompleted.appendChild(listItem);
+            this.itemСounter();
+            let checkboxIn = listItem.querySelector('input[type=checkbox]');
+            checkboxIn.style.display = 'none';
+        } else {
+            console.log(dateValue);
+            
+            let ulExpired = document.querySelector('.expired_tasks');
+            this.removedTask = listItem;
+            listItem.remove()
+            ulExpired.appendChild(listItem);
+            this.itemСounter();
+            let checkboxIn = listItem.querySelector('input[type=checkbox]');
+            checkboxIn.style.display = 'none';
+        }
     }
     // ------------ Task counter ---------------
     itemСounter() {
@@ -402,12 +331,13 @@ class ToDoList {
             "July", "August", "September", "October", "November", "December");
         let datePosition = document.querySelector('.container_date');
         let timePosition = document.querySelector('.container_time');
-        datePosition.innerText = (addZero(d.getDate()) + ", " + month[d.getMonth()] + ", " + d.getFullYear());
+        datePosition.innerText = (month[d.getMonth()]+ " " + d.getDate()    + ", " + d.getFullYear());
         timePosition.innerText = (addZero(d.getHours()) + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()));
         function addZero(num) {
             let str = num.toString();
             return str.length == 1 ? "0" + str : str;
-        };
+        };   
+        return datePosition.innerText;
     }
     getTaskDate() {
         let d = new Date();
@@ -429,7 +359,8 @@ class ToDoList {
         let taskDate = document.querySelectorAll('.date_fields');
         for (let element of taskDate) {
             element.onclick = () => {
-                this.inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                this.inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
+                
                 let calendar = document.querySelector('.clendar_container');
 
                 setTimeout(() => {
@@ -538,7 +469,8 @@ class ToDoList {
             let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
-                    inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                    inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
+
                     let calendar = document.querySelector('.clendar_container');
                     setTimeout(() => {
                         calendar.classList.add('calendar_card');
@@ -588,7 +520,8 @@ class ToDoList {
             let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
-                    inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+                    inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
+                    
                     let calendar = document.querySelector('.clendar_container');
                     setTimeout(() => {
                         calendar.classList.add('calendar_card');
