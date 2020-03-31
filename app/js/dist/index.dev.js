@@ -56,236 +56,191 @@ function () {
     this.removedTask = null;
     this.dateToday = new Date();
   } // -------------------- Creatur New Task - JS-HTML
-  // creatureNewItem(title, task) {
-  //     let listItem = document.createElement('div');
-  //     listItem.classList.add('task_card');
-  //     let checkbox = document.createElement('input');
-  //     checkbox.setAttribute('type', 'checkbox');
-  //     checkbox.classList.add('task_counter');
-  //     let textDescription = document.createElement('div');
-  //     textDescription.classList.add('block_text_description');
-  //     let inputTitle = document.createElement('textarea');
-  //     inputTitle.setAttribute('type', 'text');
-  //     inputTitle.classList.add('input_title');
-  //     inputTitle.setAttribute('disabled', '');
-  //     inputTitle.innerText = title;
-  //     let inputDescription = document.createElement('textarea');
-  //     inputDescription.setAttribute('type', 'text');
-  //     inputDescription.classList.add('input_description');
-  //     inputDescription.setAttribute('disabled', '');
-  //     inputDescription.innerText = task;
-  //     let dateCompletion = document.createElement('div');
-  //     dateCompletion.classList.add('date_completion');
-  //     let dateFieldContainer = document.createElement('div');
-  //     dateFieldContainer.classList.add('date_field_container');
-  //     let dateField = document.createElement('span');
-  //     dateField.classList.add('date_field');
-  //     let inputDate = document.querySelector('.date_field');
-  //     if (!inputDate.textContent) {
-  //         dateField.innerText = "Without date";
-  //         dateField.classList.add('without_date');
-  //         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-  //     } else {
-  //         dateField.innerText = inputDate.textContent;
-  //         dateField.classList.add('fulfillment_date');
-  //         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-  //     }
-  //     let buttonItem = document.createElement('div');
-  //     buttonItem.classList.add('button_item');
-  //     let buttonEdit = document.createElement('button');
-  //     buttonEdit.classList.add('edit');
-  //     buttonEdit.innerText = 'edit';
-  //     let buttonDelete = document.createElement('button');
-  //     buttonDelete.classList.add('delete', 'task_counter');
-  //     buttonDelete.innerText = 'delete';
-  //     listItem.appendChild(checkbox);
-  //     listItem.appendChild(textDescription);
-  //     textDescription.appendChild(inputTitle);
-  //     textDescription.appendChild(inputDescription);
-  //     textDescription.appendChild(dateCompletion);
-  //     dateCompletion.appendChild(dateFieldContainer);
-  //     dateFieldContainer.appendChild(dateField);
-  //     listItem.appendChild(buttonItem)
-  //     buttonItem.appendChild(buttonEdit);
-  //     buttonItem.appendChild(buttonDelete);
-  //     return listItem;
-  // }
-  // -------------------- Creatur New Task - localStorage ------------------
 
 
   _createClass(ToDoList, [{
     key: "creatureNewItem",
-    value: function creatureNewItem(itemsArray) {
-      var todos;
+    value: function creatureNewItem(title, task) {
+      var listItem = document.createElement('div');
+      listItem.classList.add('task_card');
+      var checkbox = document.createElement('input');
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox.classList.add('task_counter');
+      var textDescription = document.createElement('div');
+      textDescription.classList.add('block_text_description');
+      var inputTitle = document.createElement('textarea');
+      inputTitle.setAttribute('type', 'text');
+      inputTitle.classList.add('input_title');
+      inputTitle.setAttribute('disabled', '');
+      inputTitle.innerText = title;
+      var inputDescription = document.createElement('textarea');
+      inputDescription.setAttribute('type', 'text');
+      inputDescription.classList.add('input_description');
+      inputDescription.setAttribute('disabled', '');
+      inputDescription.innerText = task;
+      var dateCompletion = document.createElement('div');
+      dateCompletion.classList.add('date_completion');
+      var dateFieldContainer = document.createElement('div');
+      dateFieldContainer.classList.add('date_field_container');
+      var dateField = document.createElement('span');
+      dateField.classList.add('date_field');
+      var inputDate = document.querySelector('.date_field');
 
-      if (localStorage.getItem('items')) {
-        todos = JSON.parse(localStorage.getItem('items'));
-        console.log(localStorage);
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = todos[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var item = _step.value;
-            var listItem = document.createElement('div');
-            listItem.classList.add('task_card');
-            var checkbox = document.createElement('input');
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.classList.add('task_counter');
-            var textDescription = document.createElement('div');
-            textDescription.classList.add('block_text_description');
-            var inputTitle = document.createElement('textarea');
-            inputTitle.setAttribute('type', 'text');
-            inputTitle.classList.add('input_title');
-            inputTitle.setAttribute('disabled', '');
-            inputTitle.innerText = item.titleTask;
-            var inputDescription = document.createElement('textarea');
-            inputDescription.setAttribute('type', 'text');
-            inputDescription.classList.add('input_description');
-            inputDescription.setAttribute('disabled', '');
-            inputDescription.innerText = item.descriptionTask;
-            var dateCompletion = document.createElement('div');
-            dateCompletion.classList.add('date_completion');
-            var dateFieldContainer = document.createElement('div');
-            dateFieldContainer.classList.add('date_field_container');
-            var dateField = document.createElement('span');
-            dateField.classList.add('date_field');
-            var inputDate = document.querySelector('.date_field');
-
-            if (!inputDate.textContent) {
-              dateField.innerText = "Without date";
-              dateField.classList.add('without_date');
-              dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-            } else {
-              dateField.innerText = item.dateTask;
-              dateField.classList.add('fulfillment_date');
-              dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-            }
-
-            var buttonItem = document.createElement('div');
-            buttonItem.classList.add('button_item');
-            var buttonEdit = document.createElement('button');
-            buttonEdit.classList.add('edit');
-            buttonEdit.innerText = 'edit';
-            var buttonDelete = document.createElement('button');
-            buttonDelete.classList.add('delete', 'task_counter');
-            buttonDelete.innerText = 'delete';
-            listItem.appendChild(checkbox);
-            listItem.appendChild(textDescription);
-            textDescription.appendChild(inputTitle);
-            textDescription.appendChild(inputDescription);
-            textDescription.appendChild(dateCompletion);
-            dateCompletion.appendChild(dateFieldContainer);
-            dateFieldContainer.appendChild(dateField);
-            listItem.appendChild(buttonItem);
-            buttonItem.appendChild(buttonEdit);
-            buttonItem.appendChild(buttonDelete);
-            return listItem;
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
+      if (!inputDate.textContent) {
+        dateField.innerText = "Without date";
+        dateField.classList.add('without_date');
+        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
       } else {
-        todos = [];
+        dateField.innerText = inputDate.textContent;
+        dateField.classList.add('fulfillment_date');
+        dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
       }
-    } // -------------------- Creatur Expired Task - JS-HTML
 
-  }, {
-    key: "creatureExpiredItem",
-    value: function creatureExpiredItem(itemsArray) {
-      var todos;
-
-      if (localStorage.getItem('items')) {
-        todos = JSON.parse(localStorage.getItem('items'));
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-          for (var _iterator2 = todos[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var item = _step2.value;
-            var listItem = document.createElement('div');
-            listItem.classList.add('task_card');
-            var checkbox = document.createElement('input');
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.setAttribute('disabled', '');
-            checkbox.classList.add('task_counter');
-            checkbox.style.display = 'none';
-            var textDescription = document.createElement('div');
-            textDescription.classList.add('block_text_description');
-            var inputTitle = document.createElement('textarea');
-            inputTitle.setAttribute('type', 'text');
-            inputTitle.classList.add('input_title');
-            inputTitle.setAttribute('disabled', '');
-            inputTitle.innerText = item.titleTask;
-            var inputDescription = document.createElement('textarea');
-            inputDescription.setAttribute('type', 'text');
-            inputDescription.classList.add('input_description');
-            inputDescription.setAttribute('disabled', '');
-            inputDescription.innerText = item.descriptionTask;
-            ;
-            var dateCompletion = document.createElement('div');
-            dateCompletion.classList.add('date_completion');
-            var dateFieldContainer = document.createElement('div');
-            dateFieldContainer.classList.add('date_field_container');
-            var dateField = document.createElement('span');
-            dateField.classList.add('date_field');
-            var inputDate = document.querySelector('.date_field');
-            dateField.innerText = item.dateTask;
-            dateField.classList.add('fulfillment_date');
-            dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-            var buttonItem = document.createElement('div');
-            buttonItem.classList.add('button_item');
-            var buttonEdit = document.createElement('button');
-            buttonEdit.classList.add('edit');
-            buttonEdit.setAttribute('disabled', '');
-            buttonEdit.innerText = 'edit';
-            buttonEdit.style.display = 'none';
-            var buttonDelete = document.createElement('button');
-            buttonDelete.classList.add('delete', 'task_counter');
-            buttonDelete.innerText = 'delete';
-            listItem.appendChild(checkbox);
-            listItem.appendChild(textDescription);
-            textDescription.appendChild(inputTitle);
-            textDescription.appendChild(inputDescription);
-            textDescription.appendChild(dateCompletion);
-            dateCompletion.appendChild(dateFieldContainer);
-            dateFieldContainer.appendChild(dateField);
-            listItem.appendChild(buttonItem);
-            buttonItem.appendChild(buttonEdit);
-            buttonItem.appendChild(buttonDelete);
-            return listItem;
-          }
-        } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-              _iterator2["return"]();
-            }
-          } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
-            }
-          }
-        }
-      } else {
-        todos = [];
-      }
-    } // --------------------  Control change the name of the task ---------
+      var buttonItem = document.createElement('div');
+      buttonItem.classList.add('button_item');
+      var buttonEdit = document.createElement('button');
+      buttonEdit.classList.add('edit');
+      buttonEdit.innerText = 'edit';
+      var buttonDelete = document.createElement('button');
+      buttonDelete.classList.add('delete', 'task_counter');
+      buttonDelete.innerText = 'delete';
+      listItem.appendChild(checkbox);
+      listItem.appendChild(textDescription);
+      textDescription.appendChild(inputTitle);
+      textDescription.appendChild(inputDescription);
+      textDescription.appendChild(dateCompletion);
+      dateCompletion.appendChild(dateFieldContainer);
+      dateFieldContainer.appendChild(dateField);
+      listItem.appendChild(buttonItem);
+      buttonItem.appendChild(buttonEdit);
+      buttonItem.appendChild(buttonDelete);
+      return listItem;
+    } // -------------------- Creatur New Task - localStorage ------------------
+    // creatureNewItem(itemsArray) {
+    //     let todos;
+    //     if (localStorage.getItem('items')) {
+    //         todos = JSON.parse(localStorage.getItem('items'))
+    //         console.log(localStorage);
+    //         for (let item of todos) {
+    //             let listItem = document.createElement('div');
+    //             listItem.classList.add('task_card');
+    //             let checkbox = document.createElement('input');
+    //             checkbox.setAttribute('type', 'checkbox');
+    //             checkbox.classList.add('task_counter');
+    //             let textDescription = document.createElement('div');
+    //             textDescription.classList.add('block_text_description');
+    //             let inputTitle = document.createElement('textarea');
+    //             inputTitle.setAttribute('type', 'text');
+    //             inputTitle.classList.add('input_title');
+    //             inputTitle.setAttribute('disabled', '');
+    //             inputTitle.innerText = item.titleTask;
+    //             let inputDescription = document.createElement('textarea');
+    //             inputDescription.setAttribute('type', 'text');
+    //             inputDescription.classList.add('input_description');
+    //             inputDescription.setAttribute('disabled', '');
+    //             inputDescription.innerText = item.descriptionTask;
+    //             let dateCompletion = document.createElement('div');
+    //             dateCompletion.classList.add('date_completion');
+    //             let dateFieldContainer = document.createElement('div');
+    //             dateFieldContainer.classList.add('date_field_container');
+    //             let dateField = document.createElement('span');
+    //             dateField.classList.add('date_field');
+    //             let inputDate = document.querySelector('.date_field');
+    //             if (!inputDate.textContent) {
+    //                 dateField.innerText = "Without date";
+    //                 dateField.classList.add('without_date');
+    //                 dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+    //             } else {
+    //                 dateField.innerText = item.dateTask;
+    //                 dateField.classList.add('fulfillment_date');
+    //                 dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+    //             }
+    //             let buttonItem = document.createElement('div');
+    //             buttonItem.classList.add('button_item');
+    //             let buttonEdit = document.createElement('button');
+    //             buttonEdit.classList.add('edit');
+    //             buttonEdit.innerText = 'edit';
+    //             let buttonDelete = document.createElement('button');
+    //             buttonDelete.classList.add('delete', 'task_counter');
+    //             buttonDelete.innerText = 'delete';
+    //             listItem.appendChild(checkbox);
+    //             listItem.appendChild(textDescription);
+    //             textDescription.appendChild(inputTitle);
+    //             textDescription.appendChild(inputDescription);
+    //             textDescription.appendChild(dateCompletion);
+    //             dateCompletion.appendChild(dateFieldContainer);
+    //             dateFieldContainer.appendChild(dateField);
+    //             listItem.appendChild(buttonItem)
+    //             buttonItem.appendChild(buttonEdit);
+    //             buttonItem.appendChild(buttonDelete);
+    //             return listItem;
+    //         }
+    //     } else {
+    //         todos = []
+    //     }
+    // }
+    // -------------------- Creatur Expired Task - JS-HTML
+    // creatureExpiredItem(itemsArray) {
+    //     let todos;
+    //     if (localStorage.getItem('items')) {
+    //         todos = JSON.parse(localStorage.getItem('items'))
+    //         for (let item of todos) {
+    //             let listItem = document.createElement('div');
+    //             listItem.classList.add('task_card');
+    //             let checkbox = document.createElement('input');
+    //             checkbox.setAttribute('type', 'checkbox');
+    //             checkbox.setAttribute('disabled', '');
+    //             checkbox.classList.add('task_counter');
+    //             checkbox.style.display = 'none';
+    //             let textDescription = document.createElement('div');
+    //             textDescription.classList.add('block_text_description');
+    //             let inputTitle = document.createElement('textarea');
+    //             inputTitle.setAttribute('type', 'text');
+    //             inputTitle.classList.add('input_title');
+    //             inputTitle.setAttribute('disabled', '');
+    //             inputTitle.innerText = item.titleTask;
+    //             let inputDescription = document.createElement('textarea');
+    //             inputDescription.setAttribute('type', 'text');
+    //             inputDescription.classList.add('input_description');
+    //             inputDescription.setAttribute('disabled', '');
+    //             inputDescription.innerText = item.descriptionTask;;
+    //             let dateCompletion = document.createElement('div');
+    //             dateCompletion.classList.add('date_completion');
+    //             let dateFieldContainer = document.createElement('div');
+    //             dateFieldContainer.classList.add('date_field_container');
+    //             let dateField = document.createElement('span');
+    //             dateField.classList.add('date_field');
+    //             let inputDate = document.querySelector('.date_field');
+    //             dateField.innerText = item.dateTask;
+    //             dateField.classList.add('fulfillment_date');
+    //             dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+    //             let buttonItem = document.createElement('div');
+    //             buttonItem.classList.add('button_item');
+    //             let buttonEdit = document.createElement('button');
+    //             buttonEdit.classList.add('edit');
+    //             buttonEdit.setAttribute('disabled', '');
+    //             buttonEdit.innerText = 'edit';
+    //             buttonEdit.style.display = 'none';
+    //             let buttonDelete = document.createElement('button');
+    //             buttonDelete.classList.add('delete', 'task_counter');
+    //             buttonDelete.innerText = 'delete';
+    //             listItem.appendChild(checkbox);
+    //             listItem.appendChild(textDescription);
+    //             textDescription.appendChild(inputTitle);
+    //             textDescription.appendChild(inputDescription);
+    //             textDescription.appendChild(dateCompletion);
+    //             dateCompletion.appendChild(dateFieldContainer);
+    //             dateFieldContainer.appendChild(dateField);
+    //             listItem.appendChild(buttonItem)
+    //             buttonItem.appendChild(buttonEdit);
+    //             buttonItem.appendChild(buttonDelete);
+    //             return listItem;
+    //         }
+    //     } else {
+    //         todos = []
+    //     }
+    // }
+    // --------------------  Control change the name of the task ---------
 
   }, {
     key: "changeTitle",
@@ -348,9 +303,11 @@ function () {
       };
 
       var checkboxOut = listItem.querySelector('input[type=checkbox]');
+      var inputDate = document.querySelector('.date_field');
+      var dateTask = new Date(inputDate.textContent);
 
       checkboxOut.onclick = function () {
-        _this3.completedTask(listItem);
+        _this3.completedTask(listItem, dateTask);
 
         _this3.itemСounter();
       };
@@ -360,75 +317,27 @@ function () {
     key: "addTask",
     value: function addTask() {
       var inputDate = document.querySelector('.date_field');
-      var dateTask = new Date(inputDate.textContent);
 
-      if (this.inputTask.value && this.inputTitle.value) {
-        if (inputDate.textContent == '') {
-          //---------------------------------------local
-          var localTask = {
-            titleTask: this.inputTitle.value,
-            descriptionTask: this.inputTask.value,
-            dateTask: "Without date"
-          }; // Добавление елементов в Local
-
-          var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-          itemsArray.push(localTask);
-          localStorage.setItem('items', JSON.stringify(itemsArray));
-          var listItem = this.creatureNewItem(itemsArray);
-          this.incompletedTask.appendChild(listItem);
-          this.buttonTaskEvents(listItem);
-          this.inputTitle.value = '';
-          this.inputTask.value = '';
-          this.inputDate.textContent = '';
-          this.charCounter.textContent = '0';
-          this.itemСounter();
-        } else if (this.dateToday > dateTask) {
-          //---------------------------------------local
-          var _localTask = {
-            titleTask: this.inputTitle.value,
-            descriptionTask: this.inputTask.value,
-            dateTask: inputDate.textContent
-          }; // Добавление елементов в Local
-
-          var _itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-
-          _itemsArray.push(_localTask);
-
-          localStorage.setItem('items', JSON.stringify(_itemsArray));
-
-          var _listItem = this.creatureNewItem(_itemsArray);
-
-          this.expiredTask.appendChild(_listItem);
-          this.buttonTaskEvents(_listItem);
-          this.inputTitle.value = '';
-          this.inputTask.value = '';
-          this.inputDate.textContent = '';
-          this.charCounter.textContent = '0';
-          this.itemСounter();
-        } else {
-          //---------------------------------------local
-          var _localTask2 = {
-            titleTask: this.inputTitle.value,
-            descriptionTask: this.inputTask.value,
-            dateTask: inputDate.textContent
-          }; // Добавление елементов в Local
-
-          var _itemsArray2 = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-
-          _itemsArray2.push(_localTask2);
-
-          localStorage.setItem('items', JSON.stringify(_itemsArray2));
-
-          var _listItem2 = this.creatureNewItem(_itemsArray2);
-
-          this.incompletedTask.appendChild(_listItem2);
-          this.buttonTaskEvents(_listItem2);
-          this.inputTitle.value = '';
-          this.inputTask.value = '';
-          this.inputDate.textContent = '';
-          this.charCounter.textContent = '0';
-          this.itemСounter();
-        }
+      if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
+        //---------------------------------------local
+        // let localTask = {
+        //     titleTask: this.inputTitle.value,
+        //     descriptionTask: this.inputTask.value,
+        //     dateTask: inputDate.textContent
+        // };
+        // Добавление елементов в Local
+        // let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+        // itemsArray.push(localTask);
+        // localStorage.setItem('items', JSON.stringify(itemsArray));
+        // let listItem = this.creatureNewItem(itemsArray);
+        var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
+        this.incompletedTask.appendChild(listItem);
+        this.buttonTaskEvents(listItem);
+        this.inputTitle.value = '';
+        this.inputTask.value = '';
+        this.inputDate.textContent = '';
+        this.charCounter.textContent = '0';
+        this.itemСounter();
       }
     }
   }, {
@@ -466,48 +375,27 @@ function () {
     }
   }, {
     key: "completedTask",
-    value: function completedTask(listItem) {
-      var _this4 = this;
+    value: function completedTask(listItem, dateTask) {
+      if (this.dateToday <= dateTask) {
+        var ulCompleted = document.querySelector('.completed_tasks');
+        this.removedTask = listItem;
+        listItem.classList.add('completed');
+        listItem.remove();
+        ulCompleted.appendChild(listItem);
+        this.itemСounter();
+        var checkboxIn = listItem.querySelector('input[type=checkbox]');
+        checkboxIn.style.display = 'none';
+      } else {
+        var ulExpired = document.querySelector('.expired_tasks');
+        this.removedTask = listItem;
+        listItem.remove();
+        ulExpired.appendChild(listItem);
+        this.itemСounter();
 
-      var ulCompleted = document.querySelector('.completed_tasks');
-      this.removedTask = listItem;
-      listItem.classList.add('completed');
-      listItem.remove();
-      ulCompleted.appendChild(listItem);
-      var checkboxIn = listItem.querySelector('input[type=checkbox]');
+        var _checkboxIn = listItem.querySelector('input[type=checkbox]');
 
-      checkboxIn.onclick = function () {
-        _this4.uncompletedTask(listItem);
-
-        _this4.itemСounter();
-      };
-    }
-  }, {
-    key: "uncompletedTask",
-    value: function uncompletedTask(listItem) {
-      var _this5 = this;
-
-      var ulInCompleted = document.querySelector('.incompleted_tasks');
-      this.removedTask = listItem;
-      listItem.classList.remove('completed');
-      listItem.remove();
-      ulInCompleted.appendChild(listItem);
-      var checkboxIn = listItem.querySelector('input[type=checkbox]');
-
-      checkboxIn.onclick = function () {
-        _this5.completedTask(listItem);
-
-        _this5.itemСounter();
-      };
-    }
-  }, {
-    key: "expiredTask",
-    value: function expiredTask(listItem) {
-      var ulInCompleted = document.querySelector('.incompleted_tasks');
-      this.expiredTask = listItem;
-      listItem.classList.remove('completed');
-      listItem.remove();
-      ulInCompleted.appendChild(listItem);
+        _checkboxIn.style.display = 'none';
+      }
     } // ------------ Task counter ---------------
 
   }, {
@@ -544,7 +432,7 @@ function () {
   }, {
     key: "getTaskDate",
     value: function getTaskDate() {
-      var _this6 = this;
+      var _this4 = this;
 
       var d = new Date();
       var month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -567,50 +455,50 @@ function () {
       document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
       document.querySelector('.calendar_dates').appendChild(calendar);
       var taskDate = document.querySelectorAll('.date_fields');
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
       try {
         var _loop3 = function _loop3() {
-          var element = _step3.value;
+          var element = _step.value;
 
           element.onclick = function () {
-            _this6.inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
+            _this4.inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
             var calendar = document.querySelector('.clendar_container');
             setTimeout(function () {
               calendar.classList.add('calendar_card');
             }, 200);
 
-            _this6.inputTitle.removeAttribute('disabled', '');
+            _this4.inputTitle.removeAttribute('disabled', '');
 
-            _this6.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+            _this4.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this6.inputTask.removeAttribute('disabled', '');
+            _this4.inputTask.removeAttribute('disabled', '');
 
-            _this6.inputTask.style.background = 'rgba(255, 255, 255, 1)';
-            _this6.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+            _this4.inputTask.style.background = 'rgba(255, 255, 255, 1)';
+            _this4.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this6.addButton.removeAttribute('disabled', '');
+            _this4.addButton.removeAttribute('disabled', '');
 
-            _this6.addButton.style.background = 'rgba(255, 255, 255, 1)';
+            _this4.addButton.style.background = 'rgba(255, 255, 255, 1)';
           };
         };
 
-        for (var _iterator3 = taskDate[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        for (var _iterator = taskDate[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           _loop3();
         }
       } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
+        _didIteratorError = true;
+        _iteratorError = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-            _iterator3["return"]();
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
           }
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          if (_didIteratorError) {
+            throw _iteratorError;
           }
         }
       }
@@ -687,29 +575,29 @@ function () {
 
       for (var i = 1; i <= days; i++) {
         var tdFields = document.querySelectorAll('.date_fields');
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator4 = tdFields[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var tdField = _step4.value;
+          for (var _iterator2 = tdFields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var tdField = _step2.value;
 
             if (tdField.innerHTML == new Date().getDate()) {
               tdField.classList.add('today_day_field');
             }
           }
         } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-              _iterator4["return"]();
+            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+              _iterator2["return"]();
             }
           } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
+            if (_didIteratorError2) {
+              throw _iteratorError2;
             }
           }
         }
@@ -745,13 +633,13 @@ function () {
         var inputTask = document.getElementById('new_task');
         var calendarBtn = document.querySelector('.date_field_container');
         var addButton = document.querySelector('.add_btn');
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
         try {
           var _loop = function _loop() {
-            var element = _step5.value;
+            var element = _step3.value;
 
             element.onclick = function () {
               inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
@@ -769,20 +657,20 @@ function () {
             };
           };
 
-          for (var _iterator5 = taskDate[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          for (var _iterator3 = taskDate[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
             _loop();
           }
         } catch (err) {
-          _didIteratorError5 = true;
-          _iteratorError5 = err;
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
-              _iterator5["return"]();
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
             }
           } finally {
-            if (_didIteratorError5) {
-              throw _iteratorError5;
+            if (_didIteratorError3) {
+              throw _iteratorError3;
             }
           }
         }
@@ -790,29 +678,29 @@ function () {
         for (var _i = 1; _i <= days; _i++) {
           var _tdFields = document.querySelectorAll('.date_fields');
 
-          var _iteratorNormalCompletion6 = true;
-          var _didIteratorError6 = false;
-          var _iteratorError6 = undefined;
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
 
           try {
-            for (var _iterator6 = _tdFields[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-              var _tdField = _step6.value;
+            for (var _iterator4 = _tdFields[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              var _tdField = _step4.value;
 
               if (_tdField.innerHTML == new Date().getDate()) {
                 _tdField.classList.add('today_day_field');
               }
             }
           } catch (err) {
-            _didIteratorError6 = true;
-            _iteratorError6 = err;
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
-                _iterator6["return"]();
+              if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+                _iterator4["return"]();
               }
             } finally {
-              if (_didIteratorError6) {
-                throw _iteratorError6;
+              if (_didIteratorError4) {
+                throw _iteratorError4;
               }
             }
           }
@@ -850,13 +738,13 @@ function () {
         var inputTask = document.getElementById('new_task');
         var calendarBtn = document.querySelector('.date_field_container');
         var addButton = document.querySelector('.add_btn');
-        var _iteratorNormalCompletion7 = true;
-        var _didIteratorError7 = false;
-        var _iteratorError7 = undefined;
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
 
         try {
           var _loop2 = function _loop2() {
-            var element = _step7.value;
+            var element = _step5.value;
 
             element.onclick = function () {
               inputDate.innerHTML = element.innerHTML + ', ' + month_name[month] + ', ' + year;
@@ -874,20 +762,20 @@ function () {
             };
           };
 
-          for (var _iterator7 = taskDate[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+          for (var _iterator5 = taskDate[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
             _loop2();
           }
         } catch (err) {
-          _didIteratorError7 = true;
-          _iteratorError7 = err;
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
-              _iterator7["return"]();
+            if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+              _iterator5["return"]();
             }
           } finally {
-            if (_didIteratorError7) {
-              throw _iteratorError7;
+            if (_didIteratorError5) {
+              throw _iteratorError5;
             }
           }
         }
@@ -895,29 +783,29 @@ function () {
         for (var _i2 = 1; _i2 <= days; _i2++) {
           var _tdFields2 = document.querySelectorAll('.date_fields');
 
-          var _iteratorNormalCompletion8 = true;
-          var _didIteratorError8 = false;
-          var _iteratorError8 = undefined;
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
 
           try {
-            for (var _iterator8 = _tdFields2[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-              var _tdField2 = _step8.value;
+            for (var _iterator6 = _tdFields2[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var _tdField2 = _step6.value;
 
               if (_tdField2.innerHTML == new Date().getDate()) {
                 _tdField2.classList.add('today_day_field');
               }
             }
           } catch (err) {
-            _didIteratorError8 = true;
-            _iteratorError8 = err;
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
-                _iterator8["return"]();
+              if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+                _iterator6["return"]();
               }
             } finally {
-              if (_didIteratorError8) {
-                throw _iteratorError8;
+              if (_didIteratorError6) {
+                throw _iteratorError6;
               }
             }
           }
@@ -928,19 +816,19 @@ function () {
   }, {
     key: "movementMenu",
     value: function movementMenu() {
-      var _this7 = this;
+      var _this5 = this;
 
       if (document.documentElement.clientWidth <= 640) {
         var menuBackBtn = document.querySelector('.fa-arrow-circle-left');
         this.sectionTabs.forEach(function (div) {
           div.addEventListener('click', function () {
-            _this7.windowsContainer.classList.add('menu_movement');
+            _this5.windowsContainer.classList.add('menu_movement');
           });
           console.log('Go to Dashboard');
         });
 
         menuBackBtn.onclick = function () {
-          _this7.windowsContainer.classList.remove('menu_movement');
+          _this5.windowsContainer.classList.remove('menu_movement');
 
           console.log('Back to Menu');
         };
