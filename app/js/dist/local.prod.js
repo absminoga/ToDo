@@ -1,0 +1,1 @@
+"use strict";var toDo=null,toDoListLength=toDoList.length;if(console.log(toDoListLength),1<=toDoListLength)for(var i=0;i<toDoListLength;i++)toDo=new ToDo(toDoList[i]),createToDo(toDo.getToDo());
