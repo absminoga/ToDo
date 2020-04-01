@@ -45,9 +45,8 @@ function () {
     window.onload = function () {
       _this.getTaskDate();
 
-      _this.movementMenu();
+      _this.movementMenu(); // this.creatureLocalItem();
 
-      _this.creatureLocalItem();
 
       _this.itemСounter();
     };
@@ -116,7 +115,7 @@ function () {
   }, {
     key: "creatureLocalItem",
     value: function creatureLocalItem(itemsArray) {
-      console.log(itemsArray);
+      console.log(1);
     } // creatureNewItem(itemsArray) {
     //     let todos;
     //     if (localStorage.getItem('items')) {
@@ -261,6 +260,7 @@ function () {
       if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
         //---------------------------------------local
         var localTask = {
+          index: 0,
           titleTask: this.inputTitle.value,
           descriptionTask: this.inputTask.value,
           dateTask: inputDate.textContent
@@ -269,7 +269,6 @@ function () {
         var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
         itemsArray.push(localTask);
         localStorage.setItem('items', JSON.stringify(itemsArray));
-        var listItemLocal = this.creatureLocalItem(itemsArray);
         var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
         this.incompletedTask.appendChild(listItem);
         this.buttonTaskEvents(listItem);

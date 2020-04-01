@@ -24,7 +24,7 @@ class ToDoList {
         window.onload = () => {
             this.getTaskDate();
             this.movementMenu();
-            this.creatureLocalItem();
+            // this.creatureLocalItem();
              this.itemСounter();
         };
         window.onresize = () => this.movementMenu();
@@ -97,7 +97,8 @@ class ToDoList {
 
     // -------------------- Creatur New Task - localStorage ------------------
     creatureLocalItem(itemsArray){
-        console.log(itemsArray);
+        console.log(1);
+        
     }
     // creatureNewItem(itemsArray) {
     //     let todos;
@@ -234,6 +235,7 @@ class ToDoList {
         if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
             //---------------------------------------local
             let localTask = {
+                index: 0,
                 titleTask: this.inputTitle.value,
                 descriptionTask: this.inputTask.value,
                 dateTask: inputDate.textContent
@@ -242,7 +244,6 @@ class ToDoList {
             let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
             itemsArray.push(localTask);
             localStorage.setItem('items', JSON.stringify(itemsArray));
-            let listItemLocal = this.creatureLocalItem(itemsArray);
 
             let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
 
