@@ -24,17 +24,18 @@ class ToDoList {
         window.onload = () => {
             this.getTaskDate();
             this.movementMenu();
-            // this.creatureLocalItem();
-             this.itemСounter();
+            this.itemСounter();
+            this.creatureLocalItem();
         };
         window.onresize = () => this.movementMenu();
 
         setInterval(this.getDate, 0);
         this.removedTask = null;
+        this.index = null;
         this.dateToday = new Date();
     }
     // -------------------- Creatur New Task - JS-HTML
-    creatureNewItem(title, task) {
+    creatureNewItem(title, task, date) {
         let listItem = document.createElement('div');
         listItem.classList.add('task_card');
 
@@ -66,7 +67,7 @@ class ToDoList {
         let dateField = document.createElement('span');
         dateField.classList.add('date_field');
         let inputDate = document.querySelector('.date_field');
-        dateField.innerText = inputDate.textContent;
+        dateField.innerText = date;
         dateField.classList.add('fulfillment_date');
         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
 
@@ -96,89 +97,28 @@ class ToDoList {
     }
 
     // -------------------- Creatur New Task - localStorage ------------------
-    creatureLocalItem(itemsArray){
-        console.log(1);
-        
+    creatureLocalItem() {
+        let localStorageName = 'items';
+        let toDoList = [];
+        let toDoListJson = JSON.stringify(toDoList);     
+
+        if (!localStorage.getItem(localStorageName)) {
+            localStorage.setItem(localStorageName, toDoListJson); 
+            this.index = 0;
+        } else {
+            toDoListJson = localStorage.getItem(localStorageName);
+            toDoList = JSON.parse(toDoListJson);
+            this.index = toDoList.length;
+
+            for (let item of toDoList) {
+                item.count++;
+                let listItem = this.creatureNewItem(item.titleTask, item.titleTask, item.dateTask, item.count);
+                this.incompletedTask.appendChild(listItem);
+                this.buttonTaskEvents(listItem);
+                this.itemСounter();
+            }
+        }
     }
-    // creatureNewItem(itemsArray) {
-    //     let todos;
-    //     if (localStorage.getItem('items')) {
-    //         todos = JSON.parse(localStorage.getItem('items'))
-    //         console.log(localStorage);
-
-    //         for (let item of todos) {
-    //             let listItem = document.createElement('div');
-    //             listItem.classList.add('task_card');
-
-    //             let checkbox = document.createElement('input');
-    //             checkbox.setAttribute('type', 'checkbox');
-    //             checkbox.classList.add('task_counter');
-
-    //             let textDescription = document.createElement('div');
-    //             textDescription.classList.add('block_text_description');
-
-    //             let inputTitle = document.createElement('textarea');
-    //             inputTitle.setAttribute('type', 'text');
-    //             inputTitle.classList.add('input_title');
-    //             inputTitle.setAttribute('disabled', '');
-    //             inputTitle.innerText = item.titleTask;
-
-    //             let inputDescription = document.createElement('textarea');
-    //             inputDescription.setAttribute('type', 'text');
-    //             inputDescription.classList.add('input_description');
-    //             inputDescription.setAttribute('disabled', '');
-    //             inputDescription.innerText = item.descriptionTask;
-
-    //             let dateCompletion = document.createElement('div');
-    //             dateCompletion.classList.add('date_completion');
-
-    //             let dateFieldContainer = document.createElement('div');
-    //             dateFieldContainer.classList.add('date_field_container');
-
-    //             let dateField = document.createElement('span');
-    //             dateField.classList.add('date_field');
-    //             let inputDate = document.querySelector('.date_field');
-    //             if (!inputDate.textContent) {
-    //                 dateField.innerText = "Without date";
-    //                 dateField.classList.add('without_date');
-    //                 dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-    //             } else {
-    //                 dateField.innerText = item.dateTask;
-    //                 dateField.classList.add('fulfillment_date');
-    //                 dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
-    //             }
-
-    //             let buttonItem = document.createElement('div');
-    //             buttonItem.classList.add('button_item');
-
-    //             let buttonEdit = document.createElement('button');
-    //             buttonEdit.classList.add('edit');
-    //             buttonEdit.innerText = 'edit';
-
-    //             let buttonDelete = document.createElement('button');
-    //             buttonDelete.classList.add('delete', 'task_counter');
-    //             buttonDelete.innerText = 'delete';
-
-    //             listItem.appendChild(checkbox);
-    //             listItem.appendChild(textDescription);
-    //             textDescription.appendChild(inputTitle);
-    //             textDescription.appendChild(inputDescription);
-    //             textDescription.appendChild(dateCompletion);
-    //             dateCompletion.appendChild(dateFieldContainer);
-    //             dateFieldContainer.appendChild(dateField);
-    //             listItem.appendChild(buttonItem)
-    //             buttonItem.appendChild(buttonEdit);
-    //             buttonItem.appendChild(buttonDelete);
-
-    //             return listItem;
-    //         }
-    //     } else {
-    //         todos = []
-    //     }
-
-
-    // }
-    
     // --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
@@ -233,19 +173,22 @@ class ToDoList {
     addTask() {
         let inputDate = document.querySelector('.date_field');
         if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
+
             //---------------------------------------local
+
             let localTask = {
-                index: 0,
+                count: this.index,
                 titleTask: this.inputTitle.value,
                 descriptionTask: this.inputTask.value,
                 dateTask: inputDate.textContent
             };
+
             // Добавление елементов в Local
             let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
             itemsArray.push(localTask);
             localStorage.setItem('items', JSON.stringify(itemsArray));
 
-            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value);
+            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
 
             this.incompletedTask.appendChild(listItem);
             this.buttonTaskEvents(listItem);
@@ -260,6 +203,7 @@ class ToDoList {
     deleteTask(listItem) {
         let ul = listItem.parentNode;
         ul.removeChild(listItem);
+
     }
 
     changeTask(listItem) {
@@ -299,8 +243,6 @@ class ToDoList {
             let checkboxIn = listItem.querySelector('input[type=checkbox]');
             checkboxIn.style.display = 'none';
         } else {
-            console.log(dateValue);
-            
             let ulExpired = document.querySelector('.expired_tasks');
             this.removedTask = listItem;
             listItem.remove()
@@ -332,12 +274,12 @@ class ToDoList {
             "July", "August", "September", "October", "November", "December");
         let datePosition = document.querySelector('.container_date');
         let timePosition = document.querySelector('.container_time');
-        datePosition.innerText = (month[d.getMonth()]+ " " + d.getDate()    + ", " + d.getFullYear());
+        datePosition.innerText = (month[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear());
         timePosition.innerText = (addZero(d.getHours()) + ":" + addZero(d.getMinutes()) + ":" + addZero(d.getSeconds()));
         function addZero(num) {
             let str = num.toString();
             return str.length == 1 ? "0" + str : str;
-        };   
+        };
         return datePosition.innerText;
     }
     getTaskDate() {
@@ -360,8 +302,8 @@ class ToDoList {
         let taskDate = document.querySelectorAll('.date_fields');
         for (let element of taskDate) {
             element.onclick = () => {
-                this.inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
-                
+                this.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
+
                 let calendar = document.querySelector('.clendar_container');
 
                 setTimeout(() => {
@@ -470,7 +412,7 @@ class ToDoList {
             let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
-                    inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
+                    inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
 
                     let calendar = document.querySelector('.clendar_container');
                     setTimeout(() => {
@@ -521,8 +463,8 @@ class ToDoList {
             let addButton = document.querySelector('.add_btn');
             for (let element of taskDate) {
                 element.onclick = () => {
-                    inputDate.innerHTML = month_name[month]  + ' ' + element.innerHTML+ ', ' + year;
-                    
+                    inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
+
                     let calendar = document.querySelector('.clendar_container');
                     setTimeout(() => {
                         calendar.classList.add('calendar_card');
@@ -556,11 +498,9 @@ class ToDoList {
                 div.addEventListener('click', () => {
                     this.windowsContainer.classList.add('menu_movement');
                 });
-                console.log('Go to Dashboard');
             });
             menuBackBtn.onclick = () => {
                 this.windowsContainer.classList.remove('menu_movement');
-                console.log('Back to Menu');
             };
         };
         this.windowsContainer.classList.remove('menu_movement');
