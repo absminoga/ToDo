@@ -31,7 +31,7 @@ class ToDoList {
 
         setInterval(this.getDate, 0);
         this.removedTask = null;
-        this.index = null;
+        this.index;
         this.dateToday = new Date();
     }
     // -------------------- Creatur New Task - JS-HTML
@@ -100,18 +100,17 @@ class ToDoList {
     creatureLocalItem() {
         let localStorageName = 'items';
         let toDoList = [];
-        let toDoListJson = JSON.stringify(toDoList);     
+        let toDoListJson = JSON.stringify(toDoList);
 
         if (!localStorage.getItem(localStorageName)) {
-            localStorage.setItem(localStorageName, toDoListJson); 
+            localStorage.setItem(localStorageName, toDoListJson);
             this.index = 0;
         } else {
             toDoListJson = localStorage.getItem(localStorageName);
             toDoList = JSON.parse(toDoListJson);
-            this.index = toDoList.length;
-
+            this.index = toDoList.length - 1;
+            
             for (let item of toDoList) {
-                item.count++;
                 let listItem = this.creatureNewItem(item.titleTask, item.titleTask, item.dateTask, item.count);
                 this.incompletedTask.appendChild(listItem);
                 this.buttonTaskEvents(listItem);
@@ -174,8 +173,8 @@ class ToDoList {
         let inputDate = document.querySelector('.date_field');
         if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
 
-            //---------------------------------------local
-
+            //-------------------------    Сreate an array for Local Storage --------------------
+            this.index++
             let localTask = {
                 count: this.index,
                 titleTask: this.inputTitle.value,
@@ -183,7 +182,7 @@ class ToDoList {
                 dateTask: inputDate.textContent
             };
 
-            // Добавление елементов в Local
+            // ------------------------    Adding Items to Local Storage ------------------------
             let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
             itemsArray.push(localTask);
             localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -197,13 +196,15 @@ class ToDoList {
             this.inputDate.textContent = '';
             this.charCounter.textContent = '0';
             this.itemСounter();
+            console.log(itemsArray);
+            
         }
     }
 
     deleteTask(listItem) {
         let ul = listItem.parentNode;
         ul.removeChild(listItem);
-
+        this.deletedLocalStorage();
     }
 
     changeTask(listItem) {
@@ -229,6 +230,13 @@ class ToDoList {
         }
         listItem.classList.toggle('changes');
     }
+    deletedLocalStorage(){
+        let items = JSON.parse(localStorage.getItem('items'));
+        let item = items.count;
+        items.splice(item, 1);
+        localStorage.setItem('items', JSON.stringify(items));
+        console.log(items);
+    }
 
     completedTask(listItem) {
         let dateTask = document.querySelector('.fulfillment_date');
@@ -242,6 +250,7 @@ class ToDoList {
             this.itemСounter();
             let checkboxIn = listItem.querySelector('input[type=checkbox]');
             checkboxIn.style.display = 'none';
+            this.deletedLocalStorage();
         } else {
             let ulExpired = document.querySelector('.expired_tasks');
             this.removedTask = listItem;
@@ -250,6 +259,7 @@ class ToDoList {
             this.itemСounter();
             let checkboxIn = listItem.querySelector('input[type=checkbox]');
             checkboxIn.style.display = 'none';
+            this.deletedLocalStorage();
         }
     }
     // ------------ Task counter ---------------

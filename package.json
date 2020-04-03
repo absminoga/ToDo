@@ -26,8 +26,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "run-sequence": "^2.2.1",
-    "webpack-cli": "^3.3.11"
+    "run-sequence": "^2.2.1"
   },
   "dependencies": {
     "@types/gulp-html-prettify": "0.0.0",

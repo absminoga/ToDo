@@ -13,10 +13,7 @@ const gulp          = require('gulp'),
       notify        = require('gulp-notify'),
       jsUglify      = require('gulp-uglify'),
       clean         = require('gulp-clean'),
-      fileinclude   = require('gulp-file-include'),
-      newer         = require('gulp-newer'),
       watch         = require('gulp-watch'),
-      runSequence   = require('run-sequence'),
       prettify      = require('gulp-prettify'),
       reload        = browserSync.reload;
 
@@ -62,7 +59,7 @@ gulp.task('js', async function(){
   return gulp.src('app/js/*.js')
   .pipe(changed('app/js/*.js'))
   // .pipe(jsUglify())
-  .pipe(gulp.dest('../dist/js'))
+  .pipe(gulp.dest('dist/js'))
   .pipe(browserSync.reload({stream: true}));
 });
 
@@ -101,7 +98,7 @@ gulp.task('fonts', async function() {
 gulp.task('browser-sync', async function() {
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: './dist'
     },
     notify: false,
     host: 'localhost',
@@ -124,6 +121,7 @@ gulp.task('cleanImg', async function () {
 gulp.task('clear', function(callback) {
   return cache.clearAll();
 });
+
 
 gulp.task('watch', async function(){
   gulp.watch('app/scss/**/*.scss', gulp.series('sass'));
