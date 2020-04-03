@@ -1,5 +1,5 @@
-# Gulp installation
-For install my project
-npm i
-gulp build
-gulp
+# Gulp installation  
+*For install my project*:  
+1. `npm i`  
+2. `gulp build`  
+3. `gulp`  
