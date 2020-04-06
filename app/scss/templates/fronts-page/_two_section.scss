@@ -1,6 +1,6 @@
 .section_two {
   .container {
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     .wrapper {
       display: flex;
       flex-direction: row;
@@ -50,14 +50,14 @@
         transition: all 0.5s ease-in-out;
         cursor: pointer;
         width: 100%;
-        .section_two_tabs_text{
+        .section_two_tabs_text {
           i {
             padding-left: 20px;
             padding-right: calc(10px + 1vw);
-            font-size: calc(20px + .4vw);
+            font-size: calc(20px + 0.4vw);
           }
           .section_two_tabs_title {
-            font-size: calc(16px + .3vw);
+            font-size: calc(16px + 0.3vw);
             margin-right: calc(20px + 1vw);
           }
           .fa-plus-circle,
@@ -84,16 +84,16 @@
           color: rgba(69, 69, 69, 1);
           margin-right: 15px;
         }
-        .add_task_counter{
+        .add_task_counter {
           color: rgb(101, 118, 218);
         }
-        .incomplet_task_counter{
+        .incomplet_task_counter {
           color: rgba(159, 109, 2, 1);
         }
-        .complet_task_counter{
+        .complet_task_counter {
           color: rgb(60, 142, 135);
         }
-        .expire_task_counter{
+        .expire_task_counter {
           color: rgb(167, 71, 71);
         }
       }
@@ -128,20 +128,19 @@
       color: rgba(255, 255, 255, 1);
       text-shadow: 0 0 10px rgba(0, 0, 0, 1);
     }
-    .fa-arrow-circle-left{
+    .fa-arrow-circle-left {
       display: none;
       color: rgba(255, 255, 255, 1);
-      // text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
       font-size: calc(25px + 1.2vw);
       border-radius: 50%;
       margin-right: 40px;
       cursor: pointer;
-      transition: color .8s linear;   
+      transition: color 0.8s linear;
     }
-    .btn_pulse{
+    .btn_pulse {
       animation: shadow-pulse 1s infinite;
     }
-  
   }
 
   .tab_content {
@@ -207,6 +206,7 @@
           text-transform: capitalize;
           outline: none;
           resize: none;
+          white-space: nowrap;
           background: rgba(255, 255, 255, 1);
         }
         #warning {
@@ -306,35 +306,27 @@
               color: rgb(0, 136, 114);
             }
           }
-          .calendar_btn {
+          .add_btn {
+            align-self: flex-end;
+            font-size: calc(10px + 2vw);
             font-family: "MontserratBold";
             font-size: calc(10px + 0.6vw);
-            color: rgb(97, 97, 97);
             padding: 5px 10px;
+            margin-bottom: 10px;;
             border: 1px solid rgba(69, 69, 69, 0.7);
             border-radius: 10px;
             text-transform: capitalize;
+            color: rgb(101, 118, 218);
+            background-color: rgba(255, 255, 255, 1);
+            transition: all 0.4s ease-in-out;
             cursor: pointer;
           }
+          .btn_warning {
+            background-color: rgb(172, 2, 2);
+            color: rgba(255, 255, 255, 1);
+          }
         }
-        .add_btn {
-          align-self: flex-end;
-          font-size: calc(10px + 2vw);
-          font-family: "MontserratBold";
-          font-size: calc(10px + 0.6vw);
-          padding: 5px 10px;
-          border: 1px solid rgba(69, 69, 69, 0.7);
-          border-radius: 10px;
-          text-transform: capitalize;
-          color: rgb(101, 118, 218);
-          background-color: rgba(255, 255, 255, 1);
-          transition: all 0.4s ease-in-out;
-          cursor: pointer;
-        }
-        .btn_warning {
-          background-color: rgb(172, 2, 2);
-          color: rgba(255, 255, 255, 1);
-        }
+        
         .clendar_container {
           position: absolute;
           padding: 10px;
@@ -433,9 +425,51 @@
             margin-bottom: calc(10px + 0.5vw);
             width: 100%;
             text-align: center;
-            input[type="checkbox"] {
-              flex: 1 1 5%;
+            .squaredOne {
+              flex: 1 1 auto;
+              min-width: 24px;
+              max-width: 24px;;
+              height: 24px;
+              position: relative;
+              margin: 5px;
+              background: #fcfff4;
+              box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+              border-radius: 5px;
+              label {
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                cursor: pointer;
+                background: linear-gradient(top, #222 0%, #45484d 100%);
+                box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+                transition: all .7s ease-in-out;
+                &:after {
+                  content: '';
+                  width: 12px;
+                  height: 12px;
+                  position: absolute;
+                  top: 2px;
+                  left: 2px;
+                  background: rgb(2, 159, 140);;
+                  box-shadow:  0px 0px 3px rgba(0,0,0,0.5);
+                  opacity: 0;
+                  transition: all .7s ease-in-out;
+                }
+                &:hover::after {
+                  opacity: 0.5;
+                }
+              }
+              input[type=checkbox] {
+                visibility: hidden;
+                &:checked + label:after {
+                  opacity: 1;
+                }   
+              } 
             }
+              
+              
             .block_text_description {
               flex: 1 1 85%;
               display: flex;
@@ -450,7 +484,7 @@
                 border-radius: 10px;
                 font-family: "MontserratRegular";
                 font-size: calc(12px + 0.6vw);
-                color: rgb(67, 67, 67);
+                color: rgba(0, 0, 0, 1);
                 text-transform: capitalize;
                 padding: 0 10px;
                 margin-bottom: 10px;
@@ -461,7 +495,7 @@
               .input_description {
                 width: 100%;
                 height: calc(50px + 2vw);
-                border: 1px solid rgba(69, 69, 69, 0.7);
+                border: 1px solid rgba(0, 0, 0, 1);
                 border-radius: 10px;
                 padding: 5px 10px;
                 font-family: "MontserratRegular";
@@ -534,6 +568,7 @@
               padding: 10px;
               .edit,
               .delete {
+                width: 100%;
                 padding: 5px;
                 margin-bottom: 10px;
                 font-family: "MontserratBold";
@@ -553,7 +588,7 @@
               }
               .delete:hover {
                 color: rgb(255, 2, 2);
-                border: 1px solid  rgb(255, 2, 2);
+                border: 1px solid rgb(255, 2, 2);
               }
             }
           }
@@ -602,13 +637,11 @@
     }
   }
 }
-@keyframes shadow-pulse
-{
+@keyframes shadow-pulse {
   0% {
-    box-shadow: 0 0 0 0px rgba(255, 255, 255, .6);
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.6);
   }
   100% {
     box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
   }
 }
-

@@ -39,24 +39,33 @@ class ToDoList {
         let listItem = document.createElement('div');
         listItem.classList.add('task_card');
 
+        let squaredOne = document.createElement('div');
+        squaredOne.classList.add('squaredOne');
+
         let checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
-        checkbox.classList.add('task_counter');
+        checkbox.setAttribute('value', 'None');
+        checkbox.setAttribute('id', 'squaredOne');
+        checkbox.setAttribute('name', 'check');
+        checkbox.setAttribute('title', 'Сomplete task');
+
+        let controlIndicator = document.createElement('label');
+        controlIndicator.setAttribute('for', 'squaredOne');
+        controlIndicator.setAttribute('title', 'Completed task');
 
         let textDescription = document.createElement('div');
         textDescription.classList.add('block_text_description');
 
         let inputTitle = document.createElement('textarea');
-        inputTitle.setAttribute('type', 'text');
         inputTitle.classList.add('input_title');
         inputTitle.setAttribute('disabled', '');
-        inputTitle.innerText = title;
+        inputTitle.textContent = title;
 
         let inputDescription = document.createElement('textarea');
         inputDescription.setAttribute('type', 'text');
         inputDescription.classList.add('input_description');
         inputDescription.setAttribute('disabled', '');
-        inputDescription.innerText = task;
+        inputDescription.textContent = task;
 
         let dateCompletion = document.createElement('div');
         dateCompletion.classList.add('date_completion');
@@ -82,7 +91,9 @@ class ToDoList {
         buttonDelete.classList.add('delete', 'task_counter');
         buttonDelete.innerText = 'delete';
 
-        listItem.appendChild(checkbox);
+        listItem.appendChild(squaredOne);
+        squaredOne.appendChild(checkbox);
+        squaredOne.appendChild(controlIndicator);
         listItem.appendChild(textDescription);
         textDescription.appendChild(inputTitle);
         textDescription.appendChild(inputDescription);
@@ -196,8 +207,6 @@ class ToDoList {
             this.inputDate.textContent = '';
             this.charCounter.textContent = '0';
             this.itemСounter();
-            console.log(itemsArray);
-            
         }
     }
 
@@ -235,7 +244,6 @@ class ToDoList {
         let item = items.count;
         items.splice(item, 1);
         localStorage.setItem('items', JSON.stringify(items));
-        console.log(items);
     }
 
     completedTask(listItem) {
@@ -248,8 +256,7 @@ class ToDoList {
             listItem.remove();
             ulCompleted.appendChild(listItem);
             this.itemСounter();
-            let checkboxIn = listItem.querySelector('input[type=checkbox]');
-            checkboxIn.style.display = 'none';
+            this.hidingItems(listItem);
             this.deletedLocalStorage();
         } else {
             let ulExpired = document.querySelector('.expired_tasks');
@@ -257,10 +264,17 @@ class ToDoList {
             listItem.remove()
             ulExpired.appendChild(listItem);
             this.itemСounter();
-            let checkboxIn = listItem.querySelector('input[type=checkbox]');
-            checkboxIn.style.display = 'none';
+            this.hidingItems(listItem);
             this.deletedLocalStorage();
         }
+    }
+    hidingItems(listItem){
+        let checkboxIn = listItem.querySelector('input[type=checkbox]');
+        checkboxIn.style.display = 'none';
+        let squaredOne = listItem.querySelector('.squaredOne');
+        squaredOne.style.display = 'none';
+        let btnEdit = listItem.querySelector(".edit")
+        btnEdit.style.display = 'none';
     }
     // ------------ Task counter ---------------
     itemСounter() {

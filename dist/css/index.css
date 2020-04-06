@@ -158,9 +158,9 @@ input {
   width: 100%; }
 
 .section_two .container {
-  -webkit-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out; }
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
   .section_two .container .wrapper {
     display: -webkit-box;
     display: -webkit-flex;
@@ -261,11 +261,11 @@ input {
         padding-left: 20px;
         padding-right: -webkit-calc(10px + 1vw);
         padding-right: calc(10px + 1vw);
-        font-size: -webkit-calc(20px + .4vw);
-        font-size: calc(20px + .4vw); }
+        font-size: -webkit-calc(20px + 0.4vw);
+        font-size: calc(20px + 0.4vw); }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .section_two_tabs_title {
-        font-size: -webkit-calc(16px + .3vw);
-        font-size: calc(16px + .3vw);
+        font-size: -webkit-calc(16px + 0.3vw);
+        font-size: calc(16px + 0.3vw);
         margin-right: -webkit-calc(20px + 1vw);
         margin-right: calc(20px + 1vw); }
       .container_section_menu .container_section_menu_buttom .container_tabs .section_two_tabs .section_two_tabs_text .fa-plus-circle,
@@ -340,14 +340,15 @@ input {
     .container_section_task_dashboard .container_section_task_dashboard_header .fa-arrow-circle-left {
       display: none;
       color: white;
+      text-shadow: 0 0 10px black;
       font-size: -webkit-calc(25px + 1.2vw);
       font-size: calc(25px + 1.2vw);
       border-radius: 50%;
       margin-right: 40px;
       cursor: pointer;
-      -webkit-transition: color .8s linear;
-      -o-transition: color .8s linear;
-      transition: color .8s linear; }
+      -webkit-transition: color 0.8s linear;
+      -o-transition: color 0.8s linear;
+      transition: color 0.8s linear; }
     .container_section_task_dashboard .container_section_task_dashboard_header .btn_pulse {
       -webkit-animation: shadow-pulse 1s infinite;
               animation: shadow-pulse 1s infinite; }
@@ -428,6 +429,7 @@ input {
           text-transform: capitalize;
           outline: none;
           resize: none;
+          white-space: nowrap;
           background: white; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #warning {
           width: 100%;
@@ -567,38 +569,29 @@ input {
               color: #454545; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container .without_date {
               color: #008872; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .calendar_btn {
+          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .add_btn {
+            -webkit-align-self: flex-end;
+                -ms-flex-item-align: end;
+                    align-self: flex-end;
+            font-size: -webkit-calc(10px + 2vw);
+            font-size: calc(10px + 2vw);
             font-family: "MontserratBold";
             font-size: -webkit-calc(10px + 0.6vw);
             font-size: calc(10px + 0.6vw);
-            color: #616161;
             padding: 5px 10px;
+            margin-bottom: 10px;
             border: 1px solid rgba(69, 69, 69, 0.7);
             border-radius: 10px;
             text-transform: capitalize;
+            color: #6576da;
+            background-color: white;
+            -webkit-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
             cursor: pointer; }
-        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .add_btn {
-          -webkit-align-self: flex-end;
-              -ms-flex-item-align: end;
-                  align-self: flex-end;
-          font-size: -webkit-calc(10px + 2vw);
-          font-size: calc(10px + 2vw);
-          font-family: "MontserratBold";
-          font-size: -webkit-calc(10px + 0.6vw);
-          font-size: calc(10px + 0.6vw);
-          padding: 5px 10px;
-          border: 1px solid rgba(69, 69, 69, 0.7);
-          border-radius: 10px;
-          text-transform: capitalize;
-          color: #6576da;
-          background-color: white;
-          -webkit-transition: all 0.4s ease-in-out;
-          -o-transition: all 0.4s ease-in-out;
-          transition: all 0.4s ease-in-out;
-          cursor: pointer; }
-        .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .btn_warning {
-          background-color: #ac0202;
-          color: white; }
+          .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .btn_warning {
+            background-color: #ac0202;
+            color: white; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .clendar_container {
           position: absolute;
           padding: 10px;
@@ -730,11 +723,55 @@ input {
           margin-bottom: calc(10px + 0.5vw);
           width: 100%;
           text-align: center; }
-          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card input[type="checkbox"] {
+          .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne {
             -webkit-box-flex: 1;
-            -webkit-flex: 1 1 5%;
-                -ms-flex: 1 1 5%;
-                    flex: 1 1 5%; }
+            -webkit-flex: 1 1 auto;
+                -ms-flex: 1 1 auto;
+                    flex: 1 1 auto;
+            min-width: 24px;
+            max-width: 24px;
+            height: 24px;
+            position: relative;
+            margin: 5px;
+            background: #fcfff4;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+                    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            border-radius: 5px; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne label {
+              width: 16px;
+              height: 16px;
+              position: absolute;
+              top: 4px;
+              left: 4px;
+              cursor: pointer;
+              background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#45484d));
+              background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+              background: linear-gradient(top, #222 0%, #45484d 100%);
+              -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+                      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+              -webkit-transition: all .7s ease-in-out;
+              -o-transition: all .7s ease-in-out;
+              transition: all .7s ease-in-out; }
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne label:after {
+                content: '';
+                width: 12px;
+                height: 12px;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                background: #029f8c;
+                -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+                        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                -webkit-transition: all .7s ease-in-out;
+                -o-transition: all .7s ease-in-out;
+                transition: all .7s ease-in-out; }
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne label:hover::after {
+                opacity: 0.5; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne input[type=checkbox] {
+              visibility: hidden; }
+              .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .squaredOne input[type=checkbox]:checked + label:after {
+                opacity: 1; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .block_text_description {
             -webkit-box-flex: 1;
             -webkit-flex: 1 1 85%;
@@ -766,7 +803,7 @@ input {
               font-family: "MontserratRegular";
               font-size: -webkit-calc(12px + 0.6vw);
               font-size: calc(12px + 0.6vw);
-              color: #434343;
+              color: black;
               text-transform: capitalize;
               padding: 0 10px;
               margin-bottom: 10px;
@@ -777,7 +814,7 @@ input {
               width: 100%;
               height: -webkit-calc(50px + 2vw);
               height: calc(50px + 2vw);
-              border: 1px solid rgba(69, 69, 69, 0.7);
+              border: 1px solid black;
               border-radius: 10px;
               padding: 5px 10px;
               font-family: "MontserratRegular";
@@ -893,6 +930,7 @@ input {
             padding: 10px; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit,
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete {
+              width: 100%;
               padding: 5px;
               margin-bottom: 10px;
               font-family: "MontserratBold";
