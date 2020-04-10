@@ -14,6 +14,9 @@ class ToDoList {
         this.charCounter = document.querySelector('.char-counter');
         this.textCounter = document.querySelector('.text-counter');
         this.textArea = document.getElementById('new_title');
+        this.textDescription = document.getElementById('new_task');
+        this.textDate = document.querySelector('.date_field_container');
+
         this.taskCounter = document.querySelectorAll('.task_counter');
         this.calendarBtn = document.querySelector('.date_field_container');
 
@@ -32,6 +35,8 @@ class ToDoList {
         setInterval(this.getDate, 0);
         this.removedTask = null;
         this.index;
+        this.indexComplet;
+        this.indexExpired;
         this.dateToday = new Date();
     }
     // -------------------- Creatur New Task - JS-HTML
@@ -80,6 +85,9 @@ class ToDoList {
         dateField.classList.add('fulfillment_date');
         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
 
+        let calendarLogo = document.createElement('i');
+        calendarLogo.classList.add('fas', 'fa-calendar-alt');
+
         let buttonItem = document.createElement('div');
         buttonItem.classList.add('button_item');
 
@@ -100,10 +108,10 @@ class ToDoList {
         textDescription.appendChild(dateCompletion);
         dateCompletion.appendChild(dateFieldContainer);
         dateFieldContainer.appendChild(dateField);
+        dateFieldContainer.appendChild(calendarLogo);
         listItem.appendChild(buttonItem)
         buttonItem.appendChild(buttonEdit);
         buttonItem.appendChild(buttonDelete);
-
         return listItem;
     }
 
@@ -120,7 +128,7 @@ class ToDoList {
             toDoListJson = localStorage.getItem(localStorageName);
             toDoList = JSON.parse(toDoListJson);
             this.index = toDoList.length - 1;
-            
+
             for (let item of toDoList) {
                 let listItem = this.creatureNewItem(item.titleTask, item.titleTask, item.dateTask, item.count);
                 this.incompletedTask.appendChild(listItem);
@@ -182,7 +190,12 @@ class ToDoList {
     // -------------- Event classes -----------
     addTask() {
         let inputDate = document.querySelector('.date_field');
-        if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
+        if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
+            this.taskValidation();
+        } else {
+            // this.textArea.classList.remove('error_Title');
+            // this.textDescription.classList.remove('error_Description');
+            // this.textDate.classList.remove('error_Date')
 
             //-------------------------    Сreate an array for Local Storage --------------------
             this.index++
@@ -199,7 +212,6 @@ class ToDoList {
             localStorage.setItem('items', JSON.stringify(itemsArray));
 
             let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
-
             this.incompletedTask.appendChild(listItem);
             this.buttonTaskEvents(listItem);
             this.inputTitle.value = '';
@@ -209,6 +221,28 @@ class ToDoList {
             this.itemСounter();
         }
     }
+    taskValidation() {
+        if (!this.inputTitle.value) {
+            this.textArea.classList.add('error_Title');
+        };
+        if (!this.textDescription.value) {
+            this.textDescription.classList.add('error_Description');
+        };
+        if (this.inputDate.textContent.length < 1) {
+            this.textDate.classList.add('error_Date');
+        };
+        this.inputTitle.oninput = () => {
+            if (this.inputTitle.value.length > 1) {
+                this.textArea.classList.remove('error_Title');
+            }
+        };
+        this.textDescription.oninput = () => {
+            if (this.textDescription.value.length > 1) {
+                this.textDescription.classList.remove('error_Description');
+            }
+        };
+    }
+
 
     deleteTask(listItem) {
         let ul = listItem.parentNode;
@@ -239,7 +273,7 @@ class ToDoList {
         }
         listItem.classList.toggle('changes');
     }
-    deletedLocalStorage(){
+    deletedLocalStorage() {
         let items = JSON.parse(localStorage.getItem('items'));
         let item = items.count;
         items.splice(item, 1);
@@ -249,6 +283,7 @@ class ToDoList {
     completedTask(listItem) {
         let dateTask = document.querySelector('.fulfillment_date');
         let dateValue = new Date(dateTask.textContent);
+
         if (this.dateToday <= dateValue) {
             let ulCompleted = document.querySelector('.completed_tasks');
             this.removedTask = listItem;
@@ -268,7 +303,8 @@ class ToDoList {
             this.deletedLocalStorage();
         }
     }
-    hidingItems(listItem){
+
+    hidingItems(listItem) {
         let checkboxIn = listItem.querySelector('input[type=checkbox]');
         checkboxIn.style.display = 'none';
         let squaredOne = listItem.querySelector('.squaredOne');
@@ -339,7 +375,8 @@ class ToDoList {
                 this.inputTask.style.background = 'rgba(255, 255, 255, 1)';
                 this.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
                 this.addButton.removeAttribute('disabled', '');
-                this.addButton.style.background = 'rgba(255, 255, 255, 1)';
+                this.addButton.style.background = 'rgb(101, 118, 218)';
+                this.textDate.classList.remove('error_Date');
             }
         }
 
@@ -448,7 +485,8 @@ class ToDoList {
                     inputTask.style.background = 'rgba(255, 255, 255, 1)';
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
                     addButton.removeAttribute('disabled', '');
-                    addButton.style.background = 'rgba(255, 255, 255, 1)';
+                    addButton.style.background = 'rgb(101, 118, 218)';
+                    this.textDate.classList.remove('error_Date');
                 }
             }
 
@@ -499,7 +537,8 @@ class ToDoList {
                     inputTask.style.background = 'rgba(255, 255, 255, 1)';
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
                     addButton.removeAttribute('disabled', '');
-                    addButton.style.background = 'rgba(255, 255, 255, 1)';
+                    addButton.style.background = 'rgb(101, 118, 218)';
+                    this.textDate.classList.remove('error_Date');
                 }
             }
 

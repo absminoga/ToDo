@@ -34,7 +34,7 @@
                 .tab_content
                     .tabs_dashboard.js-tab-content.active(data-tab="1")
                         div.tabs_dashboard_list_card 
-                            h3 add new task
+                            h3 add new task 
                             label.tabs_dashboard_list_card_title(for="new_title")
                                 h4 title
                             textarea#new_title
@@ -46,9 +46,10 @@
                                 h4 description task
                             textarea#new_task
                             .date_completion 
-                                p select due date or leave blank
+                                p select due date
                                 .date_field_container
                                     span.date_field
+                                    i.fas.fa-calendar-alt
                                 button.add_btn.task_counter add task
                             .clendar_container.calendar_card
                                 .calendar_header

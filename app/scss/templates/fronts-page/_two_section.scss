@@ -208,6 +208,10 @@
           resize: none;
           white-space: nowrap;
           background: rgba(255, 255, 255, 1);
+          transition: all .5s ease-in-out
+        }
+        .error_Title{
+          border: 1px solid rgba(218, 3, 3, 0.954)  !important;
         }
         #warning {
           width: 100%;
@@ -262,6 +266,10 @@
           outline: none;
           resize: none;
           background: rgba(255, 255, 255, 1);
+          transition: all .5s ease-in-out;
+        }
+        .error_Description{
+          border: 1px solid rgba(218, 3, 3, 1) !important;
         }
         .date_completion {
           display: flex;
@@ -281,6 +289,7 @@
             margin-bottom: 5px;
           }
           .date_field_container {
+            position: relative;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -296,15 +305,26 @@
             text-align: left;
             resize: none;
             background: rgba(255, 255, 255, 1);
+            transition: all .5s ease-in-out;
             cursor: pointer;
             .date_field {
               font-family: "MontserratBold";
               font-size: calc(10px + 0.5vw);
+              color: rgba(69, 69, 69, 1);  
+            }
+            
+            .fa-calendar-alt{
+              position: absolute;
+              font-size: calc(10px + 0.5vw);
               color: rgba(69, 69, 69, 1);
+              right: 10px;
             }
             .without_date {
               color: rgb(0, 136, 114);
             }
+          }
+          .error_Date{
+            border: 1px solid rgba(218, 3, 3, 1); 
           }
           .add_btn {
             align-self: flex-end;
@@ -316,14 +336,14 @@
             border: 1px solid rgba(69, 69, 69, 0.7);
             border-radius: 10px;
             text-transform: capitalize;
-            color: rgb(101, 118, 218);
-            background-color: rgba(255, 255, 255, 1);
+            color: rgba(255, 255, 255, 1);
+            background-color: rgb(101, 118, 218);
             transition: all 0.4s ease-in-out;
             cursor: pointer;
           }
           .btn_warning {
-            background-color: rgb(172, 2, 2);
-            color: rgba(255, 255, 255, 1);
+            // background-color: rgb(172, 2, 2);
+            color: rgb(172, 2, 2);;
           }
         }
         
@@ -374,6 +394,7 @@
             .date_fields:hover {
               background-color: rgb(220, 195, 252);
             }
+            
             .today_day_field {
               background-color: rgb(84, 42, 234);
               color: rgba(255, 255, 255, 1);
@@ -442,7 +463,7 @@
                 top: 4px;
                 left: 4px;
                 cursor: pointer;
-                background: linear-gradient(top, #222 0%, #45484d 100%);
+                background: linear-gradient(to bottom, #222 0%, #45484d 100%);
                 box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
                 transition: all .7s ease-in-out;
                 &:after {
@@ -521,6 +542,7 @@
                 width: 100%;
                 position: relative;
                 .date_field_container {
+                  position: relative;
                   display: flex;
                   flex-direction: row;
                   justify-content: flex-start;
@@ -539,6 +561,12 @@
                   .date_field {
                     font-family: "MontserratBold";
                     font-size: calc(10px + 0.5vw);
+                  }
+                  .fa-calendar-alt{
+                    position: absolute;
+                    font-size: calc(10px + 0.5vw);
+                    color: rgb(148, 52, 55);
+                    right: 10px;
                   }
                   .without_date {
                     color: rgb(53, 125, 116);
@@ -577,7 +605,7 @@
                 text-transform: capitalize;
                 outline: none;
                 border: 1px solid rgba(69, 69, 69, 0.7);
-                border-radius: 20px;
+                border-radius: 10px;
                 cursor: pointer;
                 color: rgb(69, 69, 69);
                 transition: all 0.7s ease-in-out;
