@@ -19,12 +19,18 @@
         .block_text_description {
           flex: 1 1 95%;
         }
+        .date_field_container{
+          flex: 1 1 100%;
+          margin-right: 0px !important;
+        }
         .button_item {
           flex: 1 1 100%;
+          display: flex;
           flex-direction: row !important;
           align-items: center;
-          justify-content: space-between;
+          justify-content: space-around !important;
           flex-wrap: wrap;
+          padding-left: 39px !important;
           .edit{
             margin-right: 10px;
           }

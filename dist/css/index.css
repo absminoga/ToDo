@@ -300,19 +300,32 @@ input {
       border-radius: 10px; }
 
 .container_section_task_dashboard {
+  position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 65%;
       -ms-flex: 1 1 65%;
           flex: 1 1 65%;
   min-width: 320px;
-  background-image: url(../img/lighthouse-4082369_1920.jpg);
-  background-size: cover;
-  background-position: center center;
   height: 100%;
   padding: -webkit-calc(10px + 1vw);
   padding: calc(10px + 1vw);
   border-left: 1px solid rgba(255, 255, 255, 0);
   z-index: 99; }
+  .container_section_task_dashboard img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-transition: opacity .8s ease-in;
+    -o-transition: opacity .8s ease-in;
+    transition: opacity .8s ease-in;
+    z-index: -1; }
+  .container_section_task_dashboard .show {
+    opacity: 1; }
   .container_section_task_dashboard .container_section_task_dashboard_header {
     height: -webkit-calc(50px + 1vw);
     height: calc(50px + 1vw);
@@ -328,7 +341,8 @@ input {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    border-bottom: 2px solid white; }
+    border-bottom: 2px solid white;
+    z-index: 99; }
     .container_section_task_dashboard .container_section_task_dashboard_header h2 {
       font-family: "MontserratBold";
       font-size: -webkit-calc(20px + 1vw);
@@ -1031,11 +1045,21 @@ input {
       -webkit-flex: 1 1 95%;
           -ms-flex: 1 1 95%;
               flex: 1 1 95%; }
+    .task_card .date_field_container {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1 1 100%;
+          -ms-flex: 1 1 100%;
+              flex: 1 1 100%;
+      margin-right: 0px !important; }
     .task_card .button_item {
       -webkit-box-flex: 1;
       -webkit-flex: 1 1 100%;
           -ms-flex: 1 1 100%;
               flex: 1 1 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
       -webkit-box-orient: horizontal !important;
       -webkit-box-direction: normal !important;
       -webkit-flex-direction: row !important;
@@ -1045,13 +1069,13 @@ input {
       -webkit-align-items: center;
           -ms-flex-align: center;
               align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
+      -webkit-justify-content: space-around !important;
+          -ms-flex-pack: distribute !important;
+              justify-content: space-around !important;
       -webkit-flex-wrap: wrap;
           -ms-flex-wrap: wrap;
-              flex-wrap: wrap; }
+              flex-wrap: wrap;
+      padding-left: 39px !important; }
       .task_card .button_item .edit {
         margin-right: 10px; }
       .task_card .button_item .edit,

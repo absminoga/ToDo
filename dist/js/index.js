@@ -1,4 +1,3 @@
-
 //  --------- Class Add task -------------- 
 class ToDoList {
     constructor() {
@@ -35,9 +34,26 @@ class ToDoList {
         setInterval(this.getDate, 0);
         this.removedTask = null;
         this.index;
-        this.indexComplet;
-        this.indexExpired;
         this.dateToday = new Date();
+    }
+
+    // -------------- Event classes -----------
+    addTask() {
+        let inputDate = document.querySelector('.date_field');
+        if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
+            this.taskValidation();
+        } else {
+            //-------------------------    Сreate an array for Local Storage --------------------
+            this.createLocalStorage();
+            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
+            this.incompletedTask.appendChild(listItem);
+            this.buttonTaskEvents(listItem);
+            this.inputTitle.value = '';
+            this.inputTask.value = '';
+            this.inputDate.textContent = '';
+            this.charCounter.textContent = '0';
+            this.itemСounter();
+        }
     }
     // -------------------- Creatur New Task - JS-HTML
     creatureNewItem(title, task, date) {
@@ -114,27 +130,23 @@ class ToDoList {
         buttonItem.appendChild(buttonDelete);
         return listItem;
     }
+    // ------------------ Events when clicking on hemp tasks --------------------
+    buttonTaskEvents(listItem) {
+        let editButton = listItem.querySelector('button.edit');
+        editButton.onclick = () => this.changeTask(listItem);
 
-    // -------------------- Creatur New Task - localStorage ------------------
-    creatureLocalItem() {
-        let localStorageName = 'items';
-        let toDoList = [];
-        let toDoListJson = JSON.stringify(toDoList);
+        let deleteButton = listItem.querySelector('button.delete');
+        deleteButton.onclick = () => {
+            this.deleteTask(listItem);
+            this.itemСounter();
+        };
 
-        if (!localStorage.getItem(localStorageName)) {
-            localStorage.setItem(localStorageName, toDoListJson);
-            this.index = 0;
-        } else {
-            toDoListJson = localStorage.getItem(localStorageName);
-            toDoList = JSON.parse(toDoListJson);
-            this.index = toDoList.length - 1;
-
-            for (let item of toDoList) {
-                let listItem = this.creatureNewItem(item.titleTask, item.titleTask, item.dateTask, item.count);
-                this.incompletedTask.appendChild(listItem);
-                this.buttonTaskEvents(listItem);
-                this.itemСounter();
-            }
+        let checkboxOut = listItem.querySelector('input[type=checkbox]');
+        let inputDate = document.querySelector('.date_field');
+        let dateTask = new Date(inputDate.textContent);
+        checkboxOut.onclick = () => {
+            this.completedTask(listItem, dateTask);
+            this.itemСounter();
         }
     }
     // --------------------  Control change the name of the task ---------
@@ -167,89 +179,14 @@ class ToDoList {
         }, 100);
     }
 
-    // ------------------ Events when clicking on hemp tasks --------------------
-    buttonTaskEvents(listItem) {
-        let editButton = listItem.querySelector('button.edit');
-        editButton.onclick = () => this.changeTask(listItem);
-
-        let deleteButton = listItem.querySelector('button.delete');
-        deleteButton.onclick = () => {
-            this.deleteTask(listItem);
-            this.itemСounter();
-        };
-
-        let checkboxOut = listItem.querySelector('input[type=checkbox]');
-        let inputDate = document.querySelector('.date_field');
-        let dateTask = new Date(inputDate.textContent);
-        checkboxOut.onclick = () => {
-            this.completedTask(listItem, dateTask);
-            this.itemСounter();
-        }
-    }
-
-    // -------------- Event classes -----------
-    addTask() {
-        let inputDate = document.querySelector('.date_field');
-        if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
-            this.taskValidation();
-        } else {
-            // this.textArea.classList.remove('error_Title');
-            // this.textDescription.classList.remove('error_Description');
-            // this.textDate.classList.remove('error_Date')
-
-            //-------------------------    Сreate an array for Local Storage --------------------
-            this.index++
-            let localTask = {
-                count: this.index,
-                titleTask: this.inputTitle.value,
-                descriptionTask: this.inputTask.value,
-                dateTask: inputDate.textContent
-            };
-
-            // ------------------------    Adding Items to Local Storage ------------------------
-            let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
-            itemsArray.push(localTask);
-            localStorage.setItem('items', JSON.stringify(itemsArray));
-
-            let listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
-            this.incompletedTask.appendChild(listItem);
-            this.buttonTaskEvents(listItem);
-            this.inputTitle.value = '';
-            this.inputTask.value = '';
-            this.inputDate.textContent = '';
-            this.charCounter.textContent = '0';
-            this.itemСounter();
-        }
-    }
-    taskValidation() {
-        if (!this.inputTitle.value) {
-            this.textArea.classList.add('error_Title');
-        };
-        if (!this.textDescription.value) {
-            this.textDescription.classList.add('error_Description');
-        };
-        if (this.inputDate.textContent.length < 1) {
-            this.textDate.classList.add('error_Date');
-        };
-        this.inputTitle.oninput = () => {
-            if (this.inputTitle.value.length > 0) {
-                this.textArea.classList.remove('error_Title');
-            }
-        };
-        this.textDescription.oninput = () => {
-            if (this.textDescription.value.length > 0) {
-                this.textDescription.classList.remove('error_Description');
-            }
-        };
-    }
-
-
+    //--------------- Delete tasks --------------------------
     deleteTask(listItem) {
         let ul = listItem.parentNode;
         ul.removeChild(listItem);
         this.deletedLocalStorage();
     }
 
+    //--------------- Change incomplet tasks --------------------------
     changeTask(listItem) {
         let changeTitle = listItem.querySelector('.input_title');
         let changeDescription = listItem.querySelector('.input_description');
@@ -273,12 +210,7 @@ class ToDoList {
         }
         listItem.classList.toggle('changes');
     }
-    deletedLocalStorage() {
-        let items = JSON.parse(localStorage.getItem('items'));
-        let item = items.count;
-        items.splice(item, 1);
-        localStorage.setItem('items', JSON.stringify(items));
-    }
+
 
     completedTask(listItem) {
         let dateTask = document.querySelector('.fulfillment_date');
@@ -293,6 +225,15 @@ class ToDoList {
             this.itemСounter();
             this.hidingItems(listItem);
             this.deletedLocalStorage();
+            // let checkboxIn = listItem.querySelector('input[type=checkbox]');
+            // checkboxIn.onclick = () => {
+            //     listItem.remove();
+            //     this.createLocalStorage();
+            //     this.incompletedTask.appendChild(listItem);
+            //     this.buttonTaskEvents(listItem);
+            //     this.itemСounter();
+
+            // }
         } else {
             let ulExpired = document.querySelector('.expired_tasks');
             this.removedTask = listItem;
@@ -312,6 +253,78 @@ class ToDoList {
         let btnEdit = listItem.querySelector(".edit")
         btnEdit.style.display = 'none';
     }
+
+    // ------------------------   Create Local Storage ------------------------
+    createLocalStorage() {
+        let inputDate = document.querySelector('.date_field');
+        this.index++
+        let localTask = {
+            count: this.index,
+            titleTask: this.inputTitle.value,
+            descriptionTask: this.inputTask.value,
+            dateTask: inputDate.textContent
+        }
+        // ------------------------    Adding Items to Local Storage ------------------------
+        let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+        itemsArray.push(localTask);
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+    }
+   
+    // -------------------- Creatur New Task - localStorage ------------------
+    creatureLocalItem() {
+        let localStorageName = 'items';
+        let toDoList = [];
+        let toDoListJson = JSON.stringify(toDoList);
+
+        if (!localStorage.getItem(localStorageName)) {
+            localStorage.setItem(localStorageName, toDoListJson);
+            this.index = 0;
+        } else {
+            toDoListJson = localStorage.getItem(localStorageName);
+            toDoList = JSON.parse(toDoListJson);
+            this.index = toDoList.length - 1;
+
+            for (let item of toDoList) {
+                let listItem = this.creatureNewItem(item.titleTask, item.titleTask, item.dateTask, item.count);
+                this.incompletedTask.appendChild(listItem);
+                this.buttonTaskEvents(listItem);
+                this.itemСounter();
+            }
+        }
+    }
+
+    deletedLocalStorage() {
+        let items = JSON.parse(localStorage.getItem('items'));
+        let item = items.count;
+        items.splice(item, 1);
+        localStorage.setItem('items', JSON.stringify(items));
+    }
+
+
+    // ------------------ Validation of task input fields ------------
+    taskValidation() {
+        if (!this.inputTitle.value) {
+            this.textArea.classList.add('error_Title');
+        };
+        if (!this.textDescription.value) {
+            this.textDescription.classList.add('error_Description');
+        };
+        if (this.inputDate.textContent.length < 1) {
+            this.textDate.classList.add('error_Date');
+        };
+        this.inputTitle.oninput = () => {
+            if (this.inputTitle.value.length > 0) {
+                this.textArea.classList.remove('error_Title');
+            }
+        };
+        this.textDescription.oninput = () => {
+            if (this.textDescription.value.length > 0) {
+                this.textDescription.classList.remove('error_Description');
+            }
+        };
+    }
+
+    
     // ------------ Task counter ---------------
     itemСounter() {
         let incompletetTask = document.querySelector('.incompleted_tasks');
@@ -444,7 +457,6 @@ class ToDoList {
                 }
             }
         }
-
 
         function goToNextMonth(e) {
             month++;
@@ -592,3 +604,19 @@ jsTriggers.forEach(function (trigger) {
         content.classList.add('active');
     });
 });
+// ---------------------- Background image Slider -------------
+window.addEventListener("DOMContentLoaded", function() {
+        [].forEach.call(document.querySelectorAll(".carousel"), function(el) {
+            var img = el.querySelectorAll("img"),
+                len = img.length,
+                i = len - 1,
+                p = el.dataset.pause || 5E3;
+            !function g() {
+                img[i].classList.remove("show");
+                i = ++i % len;
+                img[i].classList.add("show");
+                window.setTimeout(g, p)
+            }()
+        })
+    });
+    

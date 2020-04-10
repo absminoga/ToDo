@@ -61,13 +61,32 @@ function () {
     setInterval(this.getDate, 0);
     this.removedTask = null;
     this.index;
-    this.indexComplet;
-    this.indexExpired;
     this.dateToday = new Date();
-  } // -------------------- Creatur New Task - JS-HTML
+  } // -------------- Event classes -----------
 
 
   _createClass(ToDoList, [{
+    key: "addTask",
+    value: function addTask() {
+      var inputDate = document.querySelector('.date_field');
+
+      if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
+        this.taskValidation();
+      } else {
+        //-------------------------    Сreate an array for Local Storage --------------------
+        this.createLocalStorage();
+        var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
+        this.incompletedTask.appendChild(listItem);
+        this.buttonTaskEvents(listItem);
+        this.inputTitle.value = '';
+        this.inputTask.value = '';
+        this.inputDate.textContent = '';
+        this.charCounter.textContent = '0';
+        this.itemСounter();
+      }
+    } // -------------------- Creatur New Task - JS-HTML
+
+  }, {
     key: "creatureNewItem",
     value: function creatureNewItem(title, task, date) {
       var listItem = document.createElement('div');
@@ -128,6 +147,172 @@ function () {
       buttonItem.appendChild(buttonEdit);
       buttonItem.appendChild(buttonDelete);
       return listItem;
+    } // ------------------ Events when clicking on hemp tasks --------------------
+
+  }, {
+    key: "buttonTaskEvents",
+    value: function buttonTaskEvents(listItem) {
+      var _this2 = this;
+
+      var editButton = listItem.querySelector('button.edit');
+
+      editButton.onclick = function () {
+        return _this2.changeTask(listItem);
+      };
+
+      var deleteButton = listItem.querySelector('button.delete');
+
+      deleteButton.onclick = function () {
+        _this2.deleteTask(listItem);
+
+        _this2.itemСounter();
+      };
+
+      var checkboxOut = listItem.querySelector('input[type=checkbox]');
+      var inputDate = document.querySelector('.date_field');
+      var dateTask = new Date(inputDate.textContent);
+
+      checkboxOut.onclick = function () {
+        _this2.completedTask(listItem, dateTask);
+
+        _this2.itemСounter();
+      };
+    } // --------------------  Control change the name of the task ---------
+
+  }, {
+    key: "changeTitle",
+    value: function changeTitle() {
+      this.charCounter.textContent = this.textArea.value.length;
+
+      if (this.textArea.value.length > 30) {
+        this.textArea.setAttribute("id", "warning");
+        this.addButton.setAttribute('disabled', '');
+        this.textCounter.classList.add('warning');
+        this.addButton.classList.add('btn_warning');
+      } else {
+        this.textArea.setAttribute("id", "new_title");
+        this.addButton.removeAttribute('disabled', '');
+        this.textCounter.classList.remove('warning');
+        this.addButton.classList.remove('btn_warning');
+      }
+    }
+  }, {
+    key: "addCalendar",
+    value: function addCalendar() {
+      var _this3 = this;
+
+      var calendar = document.querySelector('.clendar_container');
+      setTimeout(function () {
+        calendar.classList.remove('calendar_card');
+
+        _this3.inputTitle.setAttribute('disabled', '');
+
+        _this3.inputTitle.style.background = 'rgba(255, 255, 255, .5)';
+
+        _this3.inputTask.setAttribute('disabled', '');
+
+        _this3.inputTask.style.background = 'rgba(255, 255, 255, .5)';
+        _this3.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
+
+        _this3.addButton.setAttribute('disabled', '');
+
+        _this3.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
+      }, 100);
+    } //--------------- Delete tasks --------------------------
+
+  }, {
+    key: "deleteTask",
+    value: function deleteTask(listItem) {
+      var ul = listItem.parentNode;
+      ul.removeChild(listItem);
+      this.deletedLocalStorage();
+    } //--------------- Change incomplet tasks --------------------------
+
+  }, {
+    key: "changeTask",
+    value: function changeTask(listItem) {
+      var changeTitle = listItem.querySelector('.input_title');
+      var changeDescription = listItem.querySelector('.input_description');
+      var changeDate = listItem.querySelector('.date_field');
+      var containsClass = listItem.classList.contains('changes');
+      var editButton = listItem.querySelector('button.edit');
+
+      if (containsClass) {
+        editButton.innerText = "edit";
+        changeTitle.setAttribute('disabled', '');
+        changeTitle.classList.remove('bg_field');
+        changeDescription.setAttribute('disabled', '');
+        changeDescription.classList.remove('bg_field');
+        changeDate.setAttribute('disabled', '');
+      } else {
+        editButton.innerText = "save";
+        changeTitle.removeAttribute('disabled', '');
+        changeTitle.classList.add('bg_field');
+        changeDescription.removeAttribute('disabled', '');
+        changeDescription.classList.add('bg_field');
+        changeDate.removeAttribute('disabled', '');
+      }
+
+      listItem.classList.toggle('changes');
+    }
+  }, {
+    key: "completedTask",
+    value: function completedTask(listItem) {
+      var dateTask = document.querySelector('.fulfillment_date');
+      var dateValue = new Date(dateTask.textContent);
+
+      if (this.dateToday <= dateValue) {
+        var ulCompleted = document.querySelector('.completed_tasks');
+        this.removedTask = listItem;
+        listItem.classList.add('completed');
+        listItem.remove();
+        ulCompleted.appendChild(listItem);
+        this.itemСounter();
+        this.hidingItems(listItem);
+        this.deletedLocalStorage(); // let checkboxIn = listItem.querySelector('input[type=checkbox]');
+        // checkboxIn.onclick = () => {
+        //     listItem.remove();
+        //     this.createLocalStorage();
+        //     this.incompletedTask.appendChild(listItem);
+        //     this.buttonTaskEvents(listItem);
+        //     this.itemСounter();
+        // }
+      } else {
+        var ulExpired = document.querySelector('.expired_tasks');
+        this.removedTask = listItem;
+        listItem.remove();
+        ulExpired.appendChild(listItem);
+        this.itemСounter();
+        this.hidingItems(listItem);
+        this.deletedLocalStorage();
+      }
+    }
+  }, {
+    key: "hidingItems",
+    value: function hidingItems(listItem) {
+      var checkboxIn = listItem.querySelector('input[type=checkbox]');
+      checkboxIn.style.display = 'none';
+      var squaredOne = listItem.querySelector('.squaredOne');
+      squaredOne.style.display = 'none';
+      var btnEdit = listItem.querySelector(".edit");
+      btnEdit.style.display = 'none';
+    } // ------------------------   Create Local Storage ------------------------
+
+  }, {
+    key: "createLocalStorage",
+    value: function createLocalStorage() {
+      var inputDate = document.querySelector('.date_field');
+      this.index++;
+      var localTask = {
+        count: this.index,
+        titleTask: this.inputTitle.value,
+        descriptionTask: this.inputTask.value,
+        dateTask: inputDate.textContent
+      }; // ------------------------    Adding Items to Local Storage ------------------------
+
+      var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+      itemsArray.push(localTask);
+      localStorage.setItem('items', JSON.stringify(itemsArray));
     } // -------------------- Creatur New Task - localStorage ------------------
 
   }, {
@@ -171,112 +356,16 @@ function () {
           }
         }
       }
-    } // --------------------  Control change the name of the task ---------
-
-  }, {
-    key: "changeTitle",
-    value: function changeTitle() {
-      this.charCounter.textContent = this.textArea.value.length;
-
-      if (this.textArea.value.length > 30) {
-        this.textArea.setAttribute("id", "warning");
-        this.addButton.setAttribute('disabled', '');
-        this.textCounter.classList.add('warning');
-        this.addButton.classList.add('btn_warning');
-      } else {
-        this.textArea.setAttribute("id", "new_title");
-        this.addButton.removeAttribute('disabled', '');
-        this.textCounter.classList.remove('warning');
-        this.addButton.classList.remove('btn_warning');
-      }
     }
   }, {
-    key: "addCalendar",
-    value: function addCalendar() {
-      var _this2 = this;
+    key: "deletedLocalStorage",
+    value: function deletedLocalStorage() {
+      var items = JSON.parse(localStorage.getItem('items'));
+      var item = items.count;
+      items.splice(item, 1);
+      localStorage.setItem('items', JSON.stringify(items));
+    } // ------------------ Validation of task input fields ------------
 
-      var calendar = document.querySelector('.clendar_container');
-      setTimeout(function () {
-        calendar.classList.remove('calendar_card');
-
-        _this2.inputTitle.setAttribute('disabled', '');
-
-        _this2.inputTitle.style.background = 'rgba(255, 255, 255, .5)';
-
-        _this2.inputTask.setAttribute('disabled', '');
-
-        _this2.inputTask.style.background = 'rgba(255, 255, 255, .5)';
-        _this2.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
-
-        _this2.addButton.setAttribute('disabled', '');
-
-        _this2.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
-      }, 100);
-    } // ------------------ Events when clicking on hemp tasks --------------------
-
-  }, {
-    key: "buttonTaskEvents",
-    value: function buttonTaskEvents(listItem) {
-      var _this3 = this;
-
-      var editButton = listItem.querySelector('button.edit');
-
-      editButton.onclick = function () {
-        return _this3.changeTask(listItem);
-      };
-
-      var deleteButton = listItem.querySelector('button.delete');
-
-      deleteButton.onclick = function () {
-        _this3.deleteTask(listItem);
-
-        _this3.itemСounter();
-      };
-
-      var checkboxOut = listItem.querySelector('input[type=checkbox]');
-      var inputDate = document.querySelector('.date_field');
-      var dateTask = new Date(inputDate.textContent);
-
-      checkboxOut.onclick = function () {
-        _this3.completedTask(listItem, dateTask);
-
-        _this3.itemСounter();
-      };
-    } // -------------- Event classes -----------
-
-  }, {
-    key: "addTask",
-    value: function addTask() {
-      var inputDate = document.querySelector('.date_field');
-
-      if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
-        this.taskValidation();
-      } else {
-        // this.textArea.classList.remove('error_Title');
-        // this.textDescription.classList.remove('error_Description');
-        // this.textDate.classList.remove('error_Date')
-        //-------------------------    Сreate an array for Local Storage --------------------
-        this.index++;
-        var localTask = {
-          count: this.index,
-          titleTask: this.inputTitle.value,
-          descriptionTask: this.inputTask.value,
-          dateTask: inputDate.textContent
-        }; // ------------------------    Adding Items to Local Storage ------------------------
-
-        var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-        itemsArray.push(localTask);
-        localStorage.setItem('items', JSON.stringify(itemsArray));
-        var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
-        this.incompletedTask.appendChild(listItem);
-        this.buttonTaskEvents(listItem);
-        this.inputTitle.value = '';
-        this.inputTask.value = '';
-        this.inputDate.textContent = '';
-        this.charCounter.textContent = '0';
-        this.itemСounter();
-      }
-    }
   }, {
     key: "taskValidation",
     value: function taskValidation() {
@@ -311,83 +400,6 @@ function () {
           _this4.textDescription.classList.remove('error_Description');
         }
       };
-    }
-  }, {
-    key: "deleteTask",
-    value: function deleteTask(listItem) {
-      var ul = listItem.parentNode;
-      ul.removeChild(listItem);
-      this.deletedLocalStorage();
-    }
-  }, {
-    key: "changeTask",
-    value: function changeTask(listItem) {
-      var changeTitle = listItem.querySelector('.input_title');
-      var changeDescription = listItem.querySelector('.input_description');
-      var changeDate = listItem.querySelector('.date_field');
-      var containsClass = listItem.classList.contains('changes');
-      var editButton = listItem.querySelector('button.edit');
-
-      if (containsClass) {
-        editButton.innerText = "edit";
-        changeTitle.setAttribute('disabled', '');
-        changeTitle.classList.remove('bg_field');
-        changeDescription.setAttribute('disabled', '');
-        changeDescription.classList.remove('bg_field');
-        changeDate.setAttribute('disabled', '');
-      } else {
-        editButton.innerText = "save";
-        changeTitle.removeAttribute('disabled', '');
-        changeTitle.classList.add('bg_field');
-        changeDescription.removeAttribute('disabled', '');
-        changeDescription.classList.add('bg_field');
-        changeDate.removeAttribute('disabled', '');
-      }
-
-      listItem.classList.toggle('changes');
-    }
-  }, {
-    key: "deletedLocalStorage",
-    value: function deletedLocalStorage() {
-      var items = JSON.parse(localStorage.getItem('items'));
-      var item = items.count;
-      items.splice(item, 1);
-      localStorage.setItem('items', JSON.stringify(items));
-    }
-  }, {
-    key: "completedTask",
-    value: function completedTask(listItem) {
-      var dateTask = document.querySelector('.fulfillment_date');
-      var dateValue = new Date(dateTask.textContent);
-
-      if (this.dateToday <= dateValue) {
-        var ulCompleted = document.querySelector('.completed_tasks');
-        this.removedTask = listItem;
-        listItem.classList.add('completed');
-        listItem.remove();
-        ulCompleted.appendChild(listItem);
-        this.itemСounter();
-        this.hidingItems(listItem);
-        this.deletedLocalStorage();
-      } else {
-        var ulExpired = document.querySelector('.expired_tasks');
-        this.removedTask = listItem;
-        listItem.remove();
-        ulExpired.appendChild(listItem);
-        this.itemСounter();
-        this.hidingItems(listItem);
-        this.deletedLocalStorage();
-      }
-    }
-  }, {
-    key: "hidingItems",
-    value: function hidingItems(listItem) {
-      var checkboxIn = listItem.querySelector('input[type=checkbox]');
-      checkboxIn.style.display = 'none';
-      var squaredOne = listItem.querySelector('.squaredOne');
-      squaredOne.style.display = 'none';
-      var btnEdit = listItem.querySelector(".edit");
-      btnEdit.style.display = 'none';
     } // ------------ Task counter ---------------
 
   }, {
