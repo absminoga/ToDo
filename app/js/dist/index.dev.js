@@ -866,4 +866,19 @@ jsTriggers.forEach(function (trigger) {
     activeContent.classList.remove('active');
     content.classList.add('active');
   });
+}); // ---------------------- Background image Slider -------------
+
+window.addEventListener("DOMContentLoaded", function () {
+  [].forEach.call(document.querySelectorAll(".carousel"), function (el) {
+    var img = el.querySelectorAll("img"),
+        len = img.length,
+        i = len - 1,
+        p = el.dataset.pause || 5E3;
+    !function g() {
+      img[i].classList.remove("show");
+      i = ++i % len;
+      img[i].classList.add("show");
+      window.setTimeout(g, p);
+    }();
+  });
 });

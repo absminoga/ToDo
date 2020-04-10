@@ -211,7 +211,6 @@ class ToDoList {
         listItem.classList.toggle('changes');
     }
 
-
     completedTask(listItem) {
         let dateTask = document.querySelector('.fulfillment_date');
         let dateValue = new Date(dateTask.textContent);
@@ -232,7 +231,6 @@ class ToDoList {
             //     this.incompletedTask.appendChild(listItem);
             //     this.buttonTaskEvents(listItem);
             //     this.itemСounter();
-
             // }
         } else {
             let ulExpired = document.querySelector('.expired_tasks');
@@ -269,7 +267,7 @@ class ToDoList {
         itemsArray.push(localTask);
         localStorage.setItem('items', JSON.stringify(itemsArray));
     }
-   
+
     // -------------------- Creatur New Task - localStorage ------------------
     creatureLocalItem() {
         let localStorageName = 'items';
@@ -300,7 +298,6 @@ class ToDoList {
         localStorage.setItem('items', JSON.stringify(items));
     }
 
-
     // ------------------ Validation of task input fields ------------
     taskValidation() {
         if (!this.inputTitle.value) {
@@ -324,7 +321,6 @@ class ToDoList {
         };
     }
 
-    
     // ------------ Task counter ---------------
     itemСounter() {
         let incompletetTask = document.querySelector('.incompleted_tasks');
@@ -378,7 +374,6 @@ class ToDoList {
                 this.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
 
                 let calendar = document.querySelector('.clendar_container');
-
                 setTimeout(() => {
                     calendar.classList.add('calendar_card');
                 }, 200);
@@ -442,7 +437,6 @@ class ToDoList {
                     td.innerHTML = count;
                     count++;
                     tr.appendChild(td);
-
                 }
                 table.appendChild(tr);
             }
@@ -556,7 +550,6 @@ class ToDoList {
                     textDate.classList.remove('error_Date');
                 }
             }
-
             for (let i = 1; i <= days; i++) {
                 let tdFields = document.querySelectorAll('.date_fields');
                 for (let tdField of tdFields) {
@@ -596,7 +589,6 @@ jsTriggers.forEach(function (trigger) {
             content = document.querySelector('.js-tab-content[data-tab="' + id + '"]'),
             activeTrigger = document.querySelector('.js-tab-trigger.active'),
             activeContent = document.querySelector('.js-tab-content.active');
-
         activeTrigger.classList.remove('active');
         trigger.classList.add('active');
 
@@ -605,18 +597,18 @@ jsTriggers.forEach(function (trigger) {
     });
 });
 // ---------------------- Background image Slider -------------
-window.addEventListener("DOMContentLoaded", function() {
-        [].forEach.call(document.querySelectorAll(".carousel"), function(el) {
-            var img = el.querySelectorAll("img"),
-                len = img.length,
-                i = len - 1,
-                p = el.dataset.pause || 5E3;
-            !function g() {
-                img[i].classList.remove("show");
-                i = ++i % len;
-                img[i].classList.add("show");
-                window.setTimeout(g, p)
-            }()
-        })
-    });
-    
+window.addEventListener("DOMContentLoaded", function () {
+    [].forEach.call(document.querySelectorAll(".carousel"), function (el) {
+        var img = el.querySelectorAll("img"),
+            len = img.length,
+            i = len - 1,
+            p = el.dataset.pause || 5E3;
+        !function g() {
+            img[i].classList.remove("show");
+            i = ++i % len;
+            img[i].classList.add("show");
+            window.setTimeout(g, p)
+        }()
+    })
+});
+
