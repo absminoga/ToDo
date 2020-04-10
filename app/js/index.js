@@ -232,12 +232,12 @@ class ToDoList {
             this.textDate.classList.add('error_Date');
         };
         this.inputTitle.oninput = () => {
-            if (this.inputTitle.value.length > 1) {
+            if (this.inputTitle.value.length > 0) {
                 this.textArea.classList.remove('error_Title');
             }
         };
         this.textDescription.oninput = () => {
-            if (this.textDescription.value.length > 1) {
+            if (this.textDescription.value.length > 0) {
                 this.textDescription.classList.remove('error_Description');
             }
         };
@@ -460,6 +460,7 @@ class ToDoList {
             let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
             let days = new Date(year, month + 1, 0).getDate();
             let calendar = getCalendar(day_number, days);
+            let textDate = document.querySelector('.date_field_container');
             getCalendar(day_number, days);
             document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
             document.querySelector('.calendar_dates table').remove();
@@ -471,6 +472,7 @@ class ToDoList {
             let inputTask = document.getElementById('new_task');
             let calendarBtn = document.querySelector('.date_field_container');
             let addButton = document.querySelector('.add_btn');
+
             for (let element of taskDate) {
                 element.onclick = () => {
                     inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
@@ -486,7 +488,7 @@ class ToDoList {
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
                     addButton.removeAttribute('disabled', '');
                     addButton.style.background = 'rgb(101, 118, 218)';
-                    this.textDate.classList.remove('error_Date');
+                    textDate.classList.remove('error_Date');
                 }
             }
 
@@ -513,6 +515,7 @@ class ToDoList {
             let day_number = day_name.indexOf(first_day); // Возвращаем индекс дня недели
             let days = new Date(year, month + 1, 0).getDate();
             let calendar = getCalendar(day_number, days);
+            let textDate = document.querySelector('.date_field_container');
             document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
             document.querySelector('.calendar_dates table').remove();
             document.querySelector('.calendar_dates').appendChild(calendar);
@@ -538,7 +541,7 @@ class ToDoList {
                     calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
                     addButton.removeAttribute('disabled', '');
                     addButton.style.background = 'rgb(101, 118, 218)';
-                    this.textDate.classList.remove('error_Date');
+                    textDate.classList.remove('error_Date');
                 }
             }
 

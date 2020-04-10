@@ -301,13 +301,13 @@ function () {
       ;
 
       this.inputTitle.oninput = function () {
-        if (_this4.inputTitle.value.length > 1) {
+        if (_this4.inputTitle.value.length > 0) {
           _this4.textArea.classList.remove('error_Title');
         }
       };
 
       this.textDescription.oninput = function () {
-        if (_this4.textDescription.value.length > 1) {
+        if (_this4.textDescription.value.length > 0) {
           _this4.textDescription.classList.remove('error_Description');
         }
       };
@@ -425,7 +425,7 @@ function () {
   }, {
     key: "getTaskDate",
     value: function getTaskDate() {
-      var _this7 = this;
+      var _this5 = this;
 
       var d = new Date();
       var month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -457,26 +457,26 @@ function () {
           var element = _step2.value;
 
           element.onclick = function () {
-            _this7.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
+            _this5.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
             var calendar = document.querySelector('.clendar_container');
             setTimeout(function () {
               calendar.classList.add('calendar_card');
             }, 200);
 
-            _this7.inputTitle.removeAttribute('disabled', '');
+            _this5.inputTitle.removeAttribute('disabled', '');
 
-            _this7.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this7.inputTask.removeAttribute('disabled', '');
+            _this5.inputTask.removeAttribute('disabled', '');
 
-            _this7.inputTask.style.background = 'rgba(255, 255, 255, 1)';
-            _this7.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.inputTask.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this7.addButton.removeAttribute('disabled', '');
+            _this5.addButton.removeAttribute('disabled', '');
 
-            _this7.addButton.style.background = 'rgb(101, 118, 218)';
+            _this5.addButton.style.background = 'rgb(101, 118, 218)';
 
-            _this7.textDate.classList.remove('error_Date');
+            _this5.textDate.classList.remove('error_Date');
           };
         };
 
@@ -599,8 +599,6 @@ function () {
       }
 
       function goToNextMonth(e) {
-        var _this5 = this;
-
         month++;
 
         if (month > 11) {
@@ -620,6 +618,7 @@ function () {
 
         var days = new Date(year, month + 1, 0).getDate();
         var calendar = getCalendar(day_number, days);
+        var textDate = document.querySelector('.date_field_container');
         getCalendar(day_number, days);
         document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
         document.querySelector('.calendar_dates table').remove();
@@ -651,8 +650,7 @@ function () {
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
               addButton.removeAttribute('disabled', '');
               addButton.style.background = 'rgb(101, 118, 218)';
-
-              _this5.textDate.classList.remove('error_Date');
+              textDate.classList.remove('error_Date');
             };
           };
 
@@ -709,8 +707,6 @@ function () {
       ;
 
       function goToPrevMonth(e) {
-        var _this6 = this;
-
         month--;
 
         if (month < 0) {
@@ -730,6 +726,7 @@ function () {
 
         var days = new Date(year, month + 1, 0).getDate();
         var calendar = getCalendar(day_number, days);
+        var textDate = document.querySelector('.date_field_container');
         document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
         document.querySelector('.calendar_dates table').remove();
         document.querySelector('.calendar_dates').appendChild(calendar);
@@ -760,8 +757,7 @@ function () {
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
               addButton.removeAttribute('disabled', '');
               addButton.style.background = 'rgb(101, 118, 218)';
-
-              _this6.textDate.classList.remove('error_Date');
+              textDate.classList.remove('error_Date');
             };
           };
 
@@ -819,18 +815,18 @@ function () {
   }, {
     key: "movementMenu",
     value: function movementMenu() {
-      var _this8 = this;
+      var _this6 = this;
 
       if (document.documentElement.clientWidth <= 640) {
         var menuBackBtn = document.querySelector('.fa-arrow-circle-left');
         this.sectionTabs.forEach(function (div) {
           div.addEventListener('click', function () {
-            _this8.windowsContainer.classList.add('menu_movement');
+            _this6.windowsContainer.classList.add('menu_movement');
           });
         });
 
         menuBackBtn.onclick = function () {
-          _this8.windowsContainer.classList.remove('menu_movement');
+          _this6.windowsContainer.classList.remove('menu_movement');
         };
       }
 
