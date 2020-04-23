@@ -32,16 +32,16 @@ function () {
     this.taskCounter = document.querySelectorAll('.task_counter');
     this.calendarBtn = document.querySelector('.date_field_container');
 
+    this.textArea.oninput = function () {
+      return _this.changeTitle();
+    };
+
     this.addButton.onclick = function () {
       return _this.addTask();
     };
 
     this.calendarBtn.onclick = function () {
       return _this.addCalendar();
-    };
-
-    this.textArea.oninput = function () {
-      return _this.changeTitle();
     };
 
     window.onload = function () {
@@ -183,6 +183,7 @@ function () {
     key: "changeTitle",
     value: function changeTitle() {
       this.charCounter.textContent = this.textArea.value.length;
+      console.log(this.textArea.value.length);
 
       if (this.textArea.value.length > 30) {
         this.textArea.setAttribute("id", "warning");

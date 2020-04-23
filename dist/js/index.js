@@ -19,9 +19,10 @@ class ToDoList {
         this.taskCounter = document.querySelectorAll('.task_counter');
         this.calendarBtn = document.querySelector('.date_field_container');
 
+        this.textArea.oninput = () => this.changeTitle();
         this.addButton.onclick = () => this.addTask();
         this.calendarBtn.onclick = () => this.addCalendar();
-        this.textArea.oninput = () => this.changeTitle();
+       
 
         window.onload = () => {
             this.getTaskDate();
@@ -152,9 +153,11 @@ class ToDoList {
     // --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
+        console.log(this.textArea.value.length);
         if (this.textArea.value.length > 30) {
             this.textArea.setAttribute("id", "warning");
             this.addButton.setAttribute('disabled', '');
+            
             this.textCounter.classList.add('warning');
             this.addButton.classList.add('btn_warning');
         } else {
@@ -309,6 +312,7 @@ class ToDoList {
         if (this.inputDate.textContent.length < 1) {
             this.textDate.classList.add('error_Date');
         };
+
         this.inputTitle.oninput = () => {
             if (this.inputTitle.value.length > 0) {
                 this.textArea.classList.remove('error_Title');
