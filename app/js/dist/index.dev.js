@@ -79,6 +79,7 @@ function () {
         this.incompletedTask.appendChild(listItem);
         this.buttonTaskEvents(listItem);
         this.inputTitle.value = '';
+        this.textArea.classList.remove('error_Title');
         this.inputTask.value = '';
         this.inputDate.textContent = '';
         this.charCounter.textContent = '0';
@@ -196,6 +197,10 @@ function () {
         this.textCounter.classList.remove('warning');
         this.addButton.classList.remove('btn_warning');
       }
+
+      if (this.textArea.value.length > 0) {
+        this.textArea.classList.remove('error_Title');
+      }
     }
   }, {
     key: "addCalendar",
@@ -237,6 +242,7 @@ function () {
       var changeDate = listItem.querySelector('.date_field');
       var containsClass = listItem.classList.contains('changes');
       var editButton = listItem.querySelector('button.edit');
+      var checkboxOut = listItem.querySelector('input[type=checkbox]');
 
       if (containsClass) {
         editButton.innerText = "edit";
@@ -245,6 +251,7 @@ function () {
         changeDescription.setAttribute('disabled', '');
         changeDescription.classList.remove('bg_field');
         changeDate.setAttribute('disabled', '');
+        checkboxOut.removeAttribute('disabled', '');
       } else {
         editButton.innerText = "save";
         changeTitle.removeAttribute('disabled', '');
@@ -252,6 +259,7 @@ function () {
         changeDescription.removeAttribute('disabled', '');
         changeDescription.classList.add('bg_field');
         changeDate.removeAttribute('disabled', '');
+        checkboxOut.setAttribute('disabled', '');
       }
 
       listItem.classList.toggle('changes');
@@ -389,12 +397,6 @@ function () {
       }
 
       ;
-
-      this.inputTitle.oninput = function () {
-        if (_this4.inputTitle.value.length > 0) {
-          _this4.textArea.classList.remove('error_Title');
-        }
-      };
 
       this.textDescription.oninput = function () {
         if (_this4.textDescription.value.length > 0) {

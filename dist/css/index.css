@@ -855,7 +855,7 @@ input {
               font-family: "MontserratRegular";
               font-size: -webkit-calc(12px + 0.6vw);
               font-size: calc(12px + 0.6vw);
-              color: #434343;
+              color: black;
               text-transform: capitalize;
               outline: none;
               margin-bottom: 10px;

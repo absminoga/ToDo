@@ -50,6 +50,7 @@ class ToDoList {
             this.incompletedTask.appendChild(listItem);
             this.buttonTaskEvents(listItem);
             this.inputTitle.value = '';
+            this.textArea.classList.remove('error_Title');
             this.inputTask.value = '';
             this.inputDate.textContent = '';
             this.charCounter.textContent = '0';
@@ -166,6 +167,9 @@ class ToDoList {
             this.textCounter.classList.remove('warning');
             this.addButton.classList.remove('btn_warning');
         }
+        if (this.textArea.value.length > 0) {
+            this.textArea.classList.remove('error_Title');
+        }
     }
 
     addCalendar() {
@@ -196,6 +200,7 @@ class ToDoList {
         let changeDate = listItem.querySelector('.date_field');
         let containsClass = listItem.classList.contains('changes');
         let editButton = listItem.querySelector('button.edit');
+        let checkboxOut = listItem.querySelector('input[type=checkbox]');
         if (containsClass) {
             editButton.innerText = "edit";
             changeTitle.setAttribute('disabled', '');
@@ -203,6 +208,7 @@ class ToDoList {
             changeDescription.setAttribute('disabled', '');
             changeDescription.classList.remove('bg_field');
             changeDate.setAttribute('disabled', '');
+            checkboxOut.removeAttribute('disabled', '');
         } else {
             editButton.innerText = "save";
             changeTitle.removeAttribute('disabled', '');
@@ -210,6 +216,7 @@ class ToDoList {
             changeDescription.removeAttribute('disabled', '');
             changeDescription.classList.add('bg_field');
             changeDate.removeAttribute('disabled', '');
+            checkboxOut.setAttribute('disabled', '');
         }
         listItem.classList.toggle('changes');
     }
@@ -311,12 +318,6 @@ class ToDoList {
         };
         if (this.inputDate.textContent.length < 1) {
             this.textDate.classList.add('error_Date');
-        };
-
-        this.inputTitle.oninput = () => {
-            if (this.inputTitle.value.length > 0) {
-                this.textArea.classList.remove('error_Title');
-            }
         };
         this.textDescription.oninput = () => {
             if (this.textDescription.value.length > 0) {
