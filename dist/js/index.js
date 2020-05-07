@@ -18,11 +18,11 @@ class ToDoList {
 
         this.taskCounter = document.querySelectorAll('.task_counter');
         this.calendarBtn = document.querySelector('.date_field_container');
-
-        this.textArea.oninput = () => this.changeTitle();
+        
         this.addButton.onclick = () => this.addTask();
         this.calendarBtn.onclick = () => this.addCalendar();
        
+        this.textArea.oninput = () => this.changeTitle();
 
         window.onload = () => {
             this.getTaskDate();
@@ -67,14 +67,7 @@ class ToDoList {
 
         let checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('value', 'None');
-        checkbox.setAttribute('id', 'squaredOne');
-        checkbox.setAttribute('name', 'check');
-        checkbox.setAttribute('title', 'Сomplete task');
-
-        let controlIndicator = document.createElement('label');
-        controlIndicator.setAttribute('for', 'squaredOne');
-        controlIndicator.setAttribute('title', 'Completed task');
+        checkbox.classList.add('task_counter');
 
         let textDescription = document.createElement('div');
         textDescription.classList.add('block_text_description');
@@ -98,7 +91,6 @@ class ToDoList {
 
         let dateField = document.createElement('span');
         dateField.classList.add('date_field');
-        let inputDate = document.querySelector('.date_field');
         dateField.innerText = date;
         dateField.classList.add('fulfillment_date');
         dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
@@ -117,9 +109,7 @@ class ToDoList {
         buttonDelete.classList.add('delete', 'task_counter');
         buttonDelete.innerText = 'delete';
 
-        listItem.appendChild(squaredOne);
-        squaredOne.appendChild(checkbox);
-        squaredOne.appendChild(controlIndicator);
+        listItem.appendChild(checkbox);
         listItem.appendChild(textDescription);
         textDescription.appendChild(inputTitle);
         textDescription.appendChild(inputDescription);
@@ -132,8 +122,10 @@ class ToDoList {
         buttonItem.appendChild(buttonDelete);
         return listItem;
     }
+
     // ------------------ Events when clicking on hemp tasks --------------------
     buttonTaskEvents(listItem) {
+
         let editButton = listItem.querySelector('button.edit');
         editButton.onclick = () => this.changeTask(listItem);
 
@@ -143,10 +135,10 @@ class ToDoList {
             this.itemСounter();
         };
 
-        let checkboxOut = listItem.querySelector('input[type=checkbox]');
+        let checkbox = listItem.querySelector('input[type=checkbox]');
         let inputDate = document.querySelector('.date_field');
-        let dateTask = new Date(inputDate.textContent);
-        checkboxOut.onclick = () => {
+        let dateTask = new Date(inputDate.textContent); 
+        checkbox.onclick = () => {
             this.completedTask(listItem, dateTask);
             this.itemСounter();
         }
@@ -154,7 +146,6 @@ class ToDoList {
     // --------------------  Control change the name of the task ---------
     changeTitle() {
         this.charCounter.textContent = this.textArea.value.length;
-        console.log(this.textArea.value.length);
         if (this.textArea.value.length > 30) {
             this.textArea.setAttribute("id", "warning");
             this.addButton.setAttribute('disabled', '');
@@ -200,32 +191,35 @@ class ToDoList {
         let changeDate = listItem.querySelector('.date_field');
         let containsClass = listItem.classList.contains('changes');
         let editButton = listItem.querySelector('button.edit');
-        let checkboxOut = listItem.querySelector('input[type=checkbox]');
+        let deleteButton = listItem.querySelector('button.delete');
+        let checkbox = listItem.querySelector('input[type=checkbox]');
         if (containsClass) {
             editButton.innerText = "edit";
+            editButton.classList.remove('edit_change')
             changeTitle.setAttribute('disabled', '');
             changeTitle.classList.remove('bg_field');
             changeDescription.setAttribute('disabled', '');
             changeDescription.classList.remove('bg_field');
             changeDate.setAttribute('disabled', '');
-            checkboxOut.removeAttribute('disabled', '');
+            checkbox.removeAttribute('disabled', '');
+            deleteButton.removeAttribute('disabled', '');
         } else {
             editButton.innerText = "save";
+            editButton.classList.add('edit_change')
             changeTitle.removeAttribute('disabled', '');
             changeTitle.classList.add('bg_field');
             changeDescription.removeAttribute('disabled', '');
             changeDescription.classList.add('bg_field');
             changeDate.removeAttribute('disabled', '');
-            checkboxOut.setAttribute('disabled', '');
+            checkbox.setAttribute('disabled', '');
+            deleteButton.setAttribute('disabled', '');
         }
         listItem.classList.toggle('changes');
     }
 
-    completedTask(listItem) {
-        let dateTask = document.querySelector('.fulfillment_date');
-        let dateValue = new Date(dateTask.textContent);
-
-        if (this.dateToday <= dateValue) {
+    completedTask(listItem, dateTask) {
+        if (this.dateToday <= dateTask) { 
+            console.log(dateTask);     
             let ulCompleted = document.querySelector('.completed_tasks');
             this.removedTask = listItem;
             listItem.classList.add('completed');
@@ -233,17 +227,10 @@ class ToDoList {
             ulCompleted.appendChild(listItem);
             this.itemСounter();
             this.hidingItems(listItem);
-            this.deletedLocalStorage();
-            // let checkboxIn = listItem.querySelector('input[type=checkbox]');
-            // checkboxIn.onclick = () => {
-            //     listItem.remove();
-            //     this.createLocalStorage();
-            //     this.incompletedTask.appendChild(listItem);
-            //     this.buttonTaskEvents(listItem);
-            //     this.itemСounter();
-            // }
+            this.deletedLocalStorage();  
         } else {
             let ulExpired = document.querySelector('.expired_tasks');
+            console.log(dateTask);
             this.removedTask = listItem;
             listItem.remove()
             ulExpired.appendChild(listItem);
@@ -256,8 +243,6 @@ class ToDoList {
     hidingItems(listItem) {
         let checkboxIn = listItem.querySelector('input[type=checkbox]');
         checkboxIn.style.display = 'none';
-        let squaredOne = listItem.querySelector('.squaredOne');
-        squaredOne.style.display = 'none';
         let btnEdit = listItem.querySelector(".edit")
         btnEdit.style.display = 'none';
     }
@@ -356,6 +341,7 @@ class ToDoList {
         };
         return datePosition.innerText;
     }
+    // ---------- Add calendar -------------
     getTaskDate() {
         let d = new Date();
         let month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

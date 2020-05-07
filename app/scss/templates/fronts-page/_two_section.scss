@@ -225,6 +225,7 @@
         }
         .error_Title{
           border: 1px solid rgba(218, 3, 3, 0.954)  !important;
+          background: rgba(218, 3, 3, 0.1) !important;
         }
         #warning {
           width: 100%;
@@ -283,6 +284,7 @@
         }
         .error_Description{
           border: 1px solid rgba(218, 3, 3, 1) !important;
+          background: rgba(218, 3, 3, 0.1) !important;
         }
         .date_completion {
           display: flex;
@@ -337,7 +339,8 @@
             }
           }
           .error_Date{
-            border: 1px solid rgba(218, 3, 3, 1); 
+            border: 1px solid rgba(218, 3, 3, 1);
+            background: rgba(218, 3, 3, 0.1) !important; 
           }
           .add_btn {
             align-self: flex-end;
@@ -623,6 +626,11 @@
                 color: rgb(69, 69, 69);
                 transition: all 0.7s ease-in-out;
               }
+              .edit_change{
+              background: rgba(255, 255, 255, 0.7);
+              color: rgb(255, 2, 2);
+              border: 1px solid rgb(255, 2, 2);
+              }
               .edit:hover {
                 color: rgb(60, 142, 135);
                 border: 1px solid rgb(30, 177, 128);
@@ -630,6 +638,7 @@
               .delete:hover {
                 color: rgb(255, 2, 2);
                 border: 1px solid rgb(255, 2, 2);
+                background: rgba(255, 255, 255, 0.7);
               }
             }
           }

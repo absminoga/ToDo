@@ -449,7 +449,8 @@ input {
           -o-transition: all .5s ease-in-out;
           transition: all .5s ease-in-out; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .error_Title {
-          border: 1px solid rgba(218, 3, 3, 0.954) !important; }
+          border: 1px solid rgba(218, 3, 3, 0.954) !important;
+          background: rgba(218, 3, 3, 0.1) !important; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card #warning {
           width: 100%;
           margin-bottom: 3px;
@@ -519,7 +520,8 @@ input {
           -o-transition: all .5s ease-in-out;
           transition: all .5s ease-in-out; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .error_Description {
-          border: 1px solid #da0303 !important; }
+          border: 1px solid #da0303 !important;
+          background: rgba(218, 3, 3, 0.1) !important; }
         .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion {
           display: -webkit-box;
           display: -webkit-flex;
@@ -604,7 +606,8 @@ input {
             .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .date_field_container .without_date {
               color: #008872; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .error_Date {
-            border: 1px solid #da0303; }
+            border: 1px solid #da0303;
+            background: rgba(218, 3, 3, 0.1) !important; }
           .container_section_task_dashboard .tab_content .tabs_dashboard .tabs_dashboard_list_card .date_completion .add_btn {
             -webkit-align-self: flex-end;
                 -ms-flex-item-align: end;
@@ -987,12 +990,17 @@ input {
               -webkit-transition: all 0.7s ease-in-out;
               -o-transition: all 0.7s ease-in-out;
               transition: all 0.7s ease-in-out; }
+            .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit_change {
+              background: rgba(255, 255, 255, 0.7);
+              color: #ff0202;
+              border: 1px solid #ff0202; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .edit:hover {
               color: #3c8e87;
               border: 1px solid #1eb180; }
             .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .task_card .button_item .delete:hover {
               color: #ff0202;
-              border: 1px solid #ff0202; }
+              border: 1px solid #ff0202;
+              background: rgba(255, 255, 255, 0.7); }
         .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_title,
         .container_section_task_dashboard .tab_content .tabs_dashboard .container_item .task_dashboard .changes .block_text_description .input_description {
           color: #518f01;
