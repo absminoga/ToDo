@@ -27,6 +27,8 @@ function () {
     this.charCounter = document.querySelector('.char-counter');
     this.textCounter = document.querySelector('.text-counter');
     this.textArea = document.getElementById('new_title');
+    this.textDescription = document.getElementById('new_task');
+    this.textDate = document.querySelector('.date_field_container');
     this.taskCounter = document.querySelectorAll('.task_counter');
     this.calendarBtn = document.querySelector('.date_field_container');
 
@@ -60,39 +62,63 @@ function () {
     this.removedTask = null;
     this.index;
     this.dateToday = new Date();
-  } // -------------------- Creatur New Task - JS-HTML
+  } // -------------- Event classes -----------
 
 
   _createClass(ToDoList, [{
+    key: "addTask",
+    value: function addTask() {
+      var inputDate = document.querySelector('.date_field');
+
+      if (this.inputTitle.value == '' || this.textDescription.value == '' || this.inputDate.textContent == '') {
+        this.taskValidation();
+      } else {
+        //-------------------------    Сreate an array for Local Storage --------------------
+        this.createLocalStorage();
+        var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
+        this.incompletedTask.appendChild(listItem);
+        this.buttonTaskEvents(listItem);
+        this.inputTitle.value = '';
+        this.textArea.classList.remove('error_Title');
+        this.inputTask.value = '';
+        this.inputDate.textContent = '';
+        this.charCounter.textContent = '0';
+        this.itemСounter();
+      }
+    } // -------------------- Creatur New Task - JS-HTML
+
+  }, {
     key: "creatureNewItem",
     value: function creatureNewItem(title, task, date) {
       var listItem = document.createElement('div');
       listItem.classList.add('task_card');
+      var squaredOne = document.createElement('div');
+      squaredOne.classList.add('squaredOne');
       var checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       checkbox.classList.add('task_counter');
       var textDescription = document.createElement('div');
       textDescription.classList.add('block_text_description');
       var inputTitle = document.createElement('textarea');
-      inputTitle.setAttribute('type', 'text');
       inputTitle.classList.add('input_title');
       inputTitle.setAttribute('disabled', '');
-      inputTitle.innerText = title;
+      inputTitle.textContent = title;
       var inputDescription = document.createElement('textarea');
       inputDescription.setAttribute('type', 'text');
       inputDescription.classList.add('input_description');
       inputDescription.setAttribute('disabled', '');
-      inputDescription.innerText = task;
+      inputDescription.textContent = task;
       var dateCompletion = document.createElement('div');
       dateCompletion.classList.add('date_completion');
       var dateFieldContainer = document.createElement('div');
       dateFieldContainer.classList.add('date_field_container');
       var dateField = document.createElement('span');
       dateField.classList.add('date_field');
-      var inputDate = document.querySelector('.date_field');
       dateField.innerText = date;
       dateField.classList.add('fulfillment_date');
       dateFieldContainer.style.background = 'rgba(255, 255, 255, 0.5);';
+      var calendarLogo = document.createElement('i');
+      calendarLogo.classList.add('fas', 'fa-calendar-alt');
       var buttonItem = document.createElement('div');
       buttonItem.classList.add('button_item');
       var buttonEdit = document.createElement('button');
@@ -108,10 +134,179 @@ function () {
       textDescription.appendChild(dateCompletion);
       dateCompletion.appendChild(dateFieldContainer);
       dateFieldContainer.appendChild(dateField);
+      dateFieldContainer.appendChild(calendarLogo);
       listItem.appendChild(buttonItem);
       buttonItem.appendChild(buttonEdit);
       buttonItem.appendChild(buttonDelete);
       return listItem;
+    } // ------------------ Events when clicking on hemp tasks --------------------
+
+  }, {
+    key: "buttonTaskEvents",
+    value: function buttonTaskEvents(listItem) {
+      var _this2 = this;
+
+      var editButton = listItem.querySelector('button.edit');
+
+      editButton.onclick = function () {
+        return _this2.changeTask(listItem);
+      };
+
+      var deleteButton = listItem.querySelector('button.delete');
+
+      deleteButton.onclick = function () {
+        _this2.deleteTask(listItem);
+
+        _this2.itemСounter();
+      };
+
+      var checkbox = listItem.querySelector('input[type=checkbox]');
+      var inputDate = document.querySelector('.date_field');
+      var dateTask = new Date(inputDate.textContent);
+
+      checkbox.onclick = function () {
+        _this2.completedTask(listItem, dateTask);
+
+        _this2.itemСounter();
+      };
+    } // --------------------  Control change the name of the task ---------
+
+  }, {
+    key: "changeTitle",
+    value: function changeTitle() {
+      this.charCounter.textContent = this.textArea.value.length;
+
+      if (this.textArea.value.length > 30) {
+        this.textArea.setAttribute("id", "warning");
+        this.addButton.setAttribute('disabled', '');
+        this.textCounter.classList.add('warning');
+        this.addButton.classList.add('btn_warning');
+      } else {
+        this.textArea.setAttribute("id", "new_title");
+        this.addButton.removeAttribute('disabled', '');
+        this.textCounter.classList.remove('warning');
+        this.addButton.classList.remove('btn_warning');
+      }
+
+      if (this.textArea.value.length > 0) {
+        this.textArea.classList.remove('error_Title');
+      }
+    }
+  }, {
+    key: "addCalendar",
+    value: function addCalendar() {
+      var _this3 = this;
+
+      var calendar = document.querySelector('.clendar_container');
+      setTimeout(function () {
+        calendar.classList.remove('calendar_card');
+
+        _this3.inputTitle.setAttribute('disabled', '');
+
+        _this3.inputTitle.style.background = 'rgba(255, 255, 255, .5)';
+
+        _this3.inputTask.setAttribute('disabled', '');
+
+        _this3.inputTask.style.background = 'rgba(255, 255, 255, .5)';
+        _this3.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
+
+        _this3.addButton.setAttribute('disabled', '');
+
+        _this3.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
+      }, 100);
+    } //--------------- Delete tasks --------------------------
+
+  }, {
+    key: "deleteTask",
+    value: function deleteTask(listItem) {
+      var ul = listItem.parentNode;
+      ul.removeChild(listItem);
+      this.deletedLocalStorage();
+    } //--------------- Change incomplet tasks --------------------------
+
+  }, {
+    key: "changeTask",
+    value: function changeTask(listItem) {
+      var changeTitle = listItem.querySelector('.input_title');
+      var changeDescription = listItem.querySelector('.input_description');
+      var changeDate = listItem.querySelector('.date_field');
+      var containsClass = listItem.classList.contains('changes');
+      var editButton = listItem.querySelector('button.edit');
+      var deleteButton = listItem.querySelector('button.delete');
+      var checkbox = listItem.querySelector('input[type=checkbox]');
+
+      if (containsClass) {
+        editButton.innerText = "edit";
+        editButton.classList.remove('edit_change');
+        changeTitle.setAttribute('disabled', '');
+        changeTitle.classList.remove('bg_field');
+        changeDescription.setAttribute('disabled', '');
+        changeDescription.classList.remove('bg_field');
+        changeDate.setAttribute('disabled', '');
+        checkbox.removeAttribute('disabled', '');
+        deleteButton.removeAttribute('disabled', '');
+      } else {
+        editButton.innerText = "save";
+        editButton.classList.add('edit_change');
+        changeTitle.removeAttribute('disabled', '');
+        changeTitle.classList.add('bg_field');
+        changeDescription.removeAttribute('disabled', '');
+        changeDescription.classList.add('bg_field');
+        changeDate.removeAttribute('disabled', '');
+        checkbox.setAttribute('disabled', '');
+        deleteButton.setAttribute('disabled', '');
+      }
+
+      listItem.classList.toggle('changes');
+    }
+  }, {
+    key: "completedTask",
+    value: function completedTask(listItem, dateTask) {
+      if (this.dateToday <= dateTask) {
+        console.log(dateTask);
+        var ulCompleted = document.querySelector('.completed_tasks');
+        this.removedTask = listItem;
+        listItem.classList.add('completed');
+        listItem.remove();
+        ulCompleted.appendChild(listItem);
+        this.itemСounter();
+        this.hidingItems(listItem);
+        this.deletedLocalStorage();
+      } else {
+        var ulExpired = document.querySelector('.expired_tasks');
+        console.log(dateTask);
+        this.removedTask = listItem;
+        listItem.remove();
+        ulExpired.appendChild(listItem);
+        this.itemСounter();
+        this.hidingItems(listItem);
+        this.deletedLocalStorage();
+      }
+    }
+  }, {
+    key: "hidingItems",
+    value: function hidingItems(listItem) {
+      var checkboxIn = listItem.querySelector('input[type=checkbox]');
+      checkboxIn.style.display = 'none';
+      var btnEdit = listItem.querySelector(".edit");
+      btnEdit.style.display = 'none';
+    } // ------------------------   Create Local Storage ------------------------
+
+  }, {
+    key: "createLocalStorage",
+    value: function createLocalStorage() {
+      var inputDate = document.querySelector('.date_field');
+      this.index++;
+      var localTask = {
+        count: this.index,
+        titleTask: this.inputTitle.value,
+        descriptionTask: this.inputTask.value,
+        dateTask: inputDate.textContent
+      }; // ------------------------    Adding Items to Local Storage ------------------------
+
+      var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+      itemsArray.push(localTask);
+      localStorage.setItem('items', JSON.stringify(itemsArray));
     } // -------------------- Creatur New Task - localStorage ------------------
 
   }, {
@@ -127,8 +322,7 @@ function () {
       } else {
         toDoListJson = localStorage.getItem(localStorageName);
         toDoList = JSON.parse(toDoListJson);
-        this.index = toDoList.length;
-        "";
+        this.index = toDoList.length - 1;
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -156,169 +350,44 @@ function () {
           }
         }
       }
-    } // --------------------  Control change the name of the task ---------
-
-  }, {
-    key: "changeTitle",
-    value: function changeTitle() {
-      this.charCounter.textContent = this.textArea.value.length;
-
-      if (this.textArea.value.length > 30) {
-        this.textArea.setAttribute("id", "warning");
-        this.addButton.setAttribute('disabled', '');
-        this.textCounter.classList.add('warning');
-        this.addButton.classList.add('btn_warning');
-      } else {
-        this.textArea.setAttribute("id", "new_title");
-        this.addButton.removeAttribute('disabled', '');
-        this.textCounter.classList.remove('warning');
-        this.addButton.classList.remove('btn_warning');
-      }
     }
   }, {
-    key: "addCalendar",
-    value: function addCalendar() {
-      var _this2 = this;
-
-      var calendar = document.querySelector('.clendar_container');
-      setTimeout(function () {
-        calendar.classList.remove('calendar_card');
-
-        _this2.inputTitle.setAttribute('disabled', '');
-
-        _this2.inputTitle.style.background = 'rgba(255, 255, 255, .5)';
-
-        _this2.inputTask.setAttribute('disabled', '');
-
-        _this2.inputTask.style.background = 'rgba(255, 255, 255, .5)';
-        _this2.calendarBtn.style.background = 'rgba(255, 255, 255, .5)';
-
-        _this2.addButton.setAttribute('disabled', '');
-
-        _this2.addButton.style.background = 'rgba(199, 3, 3, 0.7)';
-      }, 100);
-    } // ------------------ Events when clicking on hemp tasks --------------------
+    key: "deletedLocalStorage",
+    value: function deletedLocalStorage() {
+      var items = JSON.parse(localStorage.getItem('items'));
+      var item = items.count;
+      items.splice(item, 1);
+      localStorage.setItem('items', JSON.stringify(items));
+    } // ------------------ Validation of task input fields ------------
 
   }, {
-    key: "buttonTaskEvents",
-    value: function buttonTaskEvents(listItem) {
-      var _this3 = this;
+    key: "taskValidation",
+    value: function taskValidation() {
+      var _this4 = this;
 
-      var editButton = listItem.querySelector('button.edit');
+      if (!this.inputTitle.value) {
+        this.textArea.classList.add('error_Title');
+      }
 
-      editButton.onclick = function () {
-        return _this3.changeTask(listItem);
+      ;
+
+      if (!this.textDescription.value) {
+        this.textDescription.classList.add('error_Description');
+      }
+
+      ;
+
+      if (this.inputDate.textContent.length < 1) {
+        this.textDate.classList.add('error_Date');
+      }
+
+      ;
+
+      this.textDescription.oninput = function () {
+        if (_this4.textDescription.value.length > 0) {
+          _this4.textDescription.classList.remove('error_Description');
+        }
       };
-
-      var deleteButton = listItem.querySelector('button.delete');
-
-      deleteButton.onclick = function () {
-        _this3.deleteTask(listItem);
-
-        _this3.itemСounter();
-      };
-
-      var checkboxOut = listItem.querySelector('input[type=checkbox]');
-      var inputDate = document.querySelector('.date_field');
-      var dateTask = new Date(inputDate.textContent);
-
-      checkboxOut.onclick = function () {
-        _this3.completedTask(listItem, dateTask);
-
-        _this3.itemСounter();
-      };
-    } // -------------- Event classes -----------
-
-  }, {
-    key: "addTask",
-    value: function addTask() {
-      var inputDate = document.querySelector('.date_field');
-
-      if (this.inputTitle.value && this.inputTask.value && inputDate.textContent) {
-        //---------------------------------------local
-        this.index++;
-        var localTask = {
-          count: this.index,
-          titleTask: this.inputTitle.value,
-          descriptionTask: this.inputTask.value,
-          dateTask: inputDate.textContent
-        }; // Добавление елементов в Local
-
-        var itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-        itemsArray.push(localTask);
-        localStorage.setItem('items', JSON.stringify(itemsArray));
-        var listItem = this.creatureNewItem(this.inputTitle.value, this.inputTask.value, inputDate.textContent);
-        this.incompletedTask.appendChild(listItem);
-        this.buttonTaskEvents(listItem);
-        this.inputTitle.value = '';
-        this.inputTask.value = '';
-        this.inputDate.textContent = '';
-        this.charCounter.textContent = '0';
-        this.itemСounter();
-      }
-    }
-  }, {
-    key: "deleteTask",
-    value: function deleteTask(listItem) {
-      var ul = listItem.parentNode;
-      ul.removeChild(listItem);
-      var array = JSON.parse(localStorage.getItem('array')); // Получаем массив
-      // array.splice(2, 1); // Удаляем один элемент с индексом 2
-      // localStorage.setItem('array', JSON.stringify(array));   
-    }
-  }, {
-    key: "changeTask",
-    value: function changeTask(listItem) {
-      var changeTitle = listItem.querySelector('.input_title');
-      var changeDescription = listItem.querySelector('.input_description');
-      var changeDate = listItem.querySelector('.date_field');
-      var containsClass = listItem.classList.contains('changes');
-      var editButton = listItem.querySelector('button.edit');
-
-      if (containsClass) {
-        editButton.innerText = "edit";
-        changeTitle.setAttribute('disabled', '');
-        changeTitle.classList.remove('bg_field');
-        changeDescription.setAttribute('disabled', '');
-        changeDescription.classList.remove('bg_field');
-        changeDate.setAttribute('disabled', '');
-      } else {
-        editButton.innerText = "save";
-        changeTitle.removeAttribute('disabled', '');
-        changeTitle.classList.add('bg_field');
-        changeDescription.removeAttribute('disabled', '');
-        changeDescription.classList.add('bg_field');
-        changeDate.removeAttribute('disabled', '');
-      }
-
-      listItem.classList.toggle('changes');
-    }
-  }, {
-    key: "completedTask",
-    value: function completedTask(listItem) {
-      var dateTask = document.querySelector('.fulfillment_date');
-      var dateValue = new Date(dateTask.textContent);
-
-      if (this.dateToday <= dateValue) {
-        var ulCompleted = document.querySelector('.completed_tasks');
-        this.removedTask = listItem;
-        listItem.classList.add('completed');
-        listItem.remove();
-        ulCompleted.appendChild(listItem);
-        this.itemСounter();
-        var checkboxIn = listItem.querySelector('input[type=checkbox]');
-        checkboxIn.style.display = 'none';
-      } else {
-        var ulExpired = document.querySelector('.expired_tasks');
-        this.removedTask = listItem;
-        listItem.remove();
-        ulExpired.appendChild(listItem);
-        this.itemСounter();
-
-        var _checkboxIn = listItem.querySelector('input[type=checkbox]');
-
-        _checkboxIn.style.display = 'none';
-      }
     } // ------------ Task counter ---------------
 
   }, {
@@ -352,11 +421,12 @@ function () {
 
       ;
       return datePosition.innerText;
-    }
+    } // ---------- Add calendar -------------
+
   }, {
     key: "getTaskDate",
     value: function getTaskDate() {
-      var _this4 = this;
+      var _this5 = this;
 
       var d = new Date();
       var month_name = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -388,24 +458,26 @@ function () {
           var element = _step2.value;
 
           element.onclick = function () {
-            _this4.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
+            _this5.inputDate.innerHTML = month_name[month] + ' ' + element.innerHTML + ', ' + year;
             var calendar = document.querySelector('.clendar_container');
             setTimeout(function () {
               calendar.classList.add('calendar_card');
             }, 200);
 
-            _this4.inputTitle.removeAttribute('disabled', '');
+            _this5.inputTitle.removeAttribute('disabled', '');
 
-            _this4.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.inputTitle.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this4.inputTask.removeAttribute('disabled', '');
+            _this5.inputTask.removeAttribute('disabled', '');
 
-            _this4.inputTask.style.background = 'rgba(255, 255, 255, 1)';
-            _this4.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.inputTask.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
 
-            _this4.addButton.removeAttribute('disabled', '');
+            _this5.addButton.removeAttribute('disabled', '');
 
-            _this4.addButton.style.background = 'rgba(255, 255, 255, 1)';
+            _this5.addButton.style.background = 'rgb(101, 118, 218)';
+
+            _this5.textDate.classList.remove('error_Date');
           };
         };
 
@@ -547,6 +619,7 @@ function () {
 
         var days = new Date(year, month + 1, 0).getDate();
         var calendar = getCalendar(day_number, days);
+        var textDate = document.querySelector('.date_field_container');
         getCalendar(day_number, days);
         document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
         document.querySelector('.calendar_dates table').remove();
@@ -577,7 +650,8 @@ function () {
               inputTask.style.background = 'rgba(255, 255, 255, 1)';
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
               addButton.removeAttribute('disabled', '');
-              addButton.style.background = 'rgba(255, 255, 255, 1)';
+              addButton.style.background = 'rgb(101, 118, 218)';
+              textDate.classList.remove('error_Date');
             };
           };
 
@@ -653,6 +727,7 @@ function () {
 
         var days = new Date(year, month + 1, 0).getDate();
         var calendar = getCalendar(day_number, days);
+        var textDate = document.querySelector('.date_field_container');
         document.querySelector('.calendar_month_year').innerHTML = month_name[month] + ' ' + year;
         document.querySelector('.calendar_dates table').remove();
         document.querySelector('.calendar_dates').appendChild(calendar);
@@ -682,7 +757,8 @@ function () {
               inputTask.style.background = 'rgba(255, 255, 255, 1)';
               calendarBtn.style.background = 'rgba(255, 255, 255, 1)';
               addButton.removeAttribute('disabled', '');
-              addButton.style.background = 'rgba(255, 255, 255, 1)';
+              addButton.style.background = 'rgb(101, 118, 218)';
+              textDate.classList.remove('error_Date');
             };
           };
 
@@ -740,18 +816,18 @@ function () {
   }, {
     key: "movementMenu",
     value: function movementMenu() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (document.documentElement.clientWidth <= 640) {
         var menuBackBtn = document.querySelector('.fa-arrow-circle-left');
         this.sectionTabs.forEach(function (div) {
           div.addEventListener('click', function () {
-            _this5.windowsContainer.classList.add('menu_movement');
+            _this6.windowsContainer.classList.add('menu_movement');
           });
         });
 
         menuBackBtn.onclick = function () {
-          _this5.windowsContainer.classList.remove('menu_movement');
+          _this6.windowsContainer.classList.remove('menu_movement');
         };
       }
 
@@ -778,5 +854,20 @@ jsTriggers.forEach(function (trigger) {
     trigger.classList.add('active');
     activeContent.classList.remove('active');
     content.classList.add('active');
+  });
+}); // ---------------------- Background image Slider -------------
+
+window.addEventListener("DOMContentLoaded", function () {
+  [].forEach.call(document.querySelectorAll(".carousel"), function (el) {
+    var img = el.querySelectorAll("img"),
+        len = img.length,
+        i = len - 1,
+        p = el.dataset.pause || 5E3;
+    !function g() {
+      img[i].classList.remove("show");
+      i = ++i % len;
+      img[i].classList.add("show");
+      window.setTimeout(g, p);
+    }();
   });
 });
